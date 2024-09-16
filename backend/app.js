@@ -4,7 +4,7 @@
 
 const express = require("express");
 const mongoose = require("mongoose");
-const stockrouter = require("./Routes/StockRoutes");
+const emprouter = require("./Routes/EmployeeRoutes");
 
 const app = express();
 const cors = require("cors");
@@ -12,7 +12,9 @@ const cors = require("cors");
 // Middlewear
 app.use(express.json());
 app.use(cors());
-app.use("/stocks", stockrouter);
+app.use("/employees", emprouter);
+
+
 
 // Connect Database
 mongoose.connect("mongodb+srv://admin:zoPvf0NUih9wBU3F@cluster0.yawwn.mongodb.net/")

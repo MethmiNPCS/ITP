@@ -1,0 +1,59 @@
+/* Nav.css */
+
+/* Styles for the navigation bar */
+.navbar {
+  background-color: green; /* Background color of the navbar */
+  padding: 10px;
+  border-radius: 2px; /* Rounded corners for the navbar */
+  display: flex;
+  justify-content: center; /* Center the nav items */
+  position: fixed; /* Fix the navbar at the top of the page */
+  top: 0;
+  left: 0;
+  width: 100%; /* Ensure the navbar spans the full width */
+  z-index: 1000; /* Ensure the navbar is on top of other content */
+}
+
+/* Styles for the navigation list */
+.nav-list {
+  list-style-type: none; /* Remove default list styling */
+  margin: 0;
+  padding: 0;
+  display: flex; /* Align list items horizontally */
+}
+
+/* Styles for each navigation item */
+.nav-item {
+  margin: 0 15px; /* Spacing between nav items */
+}
+
+/* Styles for the links inside navigation items */
+.nav-link {
+  font-size: 18px; /* Font size */
+  font-family: 'Arial', sans-serif; /* Font family */
+  color: white !important; /* Ensure font color is white and override any default styling */
+  padding: 10px 15px; /* Padding around each link */
+  text-decoration: none !important; /* Remove underline from links and override default styling */
+  font-weight: bold; /* Make text bold */
+  display: inline-block; /* Ensure the padding applies around the text */
+  transition: background-color 0.3s ease, color 0.3s ease; /* Smooth transition for hover effect */
+}
+
+/* Hover effect for navigation links */
+.nav-link:hover {
+  background-color: lightgreen; /* Background color on hover */
+  color: black; /* Change font color to black on hover */
+  border-radius: 4px; /* Rounded corners on hover */
+}
+
+/* Override default styles for visited links */
+.nav-link:visited,
+.nav-link:active {
+  color: white !important; /* Ensure visited and active links maintain the white font color */
+  text-decoration: none !important; /* Remove underline from visited and active links */
+}
+
+/* Add margin to the top of the page content to prevent it from being hidden behind the fixed navbar */
+body {
+  margin-top: 50px; /* Adjust this value based on the height of your navbar */
+}

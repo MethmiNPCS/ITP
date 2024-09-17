@@ -2,6 +2,8 @@ import React from "react";
 import {Route, Routes} from "react-router";
 import './App.css';
 //import Home from './Components/Home/Home';
+
+// Stock Routes
 import StockHome from './Components/Stocks/StockHome';
 import AddFood from './Components/Stocks/AddStock/AddFood';
 import AddMedicine from "./Components/Stocks/AddStock/AddMedicine";

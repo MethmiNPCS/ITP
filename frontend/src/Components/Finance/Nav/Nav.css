@@ -1,0 +1,47 @@
+/* Styles for the navigation bar */
+.navbar {
+  background-color: #28a745; /* Farm-themed green */
+  padding: 15px 30px;
+  border-radius: 8px;
+  display: flex;
+  justify-content: center;
+}
+
+/* Styles for the navigation list */
+.nav-list {
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+}
+
+/* Styles for each navigation item */
+.nav-item {
+  margin: 0 20px;
+}
+
+/* Styles for the links inside navigation items */
+.nav-link {
+  font-size: 18px;
+  font-family: 'Arial', sans-serif;
+  color: #ffffff;
+  padding: 10px 20px;
+  text-decoration: none;
+  font-weight: bold;
+  display: inline-block;
+  transition: background-color 0.3s ease, color 0.3s ease;
+  border-radius: 4px;
+}
+
+/* Hover effect for navigation links */
+.nav-link:hover {
+  background-color: #218838; /* Darker green for hover effect */
+  color: #ffffff;
+}
+
+/* Override default styles for visited links */
+.nav-link:visited,
+.nav-link:active {
+  color: #ffffff;
+  text-decoration: none;
+}

@@ -1,0 +1,9 @@
+.con {
+    position: absolute; /* or fixed */
+    right: 0; /* Align to the left */
+    top: 50%; /* Center vertically */
+    transform: translateY(-50%); /* Adjust for exact center */
+    float: left; /* Align to the left */
+    margin-top: 20px; /* Add some top margin if needed */
+    margin-right: 10Px;
+}

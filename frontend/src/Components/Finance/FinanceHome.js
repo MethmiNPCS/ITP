@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import Nav from './Nav/Nav';
 import { Bar } from 'react-chartjs-2';
 import axios from 'axios';
-import '../Finance/Home.css'
+import '../Finance/F_Home.css'
 // Import necessary Chart.js components
 import {
   Chart as ChartJS,

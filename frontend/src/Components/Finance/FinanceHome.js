@@ -62,12 +62,12 @@ function FinanceHome() {
     <div>
       <Nav />
       <div style={{ width: '60%', margin: 'auto', padding: '20px' }}>
-        <h2>Financial Overview</h2>
+        <h2 className="text-black">Financial Overview</h2>
         <Bar data={data} />
       </div>
       <div className="con">
-      <h2>Total Income: {totalIncome}</h2>
-      <h2>Total Expense: {totalExpense}</h2>
+      <h2 className="text" >Total Income: {totalIncome}</h2>
+      <h2 className="text" >Total Expense: {totalExpense}</h2>
       </div>
     </div>
   );

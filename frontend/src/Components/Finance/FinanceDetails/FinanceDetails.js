@@ -3,6 +3,8 @@ import Nav from '../Nav/Nav';
 import axios from 'axios';
 import { Link } from 'react-router-dom';
 import { useNavigate } from 'react-router-dom';
+import jsPDF from 'jspdf'; // Import jsPDF
+import 'jspdf-autotable'; // Import for table auto-formatting
 import './FD.css';
 
 const URL = "http://localhost:5000/finance";
@@ -21,6 +23,7 @@ const fetchHandler = async () => {
 
 function FinanceDetails() {
   const [finance, setFinance] = useState([]);
+  const [searchTerm, setSearchTerm] = useState(''); // State to store search input
   const navigate = useNavigate();
 
   useEffect(() => {
@@ -53,12 +56,49 @@ function FinanceDetails() {
   const filteredFinance = finance.filter(item => item.transactionType === 'Expense');
   const totalAmount = filteredFinance.reduce((sum, item) => sum + item.amount, 0);
 
+  // Filter data based on search input
+  const filteredSearchResults = filteredFinance.filter(item =>
+    item.category.toLowerCase().includes(searchTerm.toLowerCase()) || // Search by category
+    item.transactionType.toLowerCase().includes(searchTerm.toLowerCase()) || // Search by type
+    item.date.includes(searchTerm) // Search by date
+  );
+
+  // Function to generate PDF report
+  const generatePDF = () => {
+    const doc = new jsPDF();
+    doc.text("Finance Report", 14, 16);
+    doc.autoTable({
+      startY: 20,
+      head: [['ID', 'Date', 'Type', 'Category', 'Amount']],
+      body: filteredSearchResults.map(item => [
+        item._id,
+        item.date,
+        item.transactionType,
+        item.category,
+        item.amount
+      ])
+    });
+    doc.text(`Total Amount: ${totalAmount}`, 14, doc.autoTable.previous.finalY + 10);
+    doc.save('finance-report.pdf');
+  };
+
   return (
     <div>
       <Nav />
       <center>
         <h1>Finance Details</h1>
       </center>
+      
+      {/* Search Input Field */}
+      <div className="search-bar">
+        <input
+          type="text"
+          placeholder="Search by category, type, or date..."
+          value={searchTerm}
+          onChange={(e) => setSearchTerm(e.target.value)} // Update search term on input change
+        />
+      </div>
+      
       <div className="table-wrapper">
         <table className="fl-table">
           <thead>
@@ -68,13 +108,13 @@ function FinanceDetails() {
               <th>Type</th>
               <th>Category</th>
               <th>Amount</th>
-              <th>Update Details </th>
-              <th>Delete Details </th>
+              <th>Update Details</th>
+              <th>Delete Details</th>
             </tr>
           </thead>
           <tbody>
-            {filteredFinance.length > 0 ? (
-              filteredFinance.map((financeItem) => (
+            {filteredSearchResults.length > 0 ? (
+              filteredSearchResults.map((financeItem) => (
                 <tr key={financeItem._id}>
                   <td>{financeItem._id}</td>
                   <td>{financeItem.date}</td>
@@ -105,6 +145,10 @@ function FinanceDetails() {
           </tbody>
         </table>
       </div>
+      {/* Button to generate PDF */}
+      <center>
+        <button className="but" onClick={generatePDF}>Generate Report</button>
+      </center>
     </div>
   );
 }

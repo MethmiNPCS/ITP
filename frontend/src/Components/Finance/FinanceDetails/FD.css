@@ -179,3 +179,32 @@ h2{
         text-align: center;
     }
 }
+
+
+
+
+/* new */
+
+
+/* Style for the search bar */
+.search-bar {
+    display: flex;
+    justify-content: left;
+    margin-bottom: 1.5rem;
+    padding-left: 5%;
+  }
+  
+  .search-bar input {
+    width: 300px;
+    padding: 10px;
+    font-size: 16px;
+    border-radius: 5px;
+    border: 1px solid #ccc;
+    outline: none;
+    transition: box-shadow 0.3s;
+  }
+  
+  .search-bar input:focus {
+    box-shadow: 0 0 5px rgba(0, 123, 255, 0.5);
+  }
+  

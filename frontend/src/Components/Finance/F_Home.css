@@ -7,3 +7,11 @@
     margin-top: 20px; /* Add some top margin if needed */
     margin-right: 10Px;
 }
+.text-black {
+    color: rgb(184, 28, 28);
+  }
+
+.text{
+    color: rgb(102, 102, 102);
+  
+}

@@ -1,5 +1,4 @@
 import React from 'react';
-import './App.css';
 import { FaBoxOpen, FaShoppingCart, FaTasks, FaSeedling, FaUserTie, FaMoneyBill, FaTree } from 'react-icons/fa';
 
 function Home() {
@@ -40,7 +39,7 @@ function Home() {
       <div
         className="w-full h-full bg-cover bg-center animate-zoom"
         style={{
-          backgroundImage: `url('/assests/bg.webp')`,
+          backgroundImage: `url('/assets/bg.webp')`,
         }}
       >
         {/* Center align both texts with increased top padding */}

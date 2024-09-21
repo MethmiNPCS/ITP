@@ -1,7 +1,7 @@
 import React from "react";
 import {Route, Routes} from "react-router";
 import './App.css';
-//import Home from './Components/Home/Home';
+import Home from './Components/Home/Home';
 
 // Stock Routes
 import StockHome from './Components/Stocks/StockHome';
@@ -17,7 +17,7 @@ function App() {
     <div>
       <React.Fragment>
         <Routes>
-          <Route path="/" element={<StockHome/>}/>
+          <Route path="/" element={<Home/>}/>
           <Route path="/stockhome" element={<StockHome/>}/>
           <Route path="/addfood" element={<AddFood/>}/>
           <Route path="/addmedicine" element={<AddMedicine/>}/>

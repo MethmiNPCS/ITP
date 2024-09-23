@@ -50,7 +50,7 @@ const EditTask = () => {
     setLoading(true);
 
     axios
-      .put(`http://localhost:5555/tasks/${id}`, data)
+      .put(`http://localhost:5000/tasks/${id}`, data)
       .then(() => {
         setLoading(false);
         enqueueSnackbar('Task updated successfully', { variant: 'success' });

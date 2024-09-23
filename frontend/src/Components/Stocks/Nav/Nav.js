@@ -9,7 +9,7 @@ function Nav() {
         
         <li className="nav-item">
           <Link to="/stockhome" className="nav-link">
-            Stock Home
+            DASHBOARD
           </Link>
         </li>
                

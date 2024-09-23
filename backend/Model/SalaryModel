@@ -1,0 +1,44 @@
+const mongoose = require("mongoose");
+const Schema = mongoose.Schema;
+
+const salarySchema = new Schema({
+    employeeNIC: {
+        type: String,
+        required: true,
+        ref: 'EmployeeModel'  // Reference to the Employee model
+    },
+    baseSalary: {
+        type: Number,
+        required: true,  // Base salary is mandatory
+    },
+    hoursWorked: {
+        type: Number,
+        required: true,  // Total hours worked is mandatory
+    },
+    overtimeHours: {
+        type: Number,
+        default: 0,  // Overtime hours are optional, default is 0
+    },
+    overtimeRate: {
+        type: Number,
+        default: 1.5,  // Default overtime rate, optional field
+    },
+    deductions: {
+        type: Number,
+        default: 0,  // Salary deductions, optional, default is 0
+    },
+    bonuses: {
+        type: Number,
+        default: 0,  // Bonuses, optional, default is 0
+    },
+    totalSalary: {
+        type: Number,
+        required: true,  // Calculated total salary is mandatory
+    },
+    payDate: {
+        type: Date,
+        default: Date.now,  // Automatically set the pay date to the current date
+    }
+});
+
+module.exports = mongoose.model("SalaryModel", salarySchema);  // Export the salary model

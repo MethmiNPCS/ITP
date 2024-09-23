@@ -39,7 +39,7 @@ function UpdateTreatment() {
               .toISOString()
               .split("T")[0],
             medicines: medicinesArray,
-            animalIDs: data.treatment.animalIDs.join(", "), 
+            animalIDs: data.treatment.animalIDs.join(", "), // Join array to string
           });
         });
     };
@@ -96,7 +96,7 @@ function UpdateTreatment() {
   };
 
   return (
-    <div className="add-treatment-container"> 
+    <div className="add-animal-container"> 
       <Nav />
       <h1>Update Treatment</h1>
       <br></br>

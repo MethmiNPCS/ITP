@@ -90,8 +90,8 @@ function UpdateAnimal() {
 
   return (
     <div>
+      <div className="add-treatment-container">
       <Nav /> 
-      <div>
         <h1>Update Animal</h1>
         <br></br>
         <form onSubmit={handleSubmit}>

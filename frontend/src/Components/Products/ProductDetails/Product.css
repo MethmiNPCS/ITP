@@ -1,0 +1,29 @@
+/* Enhanced Button Styling */
+.download-button {
+    padding: 12px 24px;
+    background-color: #2b9844; /* Green color for success */
+    color: white;
+    border: none;
+    border-radius: 5px;
+    font-size: 16px;
+    cursor: pointer;
+    transition: background-color 0.3s ease, transform 0.2s ease, box-shadow 0.3s ease;
+    margin-top: 20px; /* Space above the button */
+    font-weight: bold; /* Make text bold */
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* Subtle shadow */
+}
+
+.download-button:hover {
+    background-color: #218838; /* Darker green on hover */
+    transform: scale(1.05); /* Slightly enlarge */
+}
+
+.download-button:active {
+    background-color: #d6ded8; /* Even darker on click */
+    transform: scale(0.98); /* Slightly shrink */
+}
+
+.download-button:disabled {
+    background-color: #c6e2d6; /* Light green for disabled */
+    cursor: not-allowed; /* Change cursor on hover */
+}

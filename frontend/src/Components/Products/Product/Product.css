@@ -1,0 +1,126 @@
+/* Container for the entire product component */
+.container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh; /* Full height */
+    background-color: #e9ecef; /* Soft background color */
+    padding: 20px;
+}
+
+/* Wrapper for the table */
+.table-wrapper {
+    background-color: #ffffff;
+    padding: 20px;
+    border-radius: 15px; /* Slightly more rounded corners */
+    box-shadow: 0 6px 30px rgba(0, 0, 0, 0.15); /* Deeper shadow for more depth */
+    width: 100%;
+    max-width: 800px; /* Limit max width for better readability */
+    overflow-x: auto;
+    margin-top: 20px;
+}
+
+/* Styles for the table */
+.table {
+    width: 100%;
+    border-collapse: collapse; /* Ensure borders are collapsed */
+    text-align: left;
+}
+
+/* Header cell styles */
+.header {
+    padding: 15px; /* More padding for header */
+    background-color: #00712D; /* Darker green */
+    color: white; /* White text for contrast */
+    font-weight: bold; /* Bold font for headers */
+    border-bottom: 3px solid #005a23; /* Darker green for emphasis */
+    text-transform: uppercase; /* Uppercase headers for emphasis */
+}
+
+/* Cell styles */
+.cell {
+    padding: 15px; /* Increased padding for cells */
+    border-bottom: 1px solid #ddd; /* Light border for separation */
+    border-right: 1px solid #ddd; /* Add right border for vertical lines */
+    transition: background-color 0.3s, transform 0.3s; /* Smooth background and transform change */
+}
+
+/* Remove the right border from the last cell in each row */
+.table tr:last-child .cell:last-child {
+    border-right: none; /* No right border for the last cell */
+}
+
+/* Hover effect for table rows */
+.cell:hover {
+    background-color: #f7f7f7; /* Light gray background on hover */
+    transform: scale(1.02); /* Slight scale effect on hover */
+}
+
+/* Button container styles */
+.button-container {
+    display: flex;
+    gap: 20px; /* Increased gap between buttons */
+}
+
+/* General button styles */
+.button {
+    padding: 12px 24px; /* Slightly larger padding */
+    cursor: pointer;
+    border: none;
+    background-color: #00712D; /* Green background */
+    color: white;
+    border-radius: 5px; /* Rounded corners */
+    transition: background-color 0.3s, transform 0.2s; /* Smooth transition */
+    font-size: 14px; /* Increase font size for readability */
+}
+
+/* Delete button styles */
+.delete-button {
+    padding: 12px 24px; /* Consistent padding */
+    cursor: pointer;
+    border: none;
+    background-color: #d9534f; /* Bootstrap danger color */
+    color: white;
+    border-radius: 5px; /* Rounded corners */
+    transition: background-color 0.3s, transform 0.2s; /* Smooth transition */
+    font-size: 14px; /* Increase font size for readability */
+}
+
+/* Update button styles */
+.update-button {
+    padding: 12px 24px; /* Consistent padding */
+    cursor: pointer;
+    border: none;
+    background-color: #5bc0de; /* Light blue color for update */
+    color: white;
+    border-radius: 5px; /* Rounded corners */
+    transition: background-color 0.3s, transform 0.2s; /* Smooth transition */
+    font-size: 14px; /* Increase font size for readability */
+}
+
+/* Button hover effects */
+.button:hover {
+    background-color: #005c1c; /* Darker green on hover */
+    transform: scale(1.05); /* Slight scale effect on hover */
+}
+
+.delete-button:hover {
+    background-color: #c9302c; /* Darker red on hover */
+    transform: scale(1.05); /* Slight scale effect on hover */
+}
+
+.update-button:hover {
+    background-color: #31b0d5; /* Darker blue on hover */
+    transform: scale(1.05); /* Slight scale effect on hover */
+}
+
+/* Responsive styles for smaller screens */
+@media (max-width: 600px) {
+    .table-wrapper {
+        padding: 15px; /* Adjusted padding on smaller screens */
+    }
+    .cell, .header {
+        padding: 12px; /* Slightly reduced padding for better fit */
+        font-size: 12px; /* Adjust font size for smaller screens */
+    }
+}

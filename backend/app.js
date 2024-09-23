@@ -10,6 +10,7 @@ const animalrouter = require("./Routes/AnimalRoutes");
 const treatmentrouter = require("./Routes/TreatmentRoutes");
 //const orderRoutes = require("./Routes/OrderRoutes");
 //const supplierRoutes = require("./Routes/SupplierRoutes"); 
+const financrouter = require("./Routes/financ");
 
 
 const app = express();
@@ -24,6 +25,7 @@ app.use("/animals",animalrouter);
 app.use("/treatments",treatmentrouter);
 //app.use("/orders",orderRoutes);
 //app.use("/suppliers", supplierRoutes);
+app.use("/finance", financrouter);
 
 // Connect Database
 mongoose.connect("mongodb+srv://admin:zoPvf0NUih9wBU3F@cluster0.yawwn.mongodb.net/")

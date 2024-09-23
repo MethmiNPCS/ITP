@@ -21,6 +21,14 @@ import AddTreatment from "./Components/AnimalHealth/AddTreatment/AddTreatment";
 import TreatmentDetails from "./Components/AnimalHealth/TreatmentDetails/TreatmentDetails";
 import UpdateTreatment from "./Components/AnimalHealth/UpdateTreatment/UpdateTreatment";
 
+// Finance Routes
+import FinanceHome from './Components/Finance/FinanceHome';
+import Finance from './Components/Finance/Finance/Finance';
+import AddFinance from './Components/Finance/AddFinance/AddFinance';
+import FinanceDetails from './Components/Finance/FinanceDetails/FinanceDetails';
+import UpdateFinance from './Components/Finance/UpdateFinance/UpdateFinance';
+import IncomeDetails from './Components/Finance/FinanceDetails/IncomeDetails';
+
 function App() {
   return (
     <div>
@@ -42,6 +50,13 @@ function App() {
           <Route path="/addtreatment" element={<AddTreatment />} />
           <Route path="/treatmentdetails" element={<TreatmentDetails />} />
           <Route path="/treatmentdetails/:id" element={<UpdateTreatment />} />
+
+          <Route path="/financehome" element={<FinanceHome />} />
+          <Route path="/finance" element={<Finance />} />
+          <Route path="/addfinance" element={<AddFinance />} /> 
+          <Route path="/financedetails" element={<FinanceDetails />} />
+          <Route path="/incomedetails" element={<IncomeDetails />} />  
+          <Route path="/updatefinance/:id" element={<UpdateFinance />} />
         </Routes>
       </React.Fragment>
     </div>

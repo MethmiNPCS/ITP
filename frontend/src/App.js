@@ -30,6 +30,14 @@ import FinanceDetails from './Components/Finance/FinanceDetails/FinanceDetails';
 import UpdateFinance from './Components/Finance/UpdateFinance/UpdateFinance';
 import IncomeDetails from './Components/Finance/FinanceDetails/IncomeDetails';
 
+//Order Routes
+import OrderHome from './Components/Orders/OrderHome';
+import AddOrder from './Components/Orders/AddOrder/AddOrder';
+import Orders from './Components/Orders/OrderDetails/Orders';
+import ViewOrder from "./Components/Orders/ViewOrder/ViewOrder";
+import UpdateOrder from "./Components/Orders/UpdateOrder/UpdateOrder";
+import SupplierDetails from "./Components/Orders/SupplierDetails/SupplierDetails";
+
 
 
 function App() {
@@ -61,6 +69,13 @@ function App() {
           <Route path="/financedetails" element={<FinanceDetails />} />
           <Route path="/incomedetails" element={<IncomeDetails />} />  
           <Route path="/updatefinance/:id" element={<UpdateFinance />} />
+
+          <Route path="/orderhome" element={<OrderHome/>}/>
+          <Route path="/addorder" element={<AddOrder/>}/>
+          <Route path="/orderdetails" element={<Orders/>}/>
+          <Route path="/vieworder" element={<ViewOrder/>}/>
+          <Route path="/vieworder/:orderID" element={<UpdateOrder/>}/>
+          <Route path="/supplierdetails" element={<SupplierDetails/>}/>
 
         </Routes>
       </React.Fragment>

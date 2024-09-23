@@ -21,6 +21,14 @@ import AddTreatment from "./Components/AnimalHealth/AddTreatment/AddTreatment";
 import TreatmentDetails from "./Components/AnimalHealth/TreatmentDetails/TreatmentDetails";
 import UpdateTreatment from "./Components/AnimalHealth/UpdateTreatment/UpdateTreatment";
 
+//Order Routes
+import OrderHome from './Components/Orders/OrderHome';
+import AddOrder from './Components/Orders/AddOrder/AddOrder';
+import Orders from './Components/Orders/OrderDetails/Orders';
+import ViewOrder from "./Components/Orders/ViewOrder/ViewOrder";
+import UpdateOrder from "./Components/Orders/UpdateOrder/UpdateOrder";
+import SupplierDetails from "./Components/Orders/SupplierDetails/SupplierDetails";
+
 function App() {
   return (
     <div>
@@ -42,6 +50,13 @@ function App() {
           <Route path="/addtreatment" element={<AddTreatment />} />
           <Route path="/treatmentdetails" element={<TreatmentDetails />} />
           <Route path="/treatmentdetails/:id" element={<UpdateTreatment />} />
+
+          <Route path="/orderhome" element={<OrderHome/>}/>
+          <Route path="/addorder" element={<AddOrder/>}/>
+          <Route path="/orderdetails" element={<Orders/>}/>
+          <Route path="/vieworder" element={<ViewOrder/>}/>
+          <Route path="/vieworder/:orderID" element={<UpdateOrder/>}/>
+          <Route path="/supplierdetails" element={<SupplierDetails/>}/>
         </Routes>
       </React.Fragment>
     </div>

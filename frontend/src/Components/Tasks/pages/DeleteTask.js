@@ -41,7 +41,7 @@ const DeleteTask = () => {
           </button>
           <button
             className="p-4 bg-gray-500 hover:bg-gray-700 text-white font-bold rounded-lg w-full max-w-xs ml-4"
-            onClick={() => navigate('/')}
+            onClick={() => navigate('/taskhome')}
           >
             No
           </button>

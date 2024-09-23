@@ -8,6 +8,12 @@ function Nav() {
       <ul className="nav-list">
         
         <li className="nav-item">
+          <Link to="/Home" className="nav-link">
+            HOME
+          </Link>
+        </li>
+
+        <li className="nav-item">
           <Link to="/stockhome" className="nav-link">
             DASHBOARD
           </Link>

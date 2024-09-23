@@ -203,3 +203,32 @@ textarea {
   background-color: darkgreen;
   color: white;
 }
+
+/* Dashboard container */
+.dashboard-container {
+  text-align: center;
+  padding: 20px;
+}
+
+/* Chart layout */
+.chart-row {
+  display: flex;
+  justify-content: space-between; /* Space between bar and pie chart */
+  align-items: center;
+  margin: 20px auto;
+}
+
+.chart-item {
+  width: 45%; /* Each chart takes 45% of the width */
+  padding: 20px;
+}
+
+.pie-chart {
+  position: relative;
+  height: 400px; /* Custom height for the pie chart */
+}
+
+h1, h2 {
+  color: #333;
+  font-family: Arial, sans-serif;
+}

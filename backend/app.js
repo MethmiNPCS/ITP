@@ -26,7 +26,7 @@ const tasksRoute = require("./Routes/tasksRoute");
 
 // Visu
 
-
+app.use('/products', productRouter); 
 
 const app = express();
 const cors = require("cors");
@@ -37,7 +37,7 @@ app.use(cors());
 app.use("/stocks", stockrouter);
 app.use("/animals",animalrouter);
 app.use("/treatments",treatmentrouter);
-app.use('/products', productRouter); 
+
 app.use("/orders",orderRoutes);
 app.use("/suppliers", supplierRoutes);
 

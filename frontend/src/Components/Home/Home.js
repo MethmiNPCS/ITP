@@ -1,6 +1,6 @@
 import React from 'react';
 import './App.css';
-import { FaBoxOpen, FaShoppingCart, FaTasks, FaSeedling, FaUserTie, FaMoneyBill, FaTree } from 'react-icons/fa';
+import { FaBoxOpen, FaShoppingCart, FaTasks, FaSeedling, FaUserTie, FaMoneyBill, FaTree, FaBars, FaHorse } from 'react-icons/fa';
 
 function Home() {
   return (

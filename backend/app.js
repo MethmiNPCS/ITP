@@ -23,28 +23,22 @@ const salaryRouter = require('./Routes/SalaryRoutes');
 // Dhi
 const tasksRoute = require("./Routes/tasksRoute");
 
-
-// Visu
-app.use('/products', productRouter); 
-
-
 const app = express();
 const cors = require("cors");
 
 // Middlewear
 app.use(express.json());
 app.use(cors());
+
 app.use("/stocks", stockrouter);
 app.use("/animals",animalrouter);
 app.use("/treatments",treatmentrouter);
-
 app.use("/orders",orderRoutes);
 app.use("/suppliers", supplierRoutes);
-
 app.use("/finance", financrouter);
 app.use('/employees', employeeRouter);
 app.use('/salaries', salaryRouter);
-
+app.use('/products', productRouter); 
 //Dhi
 app.use("/tasks", tasksRoute);
 

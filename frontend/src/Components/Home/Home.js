@@ -27,7 +27,7 @@ function Home() {
     { name: "Stocks", icon: FaBoxOpen, path: '/stockhome' },
     { name: "Orders", icon: FaShoppingCart, path: '/orderhome' },
     { name: "Tasks", icon: FaTasks, path: '/taskhome' },  // Add path if needed
-    { name: "Products", icon: FaSeedling, path: '/products' },  // Add path if needed
+    { name: "Products", icon: FaSeedling, path: '/producthome' },  // Add path if needed
     { name: "Livestock", icon: FaHorse, path: '/animalhome' },  // Changed path to AnimalHome
     { name: "Employees", icon: FaUserTie, path: '/employeeshome' },  // Add path if needed
     { name: "Finance", icon: FaMoneyBill, path: '/financehome' },

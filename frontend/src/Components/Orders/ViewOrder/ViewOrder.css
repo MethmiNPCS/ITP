@@ -1,0 +1,102 @@
+#vview-order-container {
+    padding: 20px;
+    background-color: #f0f9f0; /* Light farm green background */
+    font-family: 'Arial', sans-serif;
+}
+
+#vorder-id-form {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+#vorder-id-label {
+    font-weight: bold;
+    color: #2f6b2f; /* Deep green color */
+    margin-bottom: 10px;
+    font-size: 22px;
+}
+
+#vorder-id-input {
+    width: 400px;
+    padding: 10px;
+    border: 1px solid #2f2626;
+    border-radius: 5px;
+    margin-bottom: 15px;
+}
+
+#vview-order-button {
+    background-color: #3b8e3b;
+    font-size: 14px;
+    color: white;
+    padding: 10px 15px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+#vview-order-button:hover {
+    background-color: #16821d;
+}
+
+#vorder-error-message {
+    font-size: 16px;
+    margin-top: 10px;
+}
+
+#vorder-details-card {
+    padding: 20px;
+    background-color: #ccd4bc;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    margin-top: 15px;
+}
+
+#vorder-details-header {
+    color: #2f6b2f;
+    text-align: center;
+    font-size: 24px;
+    margin-bottom: 20px;
+}
+
+#vupdate-order-button,
+#vdelete-order-button,
+#vdownload-report-button,
+#vsend-to-supplier-button {
+    color: white;
+    padding: 10px 15px;
+    border: none;
+    border-radius: 5px;
+    font-size: 15px;
+    cursor: pointer;
+    margin: 10px 0;
+    margin-inline: 5px;
+    transition: background-color 0.3s ease;
+}
+
+#vupdate-order-button {
+    background-color: #4CAF50; /* Green */
+}
+
+#vdelete-order-button {
+    background-color: #e34236; /* Red */
+}
+
+#vdownload-report-button {
+    background-color: #218de5; /* Blue */
+}
+
+#vsend-to-supplier-button {
+    background-color: #e08b0b; /* Orange */
+}
+
+
+#vupdate-order-button:hover,
+#vdelete-order-button:hover,
+#vdownload-report-button:hover,
+#vsend-to-supplier-button:hover {
+    background-color: #8a8c86;
+}
+
+

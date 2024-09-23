@@ -8,8 +8,8 @@ const emprouter = require("./Routes/EmployeeRoutes");
 const stockrouter = require("./Routes/StockRoutes");
 const animalrouter = require("./Routes/AnimalRoutes");
 const treatmentrouter = require("./Routes/TreatmentRoutes");
-//const orderRoutes = require("./Routes/OrderRoutes");
-//const supplierRoutes = require("./Routes/SupplierRoutes"); 
+const orderRoutes = require("./Routes/OrderRoutes");
+const supplierRoutes = require("./Routes/SupplierRoutes"); 
 const financrouter = require("./Routes/financ");
 
 
@@ -23,8 +23,8 @@ app.use("/employees", emprouter);
 app.use("/stocks", stockrouter);
 app.use("/animals",animalrouter);
 app.use("/treatments",treatmentrouter);
-//app.use("/orders",orderRoutes);
-//app.use("/suppliers", supplierRoutes);
+app.use("/orders",orderRoutes);
+app.use("/suppliers", supplierRoutes);
 app.use("/finance", financrouter);
 
 // Connect Database

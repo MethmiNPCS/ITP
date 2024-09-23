@@ -3,6 +3,8 @@ import '../../App.css';
 import { useState } from 'react';
 import { FaBoxOpen, FaShoppingCart, FaTasks, FaSeedling, FaUserTie, FaMoneyBill, FaTree, FaBars, FaHorse } from 'react-icons/fa';
 
+
+
 function Home() {
   const [isSidebarOpen, setIsSidebarOpen] = useState(false);
 
@@ -20,27 +22,28 @@ function Home() {
       <aside className={`bg-gradient-to-b from-green-500 to-green-800 text-white flex flex-col transition-all duration-300 ease-in-out ${isSidebarOpen ? 'w-56' : 'w-0'} overflow-hidden`}>
        
         <nav className={`flex-1 p-4 mt-12 ${isSidebarOpen ? 'block' : 'hidden'}`}>
-          <ul className="space-y-12"> {/* Adjusted space between items */}
-            {[
-              { name: "Stocks", icon: FaBoxOpen },
-              { name: "Orders", icon: FaShoppingCart },
-              { name: "Tasks", icon: FaTasks },
-              { name: "Products", icon: FaSeedling },
-              { name: "Livestock", icon: FaHorse },
-              { name: "Employees", icon: FaUserTie },
-              { name: "Finance", icon: FaMoneyBill },
-              { name: "Plantation", icon: FaTree }
-            ].map(item => (
-              <li key={item.name}>
-                <a
-                  href="#"
-                  className="flex items-center justify-center p-2 bg-green-100 text-green-900 border-2 border-[#7d4c3e] rounded-lg text-sm font-semibold tracking-wide shadow-lg hover:bg-green-200 hover:scale-105 transition-transform duration-300 text-center font-montserrat"
-                >
-                  <item.icon className="mr-2" /> {item.name}
-                </a>
-              </li>
-            ))}
-          </ul>
+        <ul className="space-y-12"> 
+  {[
+    { name: "Stocks", icon: FaBoxOpen, path: '/stockhome' },
+    { name: "Orders", icon: FaShoppingCart, path: '/orderhome' },
+    { name: "Tasks", icon: FaTasks, path: '/taskhome' },  // Add path if needed
+    { name: "Products", icon: FaSeedling, path: '/products' },  // Add path if needed
+    { name: "Livestock", icon: FaHorse, path: '/animalhome' },  // Changed path to AnimalHome
+    { name: "Employees", icon: FaUserTie, path: '/employeeshome' },  // Add path if needed
+    { name: "Finance", icon: FaMoneyBill, path: '/financehome' },
+    { name: "Plantation", icon: FaTree, path: '/plantation' }  // Add path if needed
+  ].map(item => (
+    <li key={item.name}>
+      <a
+        href={item.path}  // Updated to use the defined path
+        className="flex items-center justify-center p-2 bg-green-100 text-green-900 border-2 border-[#7d4c3e] rounded-lg text-sm font-semibold tracking-wide shadow-lg hover:bg-green-200 hover:scale-105 transition-transform duration-300 text-center font-montserrat"
+      >
+        <item.icon className="mr-2" /> {item.name}
+      </a>
+    </li>
+  ))}
+</ul>
+
         </nav>
       </aside>
 

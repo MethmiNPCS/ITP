@@ -116,21 +116,21 @@ function AddOrder() {
     };
 
     return (
-        <div id="add-order-container">
+        <div id="aadd-order-container">
             <Nav />
             <br />
-            <h1 id="add-order-header">Add Order</h1>
+            <h1 id="aadd-order-header">Add Order</h1>
 
-            <form id="add-order-form" onSubmit={handleSubmit}>
-                <label id="order-id-label">Order ID</label>
+            <form id="aadd-order-form" onSubmit={handleSubmit}>
+                <label id="aorder-id-label">Order ID</label>
                 <br />
-                <input id="order-id-input" type="text" value="Auto-generated" disabled />
+                <input id="aorder-id-input" type="text" value="Auto-generated" disabled />
                 <br /><br />
 
-                <label id="order-type-label">Order Type</label>
+                <label id="aorder-type-label">Order Type</label>
                 <br />
                 <input
-                    id="order-type-food"
+                    id="aorder-type-food"
                     type="radio"
                     name="orderType"
                     value="Food"
@@ -139,7 +139,7 @@ function AddOrder() {
                     required
                 /> Food
                 <input
-                    id="order-type-medicine"
+                    id="aorder-type-medicine"
                     type="radio"
                     name="orderType"
                     value="Medicine"
@@ -147,15 +147,15 @@ function AddOrder() {
                     onChange={handleChange}
                     required
                 /> Medicine
-                {errors.orderType && <p id="order-type-error">{errors.orderType}</p>}
+                {errors.orderType && <p id="aorder-type-error">{errors.orderType}</p>}
                 <br /><br />
 
-                <label id="order-items-label">Order Items</label>
+                <label id="aorder-items-label">Order Items</label>
                 <br />
                 {inputs.items.map((item, index) => (
-                    <div key={index} id={`order-item-${index}`} className="order-item">
+                    <div key={index} id={`aorder-item-${index}`} className="aorder-item">
                         <input
-                            id={`order-item-name-${index}`}
+                            id={`aorder-item-name-${index}`}
                             type="text"
                             name="orderItem"
                             value={item.orderItem}
@@ -163,9 +163,9 @@ function AddOrder() {
                             placeholder="Item Name"
                             required
                         />
-                        {errors[`orderItem-${index}`] && <p id={`order-item-error-${index}`} className="error-message">{errors[`orderItem-${index}`]}</p>}
+                        {errors[`orderItem-${index}`] && <p id={`aorder-item-error-${index}`} className="aerror-message">{errors[`orderItem-${index}`]}</p>}
                         <input
-                            id={`order-item-quantity-${index}`}
+                            id={`aorder-item-quantity-${index}`}
                             type="number"
                             name="quantity"
                             value={item.quantity}
@@ -173,9 +173,9 @@ function AddOrder() {
                             placeholder="Quantity"
                             required
                         />
-                        {errors[`quantity-${index}`] && <p id={`order-item-quantity-error-${index}`} className="error-message">{errors[`quantity-${index}`]}</p>}
+                        {errors[`quantity-${index}`] && <p id={`aorder-item-quantity-error-${index}`} className="aerror-message">{errors[`quantity-${index}`]}</p>}
                         <select
-                            id={`order-item-unit-${index}`}
+                            id={`aorder-item-unit-${index}`}
                             name="unit"
                             value={item.unit}
                             onChange={(e) => handleItemChange(index, e)}
@@ -187,17 +187,17 @@ function AddOrder() {
                             <option value="l">l</option>
                         </select>
                         {index > 0 && (
-                            <button id={`remove-item-button-${index}`} type="button" onClick={() => removeItemField(index)}>-</button>
+                            <button id={`aremove-item-button-${index}`} type="button" onClick={() => removeItemField(index)}>-</button>
                         )}
                     </div>
                 ))}
-                <button id="add-item-button" type="button" onClick={addItemField}>+</button>
-                {errors.items && <p id="order-items-error">{errors.items}</p>}
+                <button id="aadd-item-button" type="button" onClick={addItemField}>+</button>
+                {errors.items && <p id="aorder-items-error">{errors.items}</p>}
                 <br /><br />
 
-                <label id="supplier-label">Supplier</label>
+                <label id="asupplier-label">Supplier</label>
                 <br />
-                <select id="supplier-select" name="selected" value={selectedSupplier} onChange={handleSupplierChange} required>
+                <select id="asupplier-select" name="selected" value={selectedSupplier} onChange={handleSupplierChange} required>
                     <option value="">Select Supplier</option>
                     {suppliers.map(supplier => (
                         <option key={supplier.supplierID} value={supplier.supplierName}>
@@ -205,27 +205,27 @@ function AddOrder() {
                         </option>
                     ))}
                 </select>
-                {errors.supplier && <p id="supplier-error">{errors.supplier}</p>}
+                {errors.supplier && <p id="asupplier-error">{errors.supplier}</p>}
                 <br /><br />
 
-                <label id="description-label">Description</label>
+                <label id="adescription-label">Description</label>
                 <br />
                 <textarea
-                    id="description-textarea"
+                    id="adescription-textarea"
                     name="description"
                     value={inputs.description}
                     onChange={handleChange}
                     placeholder="Order Description"
                 ></textarea>
-                {errors.description && <p id="description-error">{errors.description}</p>}
+                {errors.description && <p id="adescription-error">{errors.description}</p>}
                 <br /><br />
 
-                <label id="status-label">Status</label>
+                <label id="astatus-label">Status</label>
                 <br />
-                <input id="status-input" type="text" value="Pending" disabled />
+                <input id="astatus-input" type="text" value="Pending" disabled />
                 <br /><br />
 
-                <button id="submit-order-button" type="submit">Submit Order</button>
+                <button id="asubmit-order-button" type="submit">Submit Order</button>
             </form>
         </div>
     );

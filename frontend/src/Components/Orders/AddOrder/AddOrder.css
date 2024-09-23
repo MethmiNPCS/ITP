@@ -1,19 +1,19 @@
 /* AddOrder.css */
 
-#add-order-container {
+#aadd-order-container {
     padding: 20px;
     background-color: #f0f9f0; /* Light farm green background */
     font-family: 'Arial', sans-serif;
 }
 
-#add-order-header {
+#aadd-order-header {
     text-align: center;
     color: #2f6b2f; /* Deep green color */
     font-size: 32px;
     margin-bottom: 20px;
 }
 
-#add-order-form {
+#aadd-order-form {
     max-width: 670px;
     margin: 0 auto;
     padding: 30px;
@@ -22,21 +22,21 @@
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
 }
 
-#order-id-label,
-#order-type-label,
-#order-items-label,
-#supplier-label,
-#description-label,
-#status-label
+#aorder-id-label,
+#aorder-type-label,
+#aorder-items-label,
+#asupplier-label,
+#adescription-label,
+#astatus-label
  {
     font-weight: bold;
     color: #293502; /* Slightly darker green */
 }
 
-#add-order-form input[type="text"],
-#add-order-form input[type="number"],
-#add-order-form textarea,
-#add-order-form select {
+#aadd-order-form input[type="text"],
+#aadd-order-form input[type="number"],
+#aadd-order-form textarea,
+#aadd-order-form select {
     width: 100%;
     padding: 10px;
     border: 1px solid #ccc;
@@ -45,27 +45,27 @@
     transition: border-color 0.3s ease;
 }
 
-#add-order-form input[type="text"]:focus,
-#add-order-form input[type="number"]:focus,
-#add-order-form textarea:focus,
-#add-order-form select:focus {
+#aadd-order-form input[type="text"]:focus,
+#aadd-order-form input[type="number"]:focus,
+#aadd-order-form textarea:focus,
+#aadd-order-form select:focus {
     border-color: #8a9a5b; /* Highlight color on focus */
 }
 
-.order-item {
+.aorder-item {
     display: flex;
     align-items: center;
     margin-bottom: 3px;
 }
 
-.order-item input,
-.order-item select {
+.aorder-item input,
+.aorder-item select {
     flex: 1; /* Equal space for inputs */
     margin-right: 10px; /* Space between inputs */
 }
 
-#add-item-button,
-#remove-item-button {
+#aadd-item-button,
+#aremove-item-button {
     background-color: #3b8e3b;
     color: white;
     padding: 5px 10px;
@@ -75,21 +75,21 @@
     transition: background-color 0.3s ease;
 }
 
-#add-item-button:hover,
-#remove-item-button:hover {
+#aadd-item-button:hover,
+#aremove-item-button:hover {
     background-color: #6b7a45;
 }
 
 
-#description-error,
-.error-message {
+#adescription-error,
+.aerror-message {
     color: red;
     font-size: 16px;
     margin-top: -10px;
     margin-bottom: 10px;
 }
 
-#submit-order-button {
+#asubmit-order-button {
     display: block;
     width: 100%;
     padding: 12px;
@@ -102,11 +102,11 @@
     transition: background-color 0.3s ease;
 }
 
-#submit-order-button:hover {
+#asubmit-order-button:hover {
     background-color: #16821d;
 }
 
-#description-textarea {
+#adescription-textarea {
     height: 90px;
     resize: vertical;
 }

@@ -6,6 +6,7 @@ const express = require("express");
 const mongoose = require("mongoose");
 const emprouter = require("./Routes/EmployeeRoutes");
 const stockrouter = require("./Routes/StockRoutes");
+const financrouter = require("./Routes/financ");
 
 const app = express();
 const cors = require("cors");
@@ -15,6 +16,7 @@ app.use(express.json());
 app.use(cors());
 app.use("/employees", emprouter);
 app.use("/stocks", stockrouter);
+app.use("/finance", financrouter);
 
 
 // Connect Database

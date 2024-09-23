@@ -1,5 +1,6 @@
 import React from 'react';
-import './App.css';
+//import './App.css';
+import { useState } from 'react';
 import { FaBoxOpen, FaShoppingCart, FaTasks, FaSeedling, FaUserTie, FaMoneyBill, FaTree, FaBars, FaHorse } from 'react-icons/fa';
 
 function Home() {
@@ -49,7 +50,7 @@ function Home() {
         <div
           className={`w-full h-full bg-cover bg-center transition-transform duration-300 ${isSidebarOpen ? '' : 'animate-zoom'}`}
           style={{
-            backgroundImage: `url('/assests/bg.webp')`,
+            backgroundImage: `url('/assets/bg.webp')`,
           }}
         >
           {/* Center align both texts with increased top padding */}

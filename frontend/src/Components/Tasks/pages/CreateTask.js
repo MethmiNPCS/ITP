@@ -34,7 +34,7 @@ const CreateTask = () => {
             .then(() => {
                 setLoading(false);
                 enqueueSnackbar('Task created successfully', { variant: 'success' });
-                navigate('/');
+                navigate('/taskhome');
             })
             .catch(error => {
                 console.log(error.message);

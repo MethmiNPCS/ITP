@@ -54,7 +54,7 @@ const EditTask = () => {
       .then(() => {
         setLoading(false);
         enqueueSnackbar('Task updated successfully', { variant: 'success' });
-        navigate('/');
+        navigate('/taskhome');
       })
       .catch(error => {
         console.log(error.message);

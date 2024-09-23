@@ -1,8 +1,9 @@
-import React from 'react';
+import React, { useState } from 'react';
 import './App.css';
 import { FaBoxOpen, FaShoppingCart, FaTasks, FaSeedling, FaUserTie, FaMoneyBill, FaTree, FaBars, FaHorse } from 'react-icons/fa';
 
-function Home() {
+function App() {
+  // State to toggle sidebar
   const [isSidebarOpen, setIsSidebarOpen] = useState(false);
 
   return (
@@ -49,13 +50,13 @@ function Home() {
         <div
           className={`w-full h-full bg-cover bg-center transition-transform duration-300 ${isSidebarOpen ? '' : 'animate-zoom'}`}
           style={{
-            backgroundImage: `url('/assests/bg.webp')`,
+            backgroundImage: `url('/assets/bg.webp')`,
           }}
         >
           {/* Center align both texts with increased top padding */}
           <div className="w-full h-full flex flex-col items-center justify-start pt-32 text-center">
             {/* The National Seminary Farm - center aligned, custom color with fade-in effect */}
-            <h1 className="text-[9rem] font-bebas bg-gradient-to-r from-[#003366] to-[#006400] bg-clip-text text-transparent mb-8 text-center fade-in-text">
+            <h1 className="text-4xl sm:text-6xl md:text-7xl lg:text-[9rem] font-bebas bg-gradient-to-r from-[#003366] to-[#006400] bg-clip-text text-transparent mb-8 text-center fade-in-text">
               The National Seminary Farm
             </h1>
 
@@ -75,4 +76,4 @@ function Home() {
   );
 }
 
-export default Home;
+export default App;

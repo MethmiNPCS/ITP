@@ -1,5 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
+import Nav from '../Nav/Nav';
+import './UpdateOrder.css'
 import { useParams, useNavigate } from 'react-router-dom';
 
 function UpdateOrder() {
@@ -106,18 +108,25 @@ function UpdateOrder() {
         }
     };
 
+    const handleCancel = () => {
+        navigate('/vieworder');
+    };
+
     return (
-        <div>
-            <h1>Update Order</h1>
-            <form onSubmit={handleSubmit}>
-                <label>Order ID (Auto-incremented)</label>
+        <div id="uupdate-order-container">
+            <Nav />
+            <br/>
+            <h1 id="uupdate-order-title">Update Order</h1>
+            <form id="uupdate-order-form" onSubmit={handleSubmit}>
+                <label id="uorder-id-label">Order ID</label>
                 <br />
-                <input type="text" value={orderID} disabled />
+                <input id="uorder-id-input" type="text" value={orderID} disabled />
                 <br /><br />
 
-                <label>Order Type</label>
+                <label id="uorder-type-label">Order Type</label>
                 <br />
                 <input
+                    id="uorder-type-food"
                     type="radio"
                     name="orderType"
                     value="Food"
@@ -125,6 +134,7 @@ function UpdateOrder() {
                     disabled
                 /> Food
                 <input
+                    id="uorder-type-medicine"
                     type="radio"
                     name="orderType"
                     value="Medicine"
@@ -133,11 +143,12 @@ function UpdateOrder() {
                 /> Medicine
                 <br /><br />
 
-                <label>Order Items</label>
+                <label id="uorder-items-label">Order Items</label>
                 <br />
                 {inputs.items && inputs.items.map((item, index) => (
-                    <div key={index} style={{ display: 'flex', alignItems: 'center' }}>
+                    <div key={index} id={`uorder-item-row-${index}`} style={{ display: 'flex', alignItems: 'center' }}>
                         <input
+                            id={`uorder-item-name-${index}`}
                             type="text"
                             name="orderItem"
                             value={item.orderItem}
@@ -145,6 +156,7 @@ function UpdateOrder() {
                             placeholder="Item Name"
                         />
                         <input
+                            id={`uorder-item-quantity-${index}`}
                             type="number"
                             name="quantity"
                             value={item.quantity}
@@ -153,8 +165,9 @@ function UpdateOrder() {
                             required
                             style={{ marginLeft: '10px' }}
                         />
-                        {errors[`quantity-${index}`] && <p style={{ color: 'red', marginLeft: '10px' }}>{errors[`quantity-${index}`]}</p>}
+                        {errors[`quantity-${index}`] && <p id={`uorder-error-quantity-${index}`} style={{ color: 'red', marginLeft: '10px' }}>{errors[`quantity-${index}`]}</p>}
                         <select
+                            id={`uorder-item-unit-${index}`}
                             name="unit"
                             value={item.unit}
                             onChange={(e) => handleItemChange(index, e)}
@@ -167,36 +180,38 @@ function UpdateOrder() {
                             <option value="l">l</option>
                         </select>
                         {index > 0 && (
-                            <button type="button" onClick={() => removeItemField(index)} style={{ marginLeft: '10px' }}>-</button>
+                            <button id={`uremove-item-button-${index}`} type="button" onClick={() => removeItemField(index)} style={{ marginLeft: '10px' }}>-</button>
                         )}
                     </div>
                 ))}
-                <button type="button" onClick={addItemField} style={{ marginTop: '10px', fontSize: '20px' }}>+</button>
-                {errors.items && <p style={{ color: 'red' }}>{errors.items}</p>}
+                <button id="uadd-item-button" type="button" onClick={addItemField} style={{ marginTop: '10px', fontSize: '20px' }}>+</button>
+                {errors.items && <p id="uorder-error-items" style={{ color: 'red' }}>{errors.items}</p>}
                 <br /><br />
 
-                <label>Supplier</label>
+                <label id="usupplier-label">Supplier</label>
                 <br />
-                <input type="text" value={selectedSupplier} disabled />
+                <input id="usupplier-input" type="text" value={selectedSupplier} disabled />
                 <br /><br />
 
-                <label>Description</label>
+                <label id="udescription-label">Description</label>
                 <br />
                 <textarea
+                    id="udescription-input"
                     name="description"
                     value={inputs.description}
                     onChange={handleChange}
                     placeholder="Order Description"
                 ></textarea>
-                {errors.description && <p style={{ color: 'red' }}>{errors.description}</p>}
+                {errors.description && <p id="udescription-error" style={{ color: 'red' }}>{errors.description}</p>}
                 <br /><br />
 
-                <label>Status (Auto-set to "Pending")</label>
+                <label id="ustatus-label">Status</label>
                 <br />
-                <input type="text" value="Pending" disabled />
+                <input id="ustatus-input" type="text" value="Pending" disabled />
                 <br /><br />
 
-                <button type="submit">Update Order</button>
+                <button id="uupdate-order-button" type="submit">Update Order</button>
+                <button id="ucancel-order-button" type="button" onClick={handleCancel}>Cancel</button>
             </form>
         </div>
     );

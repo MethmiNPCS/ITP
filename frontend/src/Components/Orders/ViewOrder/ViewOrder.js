@@ -1,5 +1,6 @@
 import React, { useState, useRef } from 'react';
 import Nav from '../Nav/Nav';
+import './ViewOrder.css'
 
 import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
@@ -47,38 +48,38 @@ function ViewOrder() {
   };
 
   return (
-    <div>
+    <div id="vview-order-container">
       <Nav />
       <br/><br/>
-      <form onSubmit={handleSubmit}>
-        <label>Enter Order ID</label>
+      <form id="vorder-id-form" onSubmit={handleSubmit}>
+        <label id="vorder-id-label">Enter Order ID</label>
         <input
+          id="vorder-id-input"
           type="text"
           value={orderID}
           onChange={handleChange}
           required
         />
-        <button type="submit">View Order</button>
+        <button id="vview-order-button" type="submit">View Order</button>
       </form>
 
-      {error && <p style={{ color: 'red' }}>{error}</p>}
+      {error && <p id="vorder-error-message" style={{ color: 'red' }}>{error}</p>}
 
       {orderData && (
-        <div>
-          <h2>Order Details</h2>
+        <div id="vorder-details-card">
+          <h2 id="vorder-details-header">Order Details</h2>
           <Order order={orderData} /> {/* Use Order component to display details */}
-          <Link to={`/vieworder/${orderID}`}><button>Update</button></Link>
+          <Link to={`/vieworder/${orderID}`}><button id="vupdate-order-button">Update</button></Link>
           
-          <button onClick={deleteHandler}>Delete</button>
+          <button id="vdelete-order-button" onClick={deleteHandler}>Delete</button>
           
           {/* Add ReactToPrint for generating and downloading the report */}
           <ReactToPrint
-            trigger={() => <button>Download Order Summary Report</button>}
+            trigger={() => <button id="vdownload-report-button">Download Order Summary Report</button>}
             content={() => orderSummaryReportRef.current}
             documentTitle={`Order_Summary_${orderData.orderID}`}
             pageStyle="print"
           />
-          
           
           <div style={{ display: 'none' }}>
             <OrderSummaryReport
@@ -86,7 +87,7 @@ function ViewOrder() {
               order={orderData}
             />
           </div>
-          <button>Send to Supplier</button>
+          <button id="vsend-to-supplier-button">Send to Supplier</button>
         </div>
       )}
     </div>

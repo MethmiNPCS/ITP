@@ -121,6 +121,43 @@ const deleteOrder = async (req, res, next) => {
     
 }
 
+// Get Order Statistics: total orders, pending orders, and processed orders
+const getOrderStats = async (req, res, next) => {
+    try {
+        // Count total orders
+        const totalOrders = await Order.countDocuments();
+
+        // Count pending orders
+        const pendingOrders = await Order.countDocuments({ status: "pending" });
+
+        // Count processed orders
+        const processedOrders = await Order.countDocuments({ status: "processed" });
+
+        // Send the response with the counts
+        return res.status(200).json({ totalOrders, pendingOrders, processedOrders });
+    } catch (err) {
+        console.log(err);
+        return res.status(500).json({ message: "Error retrieving order stats" });
+    }
+};
+
+const getOrderCategoryStats = async (req, res, next) => {
+    try {
+      const foodOrders = await Order.countDocuments({ orderType: 'Food' });
+      const medicineOrders = await Order.countDocuments({ orderType: 'Medicine' });
+      
+      return res.status(200).json({
+        foodOrders,
+        medicineOrders,
+      });
+    } catch (err) {
+      console.log(err);
+      return res.status(500).json({ message: "Failed to retrieve order category stats" });
+    }
+  };
+
+
+
 
 //export to the route
 exports.getAllOrders = getAllOrders;
@@ -128,3 +165,6 @@ exports.addOrders = addOrders;
 exports.getByorderID = getByorderID;
 exports.updateOrder = updateOrder;
 exports.deleteOrder = deleteOrder;
+exports.getOrderStats = getOrderStats;
+exports.getOrderCategoryStats = getOrderCategoryStats;
+

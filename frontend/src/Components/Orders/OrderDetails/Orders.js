@@ -1,5 +1,6 @@
 import React, {useState, useEffect} from 'react';
 import Nav from '../Nav/Nav';
+import './Orders.css';
 import axios from "axios";
 import Order from '../Order/Order';
 
@@ -19,17 +20,16 @@ function Orders() {
 
 
   return (
-    <div>
-      <Nav/>
-      <br/>
-      <h1>All Order Details</h1>
-      <div>
+    <div id="os-orders-container">
+      <Nav />
+      <br />
+      <h1 id="os-orders-title">All Order Details</h1>
+      <div id="os-orders-list">
         {orders && orders.map((order, i) => (
-          <div key={i}>
-            <Order order={order} orderId={order.id}/>
-            </div>
+          <div key={i} id={`os-order-${i}`}>
+            <Order order={order} orderId={order.id} />
+          </div>
         ))}
-       
       </div>
     </div>
   );

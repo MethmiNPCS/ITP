@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import Nav from '../Nav/Nav';
+import './AddOrder.css'
 import { useNavigate } from 'react-router-dom';
 import axios from 'axios';
 
@@ -115,20 +116,21 @@ function AddOrder() {
     };
 
     return (
-        <div>
+        <div id="add-order-container">
             <Nav />
-            <br/>
-            <h1>Add Order</h1>
+            <br />
+            <h1 id="add-order-header">Add Order</h1>
 
-            <form onSubmit={handleSubmit}>
-                <label>Order ID</label>
+            <form id="add-order-form" onSubmit={handleSubmit}>
+                <label id="order-id-label">Order ID</label>
                 <br />
-                <input type="text" value="Auto-generated" disabled />
+                <input id="order-id-input" type="text" value="Auto-generated" disabled />
                 <br /><br />
 
-                <label>Order Type</label>
+                <label id="order-type-label">Order Type</label>
                 <br />
                 <input
+                    id="order-type-food"
                     type="radio"
                     name="orderType"
                     value="Food"
@@ -137,6 +139,7 @@ function AddOrder() {
                     required
                 /> Food
                 <input
+                    id="order-type-medicine"
                     type="radio"
                     name="orderType"
                     value="Medicine"
@@ -144,14 +147,15 @@ function AddOrder() {
                     onChange={handleChange}
                     required
                 /> Medicine
-                {errors.orderType && <p style={{ color: 'red' }}>{errors.orderType}</p>}
+                {errors.orderType && <p id="order-type-error">{errors.orderType}</p>}
                 <br /><br />
 
-                <label>Order Items</label>
+                <label id="order-items-label">Order Items</label>
                 <br />
                 {inputs.items.map((item, index) => (
-                    <div key={index} style={{ display: 'flex', alignItems: 'center' }}>
+                    <div key={index} id={`order-item-${index}`} className="order-item">
                         <input
+                            id={`order-item-name-${index}`}
                             type="text"
                             name="orderItem"
                             value={item.orderItem}
@@ -159,22 +163,22 @@ function AddOrder() {
                             placeholder="Item Name"
                             required
                         />
-                        {errors[`orderItem-${index}`] && <p style={{ color: 'red', marginLeft: '10px' }}>{errors[`orderItem-${index}`]}</p>}
+                        {errors[`orderItem-${index}`] && <p id={`order-item-error-${index}`} className="error-message">{errors[`orderItem-${index}`]}</p>}
                         <input
+                            id={`order-item-quantity-${index}`}
                             type="number"
                             name="quantity"
                             value={item.quantity}
                             onChange={(e) => handleItemChange(index, e)}
                             placeholder="Quantity"
                             required
-                            style={{ marginLeft: '10px' }}
                         />
-                        {errors[`quantity-${index}`] && <p style={{ color: 'red', marginLeft: '10px' }}>{errors[`quantity-${index}`]}</p>}
+                        {errors[`quantity-${index}`] && <p id={`order-item-quantity-error-${index}`} className="error-message">{errors[`quantity-${index}`]}</p>}
                         <select
+                            id={`order-item-unit-${index}`}
                             name="unit"
                             value={item.unit}
                             onChange={(e) => handleItemChange(index, e)}
-                            style={{ marginLeft: '10px' }}
                         >
                             <option value="g">g</option>
                             <option value="kg">kg</option>
@@ -183,17 +187,17 @@ function AddOrder() {
                             <option value="l">l</option>
                         </select>
                         {index > 0 && (
-                            <button type="button" onClick={() => removeItemField(index)} style={{ marginLeft: '10px' }}>-</button>
+                            <button id={`remove-item-button-${index}`} type="button" onClick={() => removeItemField(index)}>-</button>
                         )}
                     </div>
                 ))}
-                <button type="button" onClick={addItemField} style={{ marginTop: '10px', fontSize: '20px' }}>+</button>
-                {errors.items && <p style={{ color: 'red' }}>{errors.items}</p>}
+                <button id="add-item-button" type="button" onClick={addItemField}>+</button>
+                {errors.items && <p id="order-items-error">{errors.items}</p>}
                 <br /><br />
 
-                <label>Supplier</label>
+                <label id="supplier-label">Supplier</label>
                 <br />
-                <select name = "selected" value={selectedSupplier} onChange={handleSupplierChange} required>
+                <select id="supplier-select" name="selected" value={selectedSupplier} onChange={handleSupplierChange} required>
                     <option value="">Select Supplier</option>
                     {suppliers.map(supplier => (
                         <option key={supplier.supplierID} value={supplier.supplierName}>
@@ -201,26 +205,27 @@ function AddOrder() {
                         </option>
                     ))}
                 </select>
-                {errors.supplier && <p style={{ color: 'red' }}>{errors.supplier}</p>}
+                {errors.supplier && <p id="supplier-error">{errors.supplier}</p>}
                 <br /><br />
 
-                <label>Description</label>
+                <label id="description-label">Description</label>
                 <br />
                 <textarea
+                    id="description-textarea"
                     name="description"
                     value={inputs.description}
                     onChange={handleChange}
                     placeholder="Order Description"
                 ></textarea>
-                {errors.description && <p style={{ color: 'red' }}>{errors.description}</p>}
+                {errors.description && <p id="description-error">{errors.description}</p>}
                 <br /><br />
 
-                <label>Status</label>
+                <label id="status-label">Status</label>
                 <br />
-                <input type="text" value="Pending" disabled />
+                <input id="status-input" type="text" value="Pending" disabled />
                 <br /><br />
 
-                <button type="submit">Submit Order</button>
+                <button id="submit-order-button" type="submit">Submit Order</button>
             </form>
         </div>
     );

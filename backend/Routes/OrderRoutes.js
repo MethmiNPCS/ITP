@@ -1,16 +1,21 @@
 const express = require("express");
-const router = express.Router();
+const orderrouter = express.Router();
 //insert model
 const Order = require("../Model/OrderModel")
 //insert order controller
 const OrderController = require("../Controllers/OrderControllers");
 
 //create route path
-router.get("/",OrderController.getAllOrders);
-router.post("/",OrderController.addOrders);
-router.get("/:orderID",OrderController.getByorderID);
-router.put("/:orderID",OrderController.updateOrder);
-router.delete("/:orderID",OrderController.deleteOrder);
+orderrouter.get("/stats", OrderController.getOrderStats);
+orderrouter.get("/category-stats", OrderController.getOrderCategoryStats);
+orderrouter.get("/",OrderController.getAllOrders);
+orderrouter.post("/",OrderController.addOrders);
+orderrouter.get("/:orderID",OrderController.getByorderID);
+orderrouter.put("/:orderID",OrderController.updateOrder);
+orderrouter.delete("/:orderID",OrderController.deleteOrder);
+
+
+
 
 //export
-module.exports = router;
+module.exports = orderrouter;

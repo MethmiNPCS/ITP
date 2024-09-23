@@ -104,6 +104,35 @@ const updateSupplier = async (req, res, next) => {
     return res.status(200).json({ supplier });
 };
 
+// Get the count of all suppliers
+const getSupplierCount = async (req, res, next) => {
+    let supplierCount;
+
+    try {
+        supplierCount = await Supplier.countDocuments();  // Count the total suppliers
+    } catch (err) {
+        console.log(err);
+        return res.status(500).json({ message: "Failed to retrieve supplier count" });
+    }
+
+    return res.status(200).json({ count: supplierCount });
+};
+
+// Get the count of food and medicine suppliers
+const getSupplierCategoryCount = async (req, res, next) => {
+    try {
+        // Count food suppliers
+        const foodCount = await Supplier.countDocuments({ supplierType: "Food" });
+        // Count medicine suppliers
+        const medicineCount = await Supplier.countDocuments({ supplierType: "Medicine" });
+
+        return res.status(200).json({ foodCount, medicineCount });
+    } catch (err) {
+        console.log(err);
+        return res.status(500).json({ message: "Failed to retrieve supplier category counts" });
+    }
+};
+
 
 // Export functions to routes
 exports.getAllSuppliers = getAllSuppliers;
@@ -111,4 +140,8 @@ exports.addSupplier = addSupplier;
 exports.getBySupplierID = getBySupplierID;
 exports.getBySupplierType = getBySupplierType;
 exports.updateSupplier = updateSupplier;
+exports.getSupplierCount = getSupplierCount;
+exports.getSupplierCategoryCount = getSupplierCategoryCount; 
+
+
 

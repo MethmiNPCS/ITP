@@ -21,7 +21,6 @@ import AddTreatment from "./Components/AnimalHealth/AddTreatment/AddTreatment";
 import TreatmentDetails from "./Components/AnimalHealth/TreatmentDetails/TreatmentDetails";
 import UpdateTreatment from "./Components/AnimalHealth/UpdateTreatment/UpdateTreatment";
 
-
 // Finance Routes
 import FinanceHome from './Components/Finance/FinanceHome';
 import Finance from './Components/Finance/Finance/Finance';
@@ -38,6 +37,13 @@ import ViewOrder from "./Components/Orders/ViewOrder/ViewOrder";
 import UpdateOrder from "./Components/Orders/UpdateOrder/UpdateOrder";
 import SupplierDetails from "./Components/Orders/SupplierDetails/SupplierDetails";
 
+// Employee Routes
+import EmployeeHome from './Components/Employees/EmployeeHome';
+import AddEmployee from './Components/Employees/AddEmployee/AddEmployee';
+import Employees from "./Components/Employees/EmployeeDetails/Employees";
+import UpdateEmployee from "./Components/Employees/UpdateEmployee/UpdateEmployee";
+import SalaryCalculation from './Components/Employees/EmployeeDetails/SalaryCalculation'; 
+import SalariesPage from './Components/Employees/EmployeeDetails/Salaries';
 
 
 function App() {
@@ -62,13 +68,13 @@ function App() {
           <Route path="/treatmentdetails" element={<TreatmentDetails />} />
           <Route path="/treatmentdetails/:id" element={<UpdateTreatment />} />
 
-
           <Route path="/financehome" element={<FinanceHome />} />
           <Route path="/finance" element={<Finance />} />
           <Route path="/addfinance" element={<AddFinance />} /> 
           <Route path="/financedetails" element={<FinanceDetails />} />
           <Route path="/incomedetails" element={<IncomeDetails />} />  
           <Route path="/updatefinance/:id" element={<UpdateFinance />} />
+
 
           <Route path="/orderhome" element={<OrderHome/>}/>
           <Route path="/addorder" element={<AddOrder/>}/>
@@ -77,6 +83,13 @@ function App() {
           <Route path="/vieworder/:orderID" element={<UpdateOrder/>}/>
           <Route path="/supplierdetails" element={<SupplierDetails/>}/>
 
+          <Route path="/" element={<EmployeeHome />} />
+          <Route path="/employeehome" element={<EmployeeHome />} />
+          <Route path="/addemployee" element={<AddEmployee />} />
+          <Route path="/employeedetails" element={<Employees />} />
+          <Route path="/updateemployeedetails/:id" element={<UpdateEmployee />} />
+          <Route path="/salarycalculation/:nic" element={<SalaryCalculation />} />
+          <Route path="/salaries" element={<SalariesPage />} />
         </Routes>
       </React.Fragment>
     </div>

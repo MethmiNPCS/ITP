@@ -4,13 +4,19 @@
 
 const express = require("express");
 const mongoose = require("mongoose");
+
+// Import Routes
 const emprouter = require("./Routes/EmployeeRoutes");
 const stockrouter = require("./Routes/StockRoutes");
 const animalrouter = require("./Routes/AnimalRoutes");
 const treatmentrouter = require("./Routes/TreatmentRoutes");
+
 const orderRoutes = require("./Routes/OrderRoutes");
 const supplierRoutes = require("./Routes/SupplierRoutes"); 
+
 const financrouter = require("./Routes/financ");
+const employeeRouter = require('./Routes/EmployeeRoutes');
+const salaryRouter = require('./Routes/SalaryRoutes');
 
 
 const app = express();
@@ -19,13 +25,16 @@ const cors = require("cors");
 // Middlewear
 app.use(express.json());
 app.use(cors());
-app.use("/employees", emprouter);
 app.use("/stocks", stockrouter);
 app.use("/animals",animalrouter);
 app.use("/treatments",treatmentrouter);
+
 app.use("/orders",orderRoutes);
 app.use("/suppliers", supplierRoutes);
+
 app.use("/finance", financrouter);
+app.use('/employees', employeeRouter);
+app.use('/salaries', salaryRouter);
 
 // Connect Database
 mongoose.connect("mongodb+srv://admin:zoPvf0NUih9wBU3F@cluster0.yawwn.mongodb.net/")

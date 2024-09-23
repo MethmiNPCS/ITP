@@ -19,7 +19,7 @@ const employeeRouter = require('./Routes/EmployeeRoutes');
 const salaryRouter = require('./Routes/SalaryRoutes');
 
 // Dhi
-//const tasksRoute = require("./Routes/tasksRoute");
+const tasksRoute = require("./Routes/tasksRoute");
 
 
 const app = express();
@@ -40,7 +40,7 @@ app.use('/employees', employeeRouter);
 app.use('/salaries', salaryRouter);
 
 //Dhi
-//app.use("/tasks", tasksRoute);
+app.use("/tasks", tasksRoute);
 
 // Connect Database
 mongoose.connect("mongodb+srv://admin:zoPvf0NUih9wBU3F@cluster0.yawwn.mongodb.net/")

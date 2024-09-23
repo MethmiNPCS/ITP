@@ -8,7 +8,7 @@ import TasksTable from '../Components/home/TasksTable';
 import TasksCard from '../Components/home/TasksCard';
 import SearchBar from '../Components/home/SearchBar';
 
-const Home = () => {
+const TasksHome = () => {
     const [tasks, setTasks] = useState([]);
     const [loading, setLoading] = useState(true);
     const [showType, setShowType] = useState('table');
@@ -224,4 +224,4 @@ const Home = () => {
     );
 };
 
-export default Home;
+export default TasksHome;

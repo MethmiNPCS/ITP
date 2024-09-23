@@ -2,26 +2,17 @@ import React from "react";
 import {Route, Routes} from "react-router";
 import './App.css';
 import Home from './Components/Home/Home';
-/*
-// Task Routes
-import Home from './pages/Home';
-import ShowTask from './pages/ShowTask';
-import CreateTask from './pages/CreateTask';
-import EditTask from './pages/EditTask';
-import DeleteTask from './pages/DeleteTask';
-import IncompleteTasks from './pages/IncompleteTasks';
-import OverdueTasks from './pages/OverdueTasks';
-import UrgentTasks from './pages/UrgentTasks';
 
-          <Route path='/' element={<Home />} />
-          <Route path='/tasks/details/:id' element={<ShowTask />} />
-          <Route path='/tasks/create' element={<CreateTask />} />
-          <Route path='/tasks/edit/:id' element={<EditTask />} />
-          <Route path='/tasks/delete/:id' element={<DeleteTask />} />
-          <Route path='/tasks/IncompleteTasks' element={<IncompleteTasks />} />
-          <Route path='/tasks/OverdueTasks' element={<OverdueTasks />} />
-          <Route path='/tasks/UrgentTasks' element={<UrgentTasks />} />
-*/
+// Task Routes
+import TasksHome from './Components/Tasks/pages/TasksHome';
+import ShowTask from './Components/Tasks/pages/ShowTask';
+import CreateTask from './Components/Tasks/pages/CreateTask';
+import EditTask from './Components/Tasks/pages/EditTask';
+import DeleteTask from './Components/Tasks/pages/DeleteTask';
+import IncompleteTasks from './Components/Tasks/pages/IncompleteTasks';
+import OverdueTasks from './Components/Tasks/pages/OverdueTasks';
+import UrgentTasks from './Components/Tasks/pages/UrgentTasks';
+
 
 // Stock Routes
 import StockHome from './Components/Stocks/StockHome';
@@ -72,6 +63,15 @@ function App() {
       <React.Fragment>
         <Routes>
           <Route path="/" element={<Home/>}/>
+
+          <Route path='/taskhome' element={<TasksHome />} />
+          <Route path='/tasks/details/:id' element={<ShowTask />} />
+          <Route path='/tasks/create' element={<CreateTask />} />
+          <Route path='/tasks/edit/:id' element={<EditTask />} />
+          <Route path='/tasks/delete/:id' element={<DeleteTask />} />
+          <Route path='/tasks/IncompleteTasks' element={<IncompleteTasks />} />
+          <Route path='/tasks/OverdueTasks' element={<OverdueTasks />} />
+          <Route path='/tasks/UrgentTasks' element={<UrgentTasks />} />
 
           <Route path="/stockhome" element={<StockHome/>}/>
           <Route path="/addfood" element={<AddFood/>}/>

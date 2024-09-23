@@ -1,11 +1,8 @@
 const mongoose = require("mongoose");
 const mongooseSequence = require('mongoose-sequence');
-const { mongoDBURL } = require('../config.js');
 
-//CONNECTION USED
-const connection = mongoose.createConnection(mongoDBURL);
 
-const AutoIncrement = mongooseSequence(connection);
+const AutoIncrement = mongooseSequence(mongoose);
 
 const taskSchema = new mongoose.Schema({
     

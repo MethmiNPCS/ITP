@@ -13,7 +13,7 @@ const DeleteTask = () => {
 
   const handleDeleteTask = () => {
     setLoading(true);
-    axios.delete(`http://localhost:5555/tasks/${id}`)
+    axios.delete(`http://localhost:5000/tasks/${id}`)
       .then(() => {
         setLoading(false);
         enqueueSnackbar('Task deleted successfully', { variant: 'success' });

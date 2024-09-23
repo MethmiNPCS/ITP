@@ -30,7 +30,7 @@ const CreateTask = () => {
         setLoading(true);
 
         axios
-            .post('http://localhost:5555/tasks', data)
+            .post('http://localhost:5000/tasks', data)
             .then(() => {
                 setLoading(false);
                 enqueueSnackbar('Task created successfully', { variant: 'success' });

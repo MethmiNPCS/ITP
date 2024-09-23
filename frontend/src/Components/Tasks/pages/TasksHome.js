@@ -16,7 +16,7 @@ const TasksHome = () => {
 
     useEffect(() => {
         setLoading(true);
-        axios.get('http://localhost:5555/tasks')
+        axios.get('http://localhost:5000/tasks')
             .then(response => {
                 setTasks(response.data.data);
                 setLoading(false);

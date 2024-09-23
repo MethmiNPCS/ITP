@@ -6,6 +6,8 @@ const express = require("express");
 const mongoose = require("mongoose");
 const emprouter = require("./Routes/EmployeeRoutes");
 const stockrouter = require("./Routes/StockRoutes");
+const animalrouter = require("./Routes/AnimalRoutes");
+const treatmentrouter = require("./Routes/TreatmentRoutes");
 //const orderRoutes = require("./Routes/OrderRoutes");
 //const supplierRoutes = require("./Routes/SupplierRoutes"); 
 
@@ -18,6 +20,8 @@ app.use(express.json());
 app.use(cors());
 app.use("/employees", emprouter);
 app.use("/stocks", stockrouter);
+app.use("/animals",animalrouter);
+app.use("/treatments",treatmentrouter);
 //app.use("/orders",orderRoutes);
 //app.use("/suppliers", supplierRoutes);
 

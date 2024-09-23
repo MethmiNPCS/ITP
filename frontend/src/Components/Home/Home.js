@@ -1,6 +1,6 @@
 import React from 'react';
+import '../../App.css';
 import { useState } from 'react';
-import './App.css';
 import { FaBoxOpen, FaShoppingCart, FaTasks, FaSeedling, FaUserTie, FaMoneyBill, FaTree, FaBars, FaHorse } from 'react-icons/fa';
 
 function Home() {
@@ -18,8 +18,9 @@ function Home() {
 
       {/* Sidebar */}
       <aside className={`bg-gradient-to-b from-green-500 to-green-800 text-white flex flex-col transition-all duration-300 ease-in-out ${isSidebarOpen ? 'w-56' : 'w-0'} overflow-hidden`}>
-        <nav className={`flex-1 p-4 mt-12 ${isSidebarOpen ? 'block' : 'hidden'} sm:block`}>
-          <ul className="space-y-12">
+       
+        <nav className={`flex-1 p-4 mt-12 ${isSidebarOpen ? 'block' : 'hidden'}`}>
+          <ul className="space-y-12"> {/* Adjusted space between items */}
             {[
               { name: "Stocks", icon: FaBoxOpen },
               { name: "Orders", icon: FaShoppingCart },
@@ -44,12 +45,12 @@ function Home() {
       </aside>
 
       {/* Main Content */}
-      <main className={`flex-1 relative transition-all duration-300 ${isSidebarOpen ? 'ml-56' : 'ml-0'} md:ml-64`}>
+      <main className="flex-1 relative">
         {/* Hero Image with conditional zoom */}
         <div
           className={`w-full h-full bg-cover bg-center transition-transform duration-300 ${isSidebarOpen ? '' : 'animate-zoom'}`}
           style={{
-            backgroundImage: `url('/assests/bg.webp')`,
+            backgroundImage: `url('/assets/bg.webp')`,
           }}
         >
           {/* Center align both texts with increased top padding */}
@@ -68,7 +69,7 @@ function Home() {
       </main>
 
       {/* Footer */}
-      <footer className={`absolute bottom-0 w-full transition-all duration-300 ${isSidebarOpen ? 'ml-56' : 'ml-0'} md:ml-64 py-4 bg-[#f6f6e8] text-green-800 text-center`}>
+      <footer className={`absolute bottom-0 w-full transition-all duration-300 ${isSidebarOpen ? 'ml-56' : 'ml-0'} py-4 bg-[#f6f6e8] text-green-800 text-center`}>
         <p>&copy; 2024 The National Seminary Farm. All rights reserved.</p>
       </footer>
     </div>

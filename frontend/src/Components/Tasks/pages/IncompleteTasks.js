@@ -8,7 +8,7 @@ const IncompleteTasks = () => {
 
     useEffect(() => {
         setLoading(true);
-        axios.get('http://localhost:5555/tasks')
+        axios.get('http://localhost:5000/tasks')
             .then(response => {
                 const incompleteTasks = response.data.data.filter(task => !task.isCompleted);
                 setTasks(incompleteTasks);

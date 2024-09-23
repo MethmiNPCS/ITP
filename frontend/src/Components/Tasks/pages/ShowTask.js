@@ -29,7 +29,7 @@ const ShowTask = () => {
 
   useEffect(() => {
     setLoading(true);
-    axios.get(`http://localhost:5555/tasks/${id}`)
+    axios.get(`http://localhost:5000/tasks/${id}`)
       .then(response => {
         setTask(response.data);
         setLoading(false);

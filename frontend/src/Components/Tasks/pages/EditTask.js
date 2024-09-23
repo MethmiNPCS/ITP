@@ -20,7 +20,7 @@ const EditTask = () => {
 
   useEffect(() => {
     setLoading(true);
-    axios.get(`http://localhost:5555/tasks/${id}`)
+    axios.get(`http://localhost:5000/tasks/${id}`)
       .then((response) => {
         setTitle(response.data.title);
         setDescription(response.data.description);

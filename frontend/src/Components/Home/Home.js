@@ -56,7 +56,7 @@ function Home() {
           {/* Center align both texts with increased top padding */}
           <div className="w-full h-full flex flex-col items-center justify-start pt-32 text-center">
             {/* The National Seminary Farm - center aligned, custom color with fade-in effect */}
-            <h1 className="text-[9rem] font-bebas bg-gradient-to-r from-[#003366] to-[#006400] bg-clip-text text-transparent mb-8 text-center fade-in-text">
+            <h1 className="text-4xl sm:text-6xl md:text-7xl lg:text-[9rem] font-bebas bg-gradient-to-r from-[#003366] to-[#006400] bg-clip-text text-transparent mb-8 text-center fade-in-text">
               The National Seminary Farm
             </h1>
 

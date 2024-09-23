@@ -1,5 +1,5 @@
 import React from 'react';
-//import './App.css';
+import '../../App.css';
 import { useState } from 'react';
 import { FaBoxOpen, FaShoppingCart, FaTasks, FaSeedling, FaUserTie, FaMoneyBill, FaTree, FaBars, FaHorse } from 'react-icons/fa';
 

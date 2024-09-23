@@ -11,6 +11,8 @@ const stockrouter = require("./Routes/StockRoutes");
 const animalrouter = require("./Routes/AnimalRoutes");
 const treatmentrouter = require("./Routes/TreatmentRoutes");
 
+const productRouter = require("./Routes/ProductRoutes");
+
 const orderRoutes = require("./Routes/OrderRoutes");
 const supplierRoutes = require("./Routes/SupplierRoutes"); 
 
@@ -20,6 +22,10 @@ const salaryRouter = require('./Routes/SalaryRoutes');
 
 // Dhi
 const tasksRoute = require("./Routes/tasksRoute");
+
+
+// Visu
+app.use('/products', productRouter); 
 
 
 const app = express();

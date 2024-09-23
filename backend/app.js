@@ -6,41 +6,33 @@ const express = require("express");
 const mongoose = require("mongoose");
 
 // Import Routes
-const emprouter = require("./Routes/EmployeeRoutes");
-const stockrouter = require("./Routes/StockRoutes");
-const animalrouter = require("./Routes/AnimalRoutes");
-const treatmentrouter = require("./Routes/TreatmentRoutes");
-
-const productRouter = require("./Routes/ProductRoutes");
-
-const orderRoutes = require("./Routes/OrderRoutes");
-const supplierRoutes = require("./Routes/SupplierRoutes"); 
-
-const financrouter = require("./Routes/financ");
-const employeeRouter = require('./Routes/EmployeeRoutes');
-const salaryRouter = require('./Routes/SalaryRoutes');
-
-// Dhi
-const tasksRoute = require("./Routes/tasksRoute");
-
-const app = express();
-const cors = require("cors");
+const stockrouter = require("./Routes/StockRoutes");  // Stock
+const orderRoutes = require("./Routes/OrderRoutes");  // Order
+const supplierRoutes = require("./Routes/SupplierRoutes"); // Supplier
+const tasksRoute = require("./Routes/tasksRoute"); // Task
+const productRouter = require("./Routes/ProductRoutes"); // Product
+const animalrouter = require("./Routes/AnimalRoutes");  // Animal
+const treatmentrouter = require("./Routes/TreatmentRoutes"); // Treatment
+const employeeRouter = require('./Routes/EmployeeRoutes'); // Employee
+const salaryRouter = require('./Routes/SalaryRoutes'); // Salary
+const financrouter = require("./Routes/financ"); // Finance
 
 // Middlewear
+const app = express();
+const cors = require("cors");
 app.use(express.json());
 app.use(cors());
 
-app.use("/stocks", stockrouter);
-app.use("/animals",animalrouter);
-app.use("/treatments",treatmentrouter);
-app.use("/orders",orderRoutes);
-app.use("/suppliers", supplierRoutes);
-app.use("/finance", financrouter);
-app.use('/employees', employeeRouter);
-app.use('/salaries', salaryRouter);
-app.use('/products', productRouter); 
-//Dhi
-app.use("/tasks", tasksRoute);
+app.use("/stocks", stockrouter); // Stock
+app.use("/orders",orderRoutes); // Order
+app.use("/suppliers", supplierRoutes); // Supplier
+app.use("/tasks", tasksRoute); // Tasks
+app.use('/products', productRouter); // Product
+app.use("/animals",animalrouter); // Animal
+app.use("/treatments",treatmentrouter); // Treatment
+app.use('/employees', employeeRouter); //Employee
+app.use('/salaries', salaryRouter); // Salary
+app.use("/finance", financrouter); // Finance
 
 // Connect Database
 mongoose.connect("mongodb+srv://admin:zoPvf0NUih9wBU3F@cluster0.yawwn.mongodb.net/")

@@ -8,7 +8,7 @@ const UrgentTasks = () => {
 
     useEffect(() => {
         setLoading(true);
-        axios.get('http://localhost:5555/tasks')
+        axios.get('http://localhost:5000/tasks')
             .then(response => {
                 const urgentTasks = response.data.data.filter(task => task.priority === 'Urgent' && !task.isCompleted);
                 setTasks(urgentTasks);

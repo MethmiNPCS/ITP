@@ -8,7 +8,7 @@ const OverdueTasks = () => {
 
     useEffect(() => {
         setLoading(true);
-        axios.get('http://localhost:5555/tasks')
+        axios.get('http://localhost:5000/tasks')
             .then(response => {
                 const overdueTasks = response.data.data.filter(task => new Date(task.dueDate) < new Date() && !task.isCompleted);
                 setTasks(overdueTasks);

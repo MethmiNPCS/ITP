@@ -68,9 +68,9 @@ function UpdateAnimal() {
         breedingStatus: String(inputs.breedingStatus),
         healthStatus: String(inputs.healthStatus),
         healthCondition: String(inputs.healthCondition),
-        treatmentIDs: inputs.treatmentIDs, // Include updated treatmentIDs
+        treatmentIDs: inputs.treatmentIDs, 
       });
-      console.log("Animal updated successfully."); // Debugging line
+      console.log("Animal updated successfully."); 
     } catch (error) {
       console.error("Error updating animal:", error);
     }
@@ -224,7 +224,7 @@ function UpdateAnimal() {
                     onChange={handleCheckboxChange}
                   />
                   <label htmlFor={plan.treatmentID}>
-                    {plan.treatmentID} - {plan.planDescription} {/* Display ID and description */}
+                    {plan.treatmentID} - {plan.planDescription} 
                   </label>
                 </div>
               ))

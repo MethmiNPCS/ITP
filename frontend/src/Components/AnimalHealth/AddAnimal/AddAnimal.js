@@ -4,7 +4,7 @@ import { useNavigate } from "react-router";
 import axios from "axios";
 import "./AddAnimal.css";
 
-const ANIMAL_URL = "http://localhost:5000/animals"; // Endpoint for animals
+const ANIMAL_URL = "http://localhost:5000/animals"; 
 
 function AddAnimal() {
   const history = useNavigate();
@@ -42,7 +42,7 @@ function AddAnimal() {
       [e.target.name]: e.target.value,
     }));
     if (e.target.name === "animalID") {
-      setErrorMessage(""); // Reset error message on input change
+      setErrorMessage(""); 
     }
   };
 
@@ -59,13 +59,13 @@ function AddAnimal() {
   const checkUniqueAnimalID = async (animalID) => {
     try {
       const response = await axios.get(`${ANIMAL_URL}/${animalID}`);
-      return response.data.animal === null; // Ensure this condition is correct
+      return response.data.animal === null; 
     } catch (error) {
       if (error.response && error.response.status === 404) {
-        return true; // ID is unique if 404
+        return true; 
       }
       console.error("Error checking animal ID:", error);
-      return false; // Assume not unique for other errors
+      return false; 
     }
   };
 

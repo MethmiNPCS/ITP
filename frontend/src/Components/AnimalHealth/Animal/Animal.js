@@ -29,11 +29,10 @@ function Animal(props) {
       .then(() => history("/animaldetails"));
   };
 
-  // Debug: Log treatmentIDs and treatments
+
   console.log("Treatment IDs:", treatmentIDs);
   console.log("Treatments Data:", treatments);
 
-  // Find treatment descriptions based on treatmentIDs
   const treatmentDescriptions = treatmentIDs.map(id => {
     const treatment = treatments.find(t => t.treatmentID === id);
     return treatment ? treatment.planDescription : "No description available";

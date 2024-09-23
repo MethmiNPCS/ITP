@@ -27,7 +27,7 @@ function AddTreatment() {
       ...prevState,
       [e.target.name]: e.target.value,
     }));
-    // Clear error message when the user starts typing
+    
     if (e.target.name === "treatmentID") {
       setErrors({ ...errors, treatmentID: "" });
     }
@@ -39,32 +39,32 @@ function AddTreatment() {
     setMedicines(updatedMedicines);
   };
 
-  // Add a new medicine input row
+
   const addMedicine = () => {
     setMedicines([...medicines, { name: "", dose: "" }]);
   };
 
-  // Remove a medicine input row
+
   const removeMedicine = (index) => {
     const updatedMedicines = medicines.filter((_, i) => i !== index);
     setMedicines(updatedMedicines);
   };
 
-  // Submit handler
+ 
   const handleSubmit = (e) => {
     e.preventDefault();
     sendRequest();
   };
 
-  // Function to send the request to the backend
+
   const sendRequest = async () => {
     try {
-      // Split animalIDs field and trim any whitespace
+      
       const animalIDsArray = inputs.animalIDs
         ? inputs.animalIDs.split(",").map((id) => id.trim())
         : [];
 
-      // Construct the payload
+      
       const payload = {
         treatmentID: String(inputs.treatmentID),
         planDescription: String(inputs.planDescription),
@@ -78,9 +78,9 @@ function AddTreatment() {
         medicines,
       };
 
-      console.log("Prepared payload:", payload); // Log the payload for debugging
+      console.log("Prepared payload:", payload); 
 
-      // Send the payload to the backend
+
       const response = await axios.post(
         "http://localhost:5000/treatments",
         payload,

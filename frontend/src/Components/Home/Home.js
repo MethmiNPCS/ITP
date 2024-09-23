@@ -1,9 +1,8 @@
-import React, { useState } from 'react';
+import React from 'react';
 import './App.css';
 import { FaBoxOpen, FaShoppingCart, FaTasks, FaSeedling, FaUserTie, FaMoneyBill, FaTree, FaBars, FaHorse } from 'react-icons/fa';
 
-function App() {
-  // State to toggle sidebar
+function Home() {
   const [isSidebarOpen, setIsSidebarOpen] = useState(false);
 
   return (
@@ -50,7 +49,7 @@ function App() {
         <div
           className={`w-full h-full bg-cover bg-center transition-transform duration-300 ${isSidebarOpen ? '' : 'animate-zoom'}`}
           style={{
-            backgroundImage: `url('/assets/bg.webp')`,
+            backgroundImage: `url('/assests/bg.webp')`,
           }}
         >
           {/* Center align both texts with increased top padding */}
@@ -76,4 +75,4 @@ function App() {
   );
 }
 
-export default App;
+export default Home;

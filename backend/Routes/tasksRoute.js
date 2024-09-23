@@ -1,5 +1,5 @@
 const express = require("express");
-const Task = require('../models/taskModel.js');
+const Task = require('../Model/taskModel.js');
 const { mongoDBURL } = require('../config.js');
 const mongoose = require('mongoose');
 

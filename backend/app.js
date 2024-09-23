@@ -18,6 +18,9 @@ const financrouter = require("./Routes/financ");
 const employeeRouter = require('./Routes/EmployeeRoutes');
 const salaryRouter = require('./Routes/SalaryRoutes');
 
+// Dhi
+//const tasksRoute = require("./Routes/tasksRoute");
+
 
 const app = express();
 const cors = require("cors");
@@ -35,6 +38,9 @@ app.use("/suppliers", supplierRoutes);
 app.use("/finance", financrouter);
 app.use('/employees', employeeRouter);
 app.use('/salaries', salaryRouter);
+
+//Dhi
+//app.use("/tasks", tasksRoute);
 
 // Connect Database
 mongoose.connect("mongodb+srv://admin:zoPvf0NUih9wBU3F@cluster0.yawwn.mongodb.net/")

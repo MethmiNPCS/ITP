@@ -2,6 +2,26 @@ import React from "react";
 import {Route, Routes} from "react-router";
 import './App.css';
 import Home from './Components/Home/Home';
+/*
+// Task Routes
+import Home from './pages/Home';
+import ShowTask from './pages/ShowTask';
+import CreateTask from './pages/CreateTask';
+import EditTask from './pages/EditTask';
+import DeleteTask from './pages/DeleteTask';
+import IncompleteTasks from './pages/IncompleteTasks';
+import OverdueTasks from './pages/OverdueTasks';
+import UrgentTasks from './pages/UrgentTasks';
+
+          <Route path='/' element={<Home />} />
+          <Route path='/tasks/details/:id' element={<ShowTask />} />
+          <Route path='/tasks/create' element={<CreateTask />} />
+          <Route path='/tasks/edit/:id' element={<EditTask />} />
+          <Route path='/tasks/delete/:id' element={<DeleteTask />} />
+          <Route path='/tasks/IncompleteTasks' element={<IncompleteTasks />} />
+          <Route path='/tasks/OverdueTasks' element={<OverdueTasks />} />
+          <Route path='/tasks/UrgentTasks' element={<UrgentTasks />} />
+*/
 
 // Stock Routes
 import StockHome from './Components/Stocks/StockHome';
@@ -52,6 +72,7 @@ function App() {
       <React.Fragment>
         <Routes>
           <Route path="/" element={<Home/>}/>
+
           <Route path="/stockhome" element={<StockHome/>}/>
           <Route path="/addfood" element={<AddFood/>}/>
           <Route path="/addmedicine" element={<AddMedicine/>}/>
@@ -90,6 +111,7 @@ function App() {
           <Route path="/updateemployeedetails/:id" element={<UpdateEmployee />} />
           <Route path="/salarycalculation/:nic" element={<SalaryCalculation />} />
           <Route path="/salaries" element={<SalariesPage />} />
+
         </Routes>
       </React.Fragment>
     </div>

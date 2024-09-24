@@ -63,6 +63,10 @@ form {
   background-color: #f1b0b7;
 }
 
+.s-add-button:hover{
+  background-color: #05a630;
+}
+
 input, textarea, select {
   border: 1px solid #ced4da;
   border-radius: 4px;

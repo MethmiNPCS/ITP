@@ -31,9 +31,9 @@ function Food(props) {
       <p><b>Instructions : </b>{instructions}</p>
       <br/>
       <Link to={`/fooddetails/${_id}`}>
-        <button className="update-button">Update</button>
+        <button className="s-update-button">Update</button>
       </Link>
-      <button className="delete-button" onClick={deleteHandler}>Delete</button>
+      <button className="s-delete-button" onClick={deleteHandler}>Delete</button>
 
     </div>
   );

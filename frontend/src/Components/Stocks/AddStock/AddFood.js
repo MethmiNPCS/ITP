@@ -143,7 +143,7 @@ function AddFood() {
           ></textarea>
         </label>
         <br />
-        <button type="submit" className='add-button'>ADD</button>
+        <button type="submit" className='s-add-button'>ADD</button>
       </form>
     </div>
   );

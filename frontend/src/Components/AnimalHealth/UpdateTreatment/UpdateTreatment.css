@@ -1,7 +1,7 @@
 .update-treatment-container {
-  width: 90%; 
-  max-width: 1200px; 
-  margin: 0 auto; 
+  width: 90%;
+  max-width: 1200px;
+  margin: 0 auto;
   padding: 20px;
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
   border-radius: 8px;
@@ -12,12 +12,15 @@ form {
   flex-direction: column;
 }
 
-label {
+.label {
   font-weight: bold;
   margin-bottom: 5px;
 }
 
-input, select, textarea, button {
+input,
+select,
+textarea,
+button {
   margin-bottom: 15px;
   padding: 10px;
   font-size: 16px;
@@ -96,10 +99,10 @@ button:hover {
   color: white;
   margin: 20px auto;
   display: block;
-  padding: 15px 30px; 
+  padding: 15px 30px;
   font-size: 18px;
 }
 
 .submit-button:hover {
-  background-color: #45a049;
+  background-color: #387c3c;
 }

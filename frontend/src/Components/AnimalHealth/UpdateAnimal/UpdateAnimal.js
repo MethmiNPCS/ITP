@@ -1,7 +1,6 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
-import { useParams } from "react-router";
-import { useNavigate } from "react-router";
+import { useParams, useNavigate } from "react-router";
 import Nav from "../Nav/Nav"; 
 import "./UpdateAnimal.css"
 
@@ -68,9 +67,9 @@ function UpdateAnimal() {
         breedingStatus: String(inputs.breedingStatus),
         healthStatus: String(inputs.healthStatus),
         healthCondition: String(inputs.healthCondition),
-        treatmentIDs: inputs.treatmentIDs, 
+        treatmentIDs: inputs.treatmentIDs, // Include updated treatmentIDs
       });
-      console.log("Animal updated successfully."); 
+      console.log("Animal updated successfully."); // Debugging line
     } catch (error) {
       console.error("Error updating animal:", error);
     }
@@ -89,153 +88,135 @@ function UpdateAnimal() {
   };
 
   return (
-    <div>
-      <div className="add-treatment-container">
+    <div className="update-animal-container">
       <Nav /> 
-        <h1>Update Animal</h1>
-        <br></br>
-        <form onSubmit={handleSubmit}>
-          <label>Animal ID</label>
-          <br />
+      <h1 className="update-animal-header">Update Animal</h1>
+      <form onSubmit={handleSubmit} className="update-animal-form">
+        <label className="form-label">Animal ID</label>
+        <input
+          type="text"
+          name="animalID"
+          value={inputs.animalID || ""}
+          onChange={handleChange}
+          readOnly
+          className="form-input"
+        />
+<br/>
+        <label className="form-label">Animal Type</label>
+        <select
+          name="animalType"
+          value={inputs.animalType || ""}
+          onChange={handleChange}
+          required
+          className="form-select"
+        >
+          <option value="Cow">Cow</option>
+          <option value="Chicken">Chicken</option>
+          <option value="Pig">Pig</option>
+        </select>
+        <br/>
+        <label className="form-label">Gender</label>
+        <div className="gender-radio-group">
           <input
-            type="text"
-            name="animalID"
-            value={inputs.animalID || ""}
-            onChange={handleChange}
-            readOnly
-          />
-          <br />
-          <br />
-
-          <label>Animal Type</label>
-          <br />
-          <select
-            name="animalType"
-            value={inputs.animalType || ""}
+            type="radio"
+            id="male"
+            name="gender"
+            value="Male"
+            checked={inputs.gender === "Male"}
             onChange={handleChange}
             required
-          >
-            <option value="Cow">Cow</option>
-            <option value="Chicken">Chicken</option>
-            <option value="Pig">Pig</option>
-          </select>
-          <br />
-          <br />
-
-          <label>Gender</label>
-          <br />
-          <div>
-            <input
-              type="radio"
-              id="male"
-              name="gender"
-              value="Male"
-              checked={inputs.gender === "Male"}
-              onChange={handleChange}
-              required
-            />
-            <label htmlFor="male">Male</label>
-            <br />
-            <input
-              type="radio"
-              id="female"
-              name="gender"
-              value="Female"
-              checked={inputs.gender === "Female"}
-              onChange={handleChange}
-            />
-            <label htmlFor="female">Female</label>
-          </div>
-          <br />
-          <br />
-
-          <label>Date of Birth</label>
-          <br />
-          <input
-            type="date"
-            name="dateOfBirth"
-            value={inputs.dateOfBirth || ""}
-            onChange={handleChange}
-            required
+            className="form-radio"
           />
-          <br />
-          <br />
+          <label htmlFor="male" className="form-radio-label">Male</label>
 
-          <label>Weight</label>
-          <br />
           <input
-            type="number"
-            name="weight"
-            value={inputs.weight || ""}
+            type="radio"
+            id="female"
+            name="gender"
+            value="Female"
+            checked={inputs.gender === "Female"}
             onChange={handleChange}
+            className="form-radio"
           />
-          <br />
-          <br />
+          <label htmlFor="female" className="form-radio-label">Female</label>
+        </div>
+        <br/>
+        <label className="form-label">Date of Birth</label>
+        <input
+          type="date"
+          name="dateOfBirth"
+          value={inputs.dateOfBirth || ""}
+          onChange={handleChange}
+          required
+          className="form-input"
+        />
+<br/>
+        <label className="form-label">Weight</label>
+        <input
+          type="number"
+          name="weight"
+          value={inputs.weight || ""}
+          onChange={handleChange}
+          className="form-input"
+        />
+<br/>
+        <label className="form-label">Breeding Status</label>
+        <input
+          type="text"
+          name="breedingStatus"
+          value={inputs.breedingStatus || ""}
+          onChange={handleChange}
+          className="form-input"
+        />
+<br/>
+        <label className="form-label">Health Status</label>
+        <select
+          name="healthStatus"
+          value={inputs.healthStatus || ""}
+          onChange={handleChange}
+          required
+          className="form-select"
+        >
+          <option value="Healthy">Healthy</option>
+          <option value="Sick">Sick</option>
+          <option value="Injured">Injured</option>
+        </select>
+        <br/>
+        <label className="form-label">Health Condition</label>
+        <input
+          type="text"
+          name="healthCondition"
+          value={inputs.healthCondition || ""}
+          onChange={handleChange}
+          className="form-input"
+        />
+<br/>
+        <label className="form-label">Treatment Plans</label>
+        <div className="checkbox-group">
+          {treatmentPlans.length > 0 ? (
+            treatmentPlans.map((plan) => (
+              <div key={plan.treatmentID} className="checkbox-item">
+                <input
+                  type="checkbox"
+                  id={plan.treatmentID}
+                  name="treatmentIDs"
+                  value={plan.treatmentID}
+                  checked={inputs.treatmentIDs.includes(plan.treatmentID)}
+                  onChange={handleCheckboxChange}
+                  className="form-checkbox"
+                />
+                <label htmlFor={plan.treatmentID} className="form-checkbox-label">
+                  {plan.treatmentID} - {plan.planDescription}
+                </label>
+              </div>
+            ))
+          ) : (
+            <p>No treatments available</p>
+          )}
+        </div>
 
-          <label>Breeding Status</label>
-          <br />
-          <input
-            type="text"
-            name="breedingStatus"
-            value={inputs.breedingStatus || ""}
-            onChange={handleChange}
-          />
-          <br />
-          <br />
-
-          <label>Health Status</label>
-          <br />
-          <select
-            name="healthStatus"
-            value={inputs.healthStatus || ""}
-            onChange={handleChange}
-            required
-          >
-            <option value="Healthy">Healthy</option>
-            <option value="Sick">Sick</option>
-            <option value="Injured">Injured</option>
-          </select>
-          <br />
-          <br />
-
-          <label>Health Condition</label>
-          <br />
-          <input
-            type="text"
-            name="healthCondition"
-            value={inputs.healthCondition || ""}
-            onChange={handleChange}
-          />
-          <br />
-          <br />
-
-          <label>Treatment Plans</label>
-          <br />
-          <div className="checkbox-group">
-            {treatmentPlans.length > 0 ? (
-              treatmentPlans.map((plan) => (
-                <div key={plan.treatmentID}>
-                  <input
-                    type="checkbox"
-                    id={plan.treatmentID}
-                    name="treatmentIDs"
-                    value={plan.treatmentID}
-                    checked={inputs.treatmentIDs.includes(plan.treatmentID)}
-                    onChange={handleCheckboxChange}
-                  />
-                  <label htmlFor={plan.treatmentID}>
-                    {plan.treatmentID} - {plan.planDescription} 
-                  </label>
-                </div>
-              ))
-            ) : (
-              <p>No treatments available</p>
-            )}
-          </div>
-          <br />
-          <button type="submit">Submit</button>
-        </form>
-      </div>
+        <button type="submit" className="submit-button">Submit</button>
+      </form>
     </div>
   );
 }

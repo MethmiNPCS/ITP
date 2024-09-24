@@ -108,3 +108,47 @@ input[name="search"]:focus {
     background-color: #45a049 ;
     transform: scale(1.05);
 }
+
+/* Printable header */
+.printable-header {
+    display: none;
+}
+
+@media print {
+    .printable-header {
+        display: block;
+        text-align: center;
+        margin-bottom: 20px;
+    }
+
+    .report-logo {
+        display: block;
+        margin: 0 auto;
+        width: 100px;
+        height: 100px;
+        margin-bottom: 20px;
+    }
+
+    .animal-details-header, .search-container, .search-button, nav, button {
+        display: none; /* Hide non-printable elements */
+    }
+
+    .animal-container {
+        box-shadow: none; /* Remove shadow for clean printing */
+        margin-bottom: 10px;
+    }
+
+    .animal-details-container {
+        background-color: white;
+        padding: 0;
+    }
+
+    .animal-detail-label {
+        font-weight: bold;
+        color: #000;
+    }
+
+    .update-button, .delete-button {
+        display: none;
+    }
+}

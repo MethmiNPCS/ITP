@@ -29,7 +29,7 @@ function Home() {
     { name: "Tasks", icon: FaTasks, path: '/taskhome' },  // Add path if needed
     { name: "Products", icon: FaSeedling, path: '/producthome' },  // Add path if needed
     { name: "Livestock", icon: FaHorse, path: '/animalhome' },  // Changed path to AnimalHome
-    { name: "Employees", icon: FaUserTie, path: '/employeeshome' },  // Add path if needed
+    { name: "Employees", icon: FaUserTie, path: '/employeehome' },  // Add path if needed
     { name: "Finance", icon: FaMoneyBill, path: '/financehome' },
     { name: "Plantation", icon: FaTree, path: '/plantation' }  // Add path if needed
   ].map(item => (

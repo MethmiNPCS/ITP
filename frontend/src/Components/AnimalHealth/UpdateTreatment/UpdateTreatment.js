@@ -3,7 +3,7 @@ import Nav from "../Nav/Nav";
 import axios from "axios";
 import { useParams } from "react-router";
 import { useNavigate } from "react-router";
-import "./UpdateTreatment.css"
+import "./UpdateTreatment.css";
 
 function UpdateTreatment() {
   const [inputs, setInputs] = useState({
@@ -96,66 +96,72 @@ function UpdateTreatment() {
   };
 
   return (
-    <div className="add-animal-container"> 
+    <div className="update-treatment-container"> 
       <Nav />
-      <h1>Update Treatment</h1>
-      <br></br>
-      <form onSubmit={handleSubmit}>
-        <label>Treatment ID</label>
+      <h1 className="update-treatment-title">Update Treatment</h1>
+      <br />
+      <form onSubmit={handleSubmit} className="update-treatment-form">
+        <label className="form-label">Treatment ID</label>
         <input
           type="text"
           name="treatmentID"
           value={inputs.treatmentID}
           onChange={handleChange}
+          className="form-input"
           readOnly
         />
-
-        <label>Plan Description</label>
+<br/>
+        <label className="form-label">Plan Description</label>
         <textarea
           name="planDescription"
           value={inputs.planDescription}
           onChange={handleChange}
+          className="form-textarea"
           required
         />
-
-        <label>Start Date</label>
+<br/>
+        <label className="form-label">Start Date</label>
         <input
           type="date"
           name="startDate"
           value={inputs.startDate}
           onChange={handleChange}
+          className="form-input"
           required
         />
-
-        <label>End Date</label>
+<br/>
+        <label className="form-label">End Date</label>
         <input
           type="date"
           name="endDate"
           value={inputs.endDate}
           onChange={handleChange}
+          className="form-input"
           required
         />
-
-        <label>Treatment Time</label>
+<br/>
+        <label className="form-label">Treatment Time</label>
         <input
           type="text"
           name="treatmentTime"
           value={inputs.treatmentTime}
           onChange={handleChange}
+          className="form-input"
         />
-
-        <label>Frequency</label>
+<br/>
+        <label className="form-label">Frequency</label>
         <input
           type="text"
           name="frequency"
           value={inputs.frequency}
           onChange={handleChange}
+          className="form-input"
         />
-
-        <label>Medicines</label>
+<br/>
+        <label className="form-label">Medicines</label>
         <div className="add-medicine-container">
           {inputs.medicines.map((medicine, index) => (
-            <div key={index}>
+            <div key={index} className="medicine-field">
               <input
                 type="text"
                 placeholder="Medicine Name"
@@ -163,6 +169,7 @@ function UpdateTreatment() {
                 onChange={(e) =>
                   handleMedicineChange(index, "name", e.target.value)
                 }
+                className="medicine-input"
                 required
               />
               <input
@@ -172,6 +179,7 @@ function UpdateTreatment() {
                 onChange={(e) =>
                   handleMedicineChange(index, "dose", e.target.value)
                 }
+                className="medicine-input"
                 required
               />
               <button
@@ -184,7 +192,7 @@ function UpdateTreatment() {
             </div>
           ))}
         </div>
-
+        
         <button
           type="button"
           className="add-medicine-button"

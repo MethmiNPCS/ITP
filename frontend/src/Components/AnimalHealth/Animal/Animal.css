@@ -1,49 +1,65 @@
 .animal-container {
-    font-family: Arial, sans-serif;
-    margin: 20px;
+    width: 90%;
+    max-width: 1200px;
+    margin: 0 auto;
     padding: 20px;
-    border: 1px solid #ddd;
+    background-color: #f8f9fa; /* Light background color */
+    border: 1px solid #dee2e6; /* Subtle border */
+    box-shadow: 0 0 15px rgba(0, 0, 0, 0.2); /* Enhanced shadow */
     border-radius: 8px;
-    background-color: #f9f9f9;
   }
   
   .animal-heading {
-    font-size: 24px;
-    color: #333;
-    margin-bottom: 10px;
+    text-align: center;
+    margin-bottom: 20px;
+    color: #343a40; /* Darker text color for contrast */
   }
   
   .animal-details {
-    font-size: 18px;
-    color: #555;
-    margin-bottom: 10px;
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 20px;
   }
   
   .animal-detail {
-    margin-bottom: 5px;
+    margin-bottom: 10px;
+  }
+  
+  .animal-detail-label {
+    font-weight: bold;
+  }
+  
+  .animal-detail-value {
+    margin-left: 5px;
+  }
+  
+  .animal-button-group {
+    display: flex;
+    justify-content: space-between; /* Adjust as needed */
   }
   
   .animal-button {
-    padding: 10px 20px;
-    font-size: 16px;
+    padding: 10px 15px;
     border: none;
-    border-radius: 5px;
+    border-radius: 4px;
     cursor: pointer;
-    margin: 5px;
-    text-align: center;
   }
   
   .update-button {
-    background-color: #4CAF50; 
+    background-color: #007bff; /* Bootstrap primary color */
     color: white;
   }
   
   .delete-button {
-    background-color: #f44336; 
+    background-color: #dc3545; /* Bootstrap danger color */
     color: white;
   }
   
-  .animal-button:hover {
-    opacity: 0.8;
+  .update-button:hover {
+    background-color: #0056b3; /* Darker shade on hover */
+  }
+  
+  .delete-button:hover {
+    background-color: #c82333; /* Darker shade on hover */
   }
   

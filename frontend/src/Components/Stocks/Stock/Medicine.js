@@ -27,6 +27,7 @@ function Medicine(props) {
       <p><b>Entry Date : </b>{EXD}</p>
       <p><b>Quantity : </b>{quantity} {unit}</p>
       <p><b>Instructions : </b>{instructions}</p>
+      <br/>
       <Link to={`/medicinedetails/${_id}`}>
         <button className="update-button">Update</button>
       </Link>

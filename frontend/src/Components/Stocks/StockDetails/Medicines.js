@@ -76,6 +76,7 @@ function Medicines() {
   return (
     <div>
       <Nav />
+      <br/><br/>
       <div className='header-container'>
         <button onClick={handlePrint} className="download-button">Download Report</button>
         <h1 className='centered-heading'>Available Medicines</h1>

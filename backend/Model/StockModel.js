@@ -31,6 +31,14 @@ const stockSchema = new Schema({
         type: String,
         required: true,
     },
+    unitPrice:{
+        type: Number,
+        required: true
+    },
+    totalPrice:{
+        type: Number,
+        required: true
+    },
     instructions: {
         type: String,
         required: true,

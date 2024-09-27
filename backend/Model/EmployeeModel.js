@@ -35,6 +35,11 @@ const employeeSchema = new Schema({
     ContactNumber:{
         type:String,
         required:true,
+    },
+
+    BasicSalary:{
+        type:Number,
+        required:true,
     }
 
 });

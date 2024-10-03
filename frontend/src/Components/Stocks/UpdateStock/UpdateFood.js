@@ -50,7 +50,7 @@ function UpdateFood() {
   return (
     <div>
       <Nav/><br/>
-      <form onSubmit={handleSubmit}>
+      <form onSubmit={handleSubmit} className='s-form'>
       <h1 className='centered-heading'>Update Food Details</h1>
         <label>
           Name:

@@ -57,39 +57,48 @@ function Medicines() {
     generatePDF();
   };
 
-  const handleSearch = () => {
-    const results = medicines.filter((medicine) =>
-      Object.values(medicine).some((field) =>
-        field.toString().toLowerCase().includes(searchQuery.toLowerCase())
-      )
-    );
-    setFilteredMedicines(results);
-    setNoResults(results.length === 0);
+  const handleSearch = (query) => {
+    if (query === "") {
+      // Reset to full list when search query is cleared
+      setFilteredMedicines(medicines);
+      setNoResults(false);
+    } else {
+      const results = medicines.filter((medicine) =>
+        Object.values(medicine).some((field) =>
+          field.toString().toLowerCase().includes(query.toLowerCase())
+        )
+      );
+      setFilteredMedicines(results);
+      setNoResults(results.length === 0);
+    }
   };
 
-  const handleKeyDown = (e) => {
-    if (e.key === 'Enter') {
-      handleSearch();
-    }
+  const handleSearchChange = (e) => {
+    const query = e.target.value;
+    setSearchQuery(query);
+    handleSearch(query); // Automatically filter as the user types
   };
 
   return (
     <div>
       <Nav />
-      <br/><br/>
+      <br/>
       <div className='header-container'>
         <button onClick={handlePrint} className="download-button">Download Report</button>
         <h1 className='centered-heading'>Available Medicines</h1>
-        <div className='search-container'>
+
+        <div className="flex items-center justify-center p-4">
           <input
-            onChange={(e) => setSearchQuery(e.target.value)}
-            onKeyDown={handleKeyDown}
-            type='text'
-            name='search'
+          onChange={handleSearchChange}
+          value={searchQuery}
+            type="text"
+            name="search"
             placeholder="Search Medicines"
-            className='search-input'
+            className="w-full md:w-3/4 lg:w-2/3 px-6 py-3 text-gray-700 bg-white border border-gray-300 rounded-xl focus:outline-none focus:ring-2 focus:ring-blue-500 shadow-lg transition duration-300 ease-in-out"
           />
         </div>
+
+
       </div>
 
       {noResults ? (

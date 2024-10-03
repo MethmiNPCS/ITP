@@ -2,10 +2,6 @@ const mongoose = require("mongoose");
 const Schema = mongoose.Schema;
 
 const stockSchema = new Schema({
-    StockID:{
-        type: String,
-        required: true,
-    },
     name: {
         type: String,
         required: true,
@@ -30,14 +26,6 @@ const stockSchema = new Schema({
     unit: {
         type: String,
         required: true,
-    },
-    unitPrice:{
-        type: Number,
-        required: true
-    },
-    totalPrice:{
-        type: Number,
-        required: true
     },
     instructions: {
         type: String,

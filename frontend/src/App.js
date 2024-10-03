@@ -22,7 +22,7 @@ function App() {
     <div>
       <React.Fragment>
         <Routes>
-          <Route path="/" element={<StockHome/>}/>
+          
           <Route path="/stockhome" element={<StockHome/>}/>
           <Route path="/addfood" element={<AddFood/>}/>
           <Route path="/addmedicine" element={<AddMedicine/>}/>
@@ -30,7 +30,7 @@ function App() {
           <Route path="/fooddetails/:id" element={<UpdateFood/>}/>
           <Route path="/medicinedetails" element={<Medicines/>}/>
           <Route path="/medicinedetails/:id" element={<UpdateMedicine/>}/>
-          
+          <Route path="/" element={<FinanceHome />} />
           <Route path="/financehome" element={<FinanceHome />} />
           <Route path="/finance" element={<Finance />} />
           <Route path="/addfinance" element={<AddFinance />} /> 

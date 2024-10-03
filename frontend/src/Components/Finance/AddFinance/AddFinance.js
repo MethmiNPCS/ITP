@@ -57,32 +57,32 @@ function AddFinance() {
     <div>
       <Nav />
       <br />
-      <div className="container">
-        <div className="single-card">
-          <form className="expense-form" onSubmit={handleSubmit}>
-            <div className="form-header">
+      <div className="f-container">
+        <div className="f-single-card">
+          <form className="f-expense-form" onSubmit={handleSubmit}>
+            <div className="f-form-header">
               <h1>Add New Expense / Income </h1>
             </div>
-            <div className="form-body">
-              <div className="form-group">
-                <label htmlFor="amount" className="label-title">Amount *</label>
+            <div className="f-form-body">
+              <div className="f-form-group">
+                <label htmlFor="amount" className="f-label-title">Amount *</label>
                 <input
                   type="number"
                   id="amount"
                   name="amount"
-                  className="form-input"
+                  className="f-form-input"
                   onChange={handleChange}
                   value={Inputs.amount}
                   placeholder="Enter the amount"
                   required
                 />
               </div>
-              <div className="form-group">
-                <label htmlFor="category" className="label-title">Category *</label>
+              <div className="f-form-group">
+                <label htmlFor="category" className="f-label-title">Category *</label>
                 <select
                   id="category"
                   name="category"
-                  className="form-input"
+                  className="f-form-input"
                   onChange={handleChange}
                   value={Inputs.category}
                   required
@@ -92,15 +92,19 @@ function AddFinance() {
                   <option value="Food">Food</option>
                   <option value="Medicine">Medicine</option>
                   <option value="Salary">Salary</option>
+                  <option value="Egg">Other</option>
+                  <option value="Dairy">Other</option>
+                  <option value="Meat">Other</option>
+                  <option value="Plans">Other</option>
                   <option value="Other">Other</option>
                 </select>
               </div>
-              <div className="form-group">
-                <label htmlFor="transactionType" className="label-title"> Type *</label>
+              <div className="f-form-group">
+                <label htmlFor="transactionType" className="f-label-title"> Type *</label>
                 <select
                   id="transactionType"
                   name="transactionType"
-                  className="form-input"
+                  className="f-form-input"
                   onChange={handleChange}
                   value={Inputs.transactionType}
                   required
@@ -110,22 +114,22 @@ function AddFinance() {
                   <option value="Expense">Expense</option>
                 </select>
               </div>
-              <div className="form-group">
-                <label htmlFor="date" className="label-title">Entry Date *</label>
+              <div className="f-form-group">
+                <label htmlFor="date" className="f-label-title">Entry Date *</label>
                 <input
                   type="date"
                   id="date"
                   name="date"
-                  className="form-input"
+                  className="f-form-input"
                   onChange={handleChange}
                   value={Inputs.date}
                   required
                 />
               </div>
             </div>
-            <div className="form-footer">
-              <div className="btn-container">
-                <button type="submit" className="btn">Add Expense</button>
+            <div className="f-form-footer">
+              <div className="f-btn-container">
+                <button type="submit" className="f-btn">Add</button>
               </div>
             </div>
           </form>

@@ -52,75 +52,79 @@ function UpdateFinance() {
   return (
     <div>
       <Nav /><br />
-      <div className="container">
-        <div className="single-card">
-          <form className="expense-form" onSubmit={handleSubmit}>
-            <div className="form-header">
+      <div className="fu-container">
+        <div className="fu-single-card">
+          <form className="fu-expense-form" onSubmit={handleSubmit}>
+            <div className="fu-form-header">
               <h1> Update </h1>
             </div>
-            <div className="form-body">
-              <div className="form-group">
-                <label htmlFor="amount" className="label-title">Amount *</label>
+            <div className="fu-form-body">
+              <div className="fu-form-group">
+                <label htmlFor="amount" className="fu-label-title">Amount *</label>
                 <input
                   type="number"
                   id="amount"
                   name="amount"
-                  className="form-input"
+                  className="fu-form-input"
                   onChange={handleChange}
                   value={Inputs.amount}
                   placeholder="Enter the amount"
                   required
                 />
               </div>
-              <div className="form-group">
-                <label htmlFor="category" className="label-title">Category *</label>
+              <div className="fu-form-group">
+                <label htmlFor="category" className="fu-label-title">Category *</label>
                 <select
                   id="category"
                   name="category"
-                  className="form-input"
+                  className="fu-form-input"
                   onChange={handleChange}
                   value={Inputs.category}
                   required
                 >
-                  <option value="" disabled>Select Your Category</option>
+                   <option value="" disabled>Select Your Category</option>
                   <option value="Utilities">Utilities</option>
                   <option value="Food">Food</option>
                   <option value="Medicine">Medicine</option>
                   <option value="Salary">Salary</option>
+                  <option value="Egg">Other</option>
+                  <option value="Dairy">Other</option>
+                  <option value="Meat">Other</option>
+                  <option value="Plans">Other</option>
                   <option value="Other">Other</option>
                 </select>
               </div>
-              <div className="form-group">
-                <label htmlFor="transactionType" className="label-title">Transaction Type *</label>
+              <div className="fu-form-group">
+                <label htmlFor="transactionType" className="fu-label-title"> Type *</label>
                 <select
                   id="transactionType"
                   name="transactionType"
-                  className="form-input"
+                  className="fu-form-input"
                   onChange={handleChange}
                   value={Inputs.transactionType}
                   required
                 >
-                  <option value="" disabled>Select Your Transaction Type</option>
-                  <option value="Bank">Bank</option>
-                  <option value="Card">Card</option>
+                  <option value="" disabled>Select Your Type</option>
+                  <option value="Income">Income</option>
+                  <option value="Expense">Expense</option>
                 </select>
               </div>
-              <div className="form-group">
-                <label htmlFor="date" className="label-title">Entry Date *</label>
+              <div className="fu-form-group">
+                <label htmlFor="date" className="fu-label-title">Entry Date *</label>
                 <input
                   type="date"
                   id="date"
                   name="date"
-                  className="form-input"
+                  className="fu-form-input"
                   onChange={handleChange}
                   value={Inputs.date}
                   required
                 />
               </div>
             </div>
-            <div className="form-footer">
-              <div className="btn-container">
-                <button type="submit" className="btn">Conform Update</button>
+            <div className="fu-form-footer">
+              <div className="fu-btn-container">
+                <button type="submit" className="fu-btn">Conform</button>
               </div>
             </div>
           </form>

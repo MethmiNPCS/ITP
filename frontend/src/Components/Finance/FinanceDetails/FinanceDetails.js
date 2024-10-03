@@ -117,10 +117,10 @@ function FinanceDetails() {
               filteredSearchResults.map((financeItem) => (
                 <tr key={financeItem._id}>
                   <td>{financeItem._id}</td>
-                  <td>{financeItem.date}</td>
+                  <td>{new Date(financeItem.date).toLocaleDateString('en-CA')}</td>
                   <td>{financeItem.transactionType}</td>
                   <td>{financeItem.category}</td>
-                  <td>{financeItem.amount}</td>
+                  <td style={{ textAlign: 'Right' }}>Rs. {financeItem.amount}</td>
                   <td>
                     <Link to={`/updatefinance/${financeItem._id}`}>
                       <button className="but_up">Update</button>

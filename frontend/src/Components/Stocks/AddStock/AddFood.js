@@ -7,11 +7,13 @@ import '../Stock.css'
 function AddFood() {
   const history = useNavigate();
   const [foodinputs, setFoodInputs] = useState({
+    stockID:"",
     name:"",
     animal:"",
     type:"Food",
     EXD:"",
     quantity:"",
+    unitPrice:"",
     unit:"",
     instructions:""
   });
@@ -33,11 +35,13 @@ function AddFood() {
   const sendRequest = async () => {
     try {
       const response = await axios.post("http://localhost:5000/stocks", {
+        stockID:foodinputs.stockID,
         name: foodinputs.name,
         animal: foodinputs.animal,
         type: foodinputs.type,
         EXD: new Date(foodinputs.EXD).toISOString(),
         quantity: Number(foodinputs.quantity),
+        unitPrice: foodinputs.unitPrice,
         unit: foodinputs.unit,
         instructions: foodinputs.instructions,
       });
@@ -53,6 +57,18 @@ function AddFood() {
       <br/>
       <form onSubmit={handleSubmit} className="s-form mx-auto max-w-md p-5 bg-gray-100 rounded-lg shadow">
       <h1 className="text-4xl text-gray-700 font-bold text-center mb-4">ADD NEW FOOD ITEM</h1>
+      <label className="block mb-2">
+          Stock ID:
+          <input
+            type="text"
+            name="stockID"
+            onChange={handleChange}
+            value={foodinputs.stockID}
+            placeholder='Enter Stock ID'
+            className="mt-1 block w-full border border-gray-300 rounded-md p-2 focus:outline-none focus:ring focus:ring-green-200"
+            required
+          />
+        </label>
         <label className="block mb-2">
           Name:
           <input
@@ -119,6 +135,18 @@ function AddFood() {
           />
         </label>
         <br />
+        <label className="block mb-2">
+          Unit Price (In Rupees):
+          <input
+            type="text"
+            name="unitPrice"
+            onChange={handleChange}
+            value={foodinputs.unitPrice}
+            placeholder='Enter Unit Price'
+            className="mt-1 block w-full border border-gray-300 rounded-md p-2 focus:outline-none focus:ring focus:ring-green-200"
+            required
+          />
+        </label>       
         <label className="block mb-2">
           Unit:
           <select

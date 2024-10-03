@@ -7,12 +7,15 @@ import '../Stock.css';
 function AddMedicine() {
   const history = useNavigate();
   const [medicineInputs, setMedicineInputs] = useState({
+    stockID:"",
     name: "",
     animal: "",
     type: "Medicine",
     EXD: "",
     quantity: "",
+    unitPrice:"",
     unit: "",
+    unitPrice:"",
     instructions: ""
   });
 
@@ -33,11 +36,13 @@ function AddMedicine() {
   const sendRequest = async () => {
     try {
       const response = await axios.post("http://localhost:5000/stocks", {
+        stockID:medicineInputs.stockID,
         name: medicineInputs.name,
         animal: medicineInputs.animal,
         type: medicineInputs.type,
         EXD: new Date(medicineInputs.EXD).toISOString(),
         quantity: Number(medicineInputs.quantity),
+        unitPrice: medicineInputs.unitPrice,
         unit: medicineInputs.unit,
         instructions: medicineInputs.instructions,
       });
@@ -53,6 +58,18 @@ function AddMedicine() {
       <br/>
       <form onSubmit={handleSubmit} className='s-form'>
       <h1 className='centered-heading'>Add New Medicine</h1><br/>
+        <label className="block mb-2">
+            Stock ID:
+            <input
+              type="text"
+              name="stockID"
+              onChange={handleChange}
+              value={medicineInputs.stockID}
+              placeholder='Enter Stock ID'
+              className="mt-1 block w-full border border-gray-300 rounded-md p-2 focus:outline-none focus:ring focus:ring-green-200"
+              required
+            />
+        </label>
         <label>
           Name:
           <input
@@ -114,6 +131,18 @@ function AddMedicine() {
           />
         </label>
         <br />
+        <label className="block mb-2">
+          Unit Price (In Rupees):
+          <input
+            type="text"
+            name="unitPrice"
+            onChange={handleChange}
+            value={medicineInputs.unitPrice}
+            placeholder='Enter Unit Price'
+            className="mt-1 block w-full border border-gray-300 rounded-md p-2 focus:outline-none focus:ring focus:ring-green-200"
+            required
+          />
+        </label>
         <label>
           Unit:
           <select

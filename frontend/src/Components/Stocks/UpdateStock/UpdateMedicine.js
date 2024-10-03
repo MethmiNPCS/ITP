@@ -20,11 +20,13 @@ function UpdateMedicine() {
 
   const sendRequest = async () => {
     await axios.put(`http://localhost:5000/stocks/${id}`, {
+      stockID : medicineInputs.stockID,
       name: medicineInputs.name,
       animal: medicineInputs.animal,
       type: medicineInputs.type,
       EXD: new Date(medicineInputs.EXD).toISOString(),
       quantity: Number(medicineInputs.quantity),
+      unitPrice: Number(medicineInputs.unitPrice),
       unit: medicineInputs.unit,
       instructions: medicineInputs.instructions,
     })
@@ -48,6 +50,17 @@ function UpdateMedicine() {
       <Nav /><br />
       <form onSubmit={handleSubmit} className='s-form'>
         <h1 className='centered-heading'>Update Medicine Details</h1>
+        <label>
+          Stock ID:
+          <input
+            type="text"
+            name="stockID"
+            onChange={handleChange}
+            value={medicineInputs.stockID}
+            placeholder='Enter Medicine ID'
+            required
+          />
+        </label>
         <label>
           Name:
           <input
@@ -109,6 +122,17 @@ function UpdateMedicine() {
           />
         </label>
         <br />
+        <label>
+          Unit Price:
+          <input
+            type="text"
+            name="unitPrice"
+            onChange={handleChange}
+            value={medicineInputs.unitPrice}
+            placeholder='Enter Unit Price '
+            required
+          />
+        </label>
         <label>
           Unit:
           <select

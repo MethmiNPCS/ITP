@@ -51,7 +51,7 @@ function AddMedicine() {
     <div>
       <Nav/> 
       <br/>
-      <form onSubmit={handleSubmit}>
+      <form onSubmit={handleSubmit} className='s-form'>
       <h1 className='centered-heading'>Add New Medicine</h1><br/>
         <label>
           Name:

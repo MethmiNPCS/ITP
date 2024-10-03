@@ -46,7 +46,7 @@ function UpdateMedicine() {
   return (
     <div>
       <Nav /><br />
-      <form onSubmit={handleSubmit}>
+      <form onSubmit={handleSubmit} className='s-form'>
         <h1 className='centered-heading'>Update Medicine Details</h1>
         <label>
           Name:

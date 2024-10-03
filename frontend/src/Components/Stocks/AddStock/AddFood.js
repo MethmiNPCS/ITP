@@ -51,9 +51,9 @@ function AddFood() {
     <div>
       <Nav/> 
       <br/>
-      <form onSubmit={handleSubmit}>
-      <h1 className='centered-heading'>Add new Food item</h1>
-        <label>
+      <form onSubmit={handleSubmit} className="s-form mx-auto max-w-md p-5 bg-gray-100 rounded-lg shadow">
+      <h1 className="text-4xl text-gray-700 font-bold text-center mb-4">ADD NEW FOOD ITEM</h1>
+        <label className="block mb-2">
           Name:
           <input
             type="text"
@@ -61,16 +61,18 @@ function AddFood() {
             onChange={handleChange}
             value={foodinputs.name}
             placeholder='Enter Food Item Name'
+            className="mt-1 block w-full border border-gray-300 rounded-md p-2 focus:outline-none focus:ring focus:ring-green-200"
             required
           />
         </label>
         <br />
-        <label>
+        <label className="block mb-2">
           Animal:
           <select
             name="animal"
             onChange={handleChange}
             value={foodinputs.animal}
+            className="mt-1 block w-full border border-gray-300 rounded-md p-2 focus:outline-none focus:ring focus:ring-green-200"
             required
           >
             <option value="" disabled>Select an Animal</option>
@@ -81,28 +83,30 @@ function AddFood() {
           </select>
         </label>
         <br />
-        <label>
+        <label className="block mb-2">
           Type:
           <input
             type="text"
             name="type"
             value={foodinputs.type}
+            className="mt-1 block w-full border border-gray-300 rounded-md p-2 focus:outline-none focus:ring focus:ring-green-200"
             readOnly
           />
         </label>
         <br />
-        <label>
+        <label className="block mb-2">
           Entry Date:
           <input
             type="date"
             name="EXD"
             onChange={handleChange}
             value={foodinputs.EXD}
+            className="mt-1 block w-full border border-gray-300 rounded-md p-2 focus:outline-none focus:ring focus:ring-green-200"
             required
           />
         </label>
         <br />
-        <label>
+        <label className="block mb-2">
           Quantity:
           <input
             type="number"
@@ -110,16 +114,18 @@ function AddFood() {
             onChange={handleChange}
             value={foodinputs.quantity}
             placeholder='Enter the quantity'
+            className="mt-1 block w-full border border-gray-300 rounded-md p-2 focus:outline-none focus:ring focus:ring-green-200"
             required
           />
         </label>
         <br />
-        <label>
+        <label className="block mb-2">
           Unit:
           <select
             name="unit"
             onChange={handleChange}
             value={foodinputs.unit}
+            className="mt-1 block w-full border border-gray-300 rounded-md p-2 focus:outline-none focus:ring focus:ring-green-200"
             required
           >
             <option value="" disabled>Select a Unit</option>
@@ -132,18 +138,19 @@ function AddFood() {
           </select>
         </label>
         <br />
-        <label>
+        <label className="block mb-2">
           Instructions:
           <textarea
             name="instructions"
             onChange={handleChange}
             value={foodinputs.instructions}
             placeholder='Type instructions here'
+            className="mt-1 block w-full border border-gray-300 rounded-md p-2 focus:outline-none focus:ring focus:ring-green-200"
             required
           ></textarea>
         </label>
         <br />
-        <button type="submit" className='s-add-button'>ADD</button>
+        <button type="submit" className="s-add-button bg-green-500 text-white rounded-lg py-2 px-4 mt-4 hover:bg-green-600 transition duration-300">ADD</button>
       </form>
     </div>
   );

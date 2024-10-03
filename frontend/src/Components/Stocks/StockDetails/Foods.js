@@ -87,20 +87,23 @@ function Foods() {
   return (
     <div>
       <Nav />
-      <br/><br/>
+      <br/>
       <div className='header-container'>
         <button onClick={handlePrint} className="download-button">Download Report</button>
         <h1 className='centered-heading'>Available Foods</h1>
-        <div className='search-container'>
-          <input
-            onChange={handleSearchChange}
-            value={searchQuery}
-            type='text'
-            name='search'
-            placeholder="Search Foods"
-            className='search-input'
-          />
-        </div>
+
+      <div className="flex items-center justify-center p-4">
+        <input
+          onChange={handleSearchChange}
+          value={searchQuery}
+          type="text"
+          name="search"
+          placeholder="Search Foods"
+          className="w-full md:w-3/4 lg:w-2/3 px-6 py-3 text-gray-700 bg-white border border-gray-300 rounded-xl focus:outline-none focus:ring-2 focus:ring-green-500 shadow-lg transition duration-300 ease-in-out"
+        />
+      </div>
+
+
       </div>
 
       {noResults ? (

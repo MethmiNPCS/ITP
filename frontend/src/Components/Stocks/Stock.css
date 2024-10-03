@@ -1,5 +1,5 @@
 /* General form styling */
-form {
+.s-form {
   width: 100%;
   max-width: 600px;
   margin: 0 auto;
@@ -161,13 +161,6 @@ textarea {
   line-height: 1.2;
   letter-spacing: 1px;
   flex: 1; /* Allow heading to take up available space */
-}
-
-/* Search container styling */
-.search-container {
-  display: flex;
-  align-items: center;
-  gap: 10px;
 }
 
 .search-input {

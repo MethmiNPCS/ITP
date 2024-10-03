@@ -15,8 +15,18 @@ function Food(props) {
         window.location.reload(); // Force a full page reload
       });
   };
-  
-  
+
+  const handleMessage = () => {
+    // Create the WhatsApp Chat URL
+    const phoneNumber = "94772224268";
+    const message = `Low stock alert: The stock for ${name} is running low. Please restock soon.`;
+    const WhatsAppUrl = `https://web.whatsapp.com/send?phone=${phoneNumber}&text=${encodeURIComponent(
+      message
+    )}`;
+
+    // Open the whatsapp chat in new window
+    window.open(WhatsAppUrl, "_blank");
+  }
 
   return (
     <div className="stock-container"> 
@@ -34,7 +44,7 @@ function Food(props) {
         <button className="s-update-button">Update</button>
       </Link>
       <button className="s-delete-button" onClick={deleteHandler}>Delete</button>
-
+      <button className="s-low-stock-button" onClick={handleMessage}>Send Low Stock Alert</button>
     </div>
   );
 }

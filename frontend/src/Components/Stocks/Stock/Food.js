@@ -19,7 +19,7 @@ function Food(props) {
   const handleMessage = () => {
     // Create the WhatsApp Chat URL
     const phoneNumber = "94772224268";
-    const message = `Low stock alert: The stock for ${name} is running low. Please restock soon.`;
+    const message = `Low Food Stock alert: The stock for ${name} is running low. Please restock soon.`;
     const WhatsAppUrl = `https://web.whatsapp.com/send?phone=${phoneNumber}&text=${encodeURIComponent(
       message
     )}`;

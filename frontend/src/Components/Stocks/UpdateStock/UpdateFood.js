@@ -22,11 +22,13 @@ function UpdateFood() {
 
     const sendRequest = async ()=>{
         await axios.put(`http://localhost:5000/stocks/${id}`,{
+            stockID : foodinputs.stockID,
             name: foodinputs.name,
             animal: foodinputs.animal,
             type: foodinputs.type,
             EXD: new Date(foodinputs.EXD).toISOString(),
             quantity: Number(foodinputs.quantity),
+            unitPrice: Number(foodinputs.unitPrice),
             unit: foodinputs.unit,
             instructions: foodinputs.instructions,
         })
@@ -52,6 +54,17 @@ function UpdateFood() {
       <Nav/><br/>
       <form onSubmit={handleSubmit} className='s-form'>
       <h1 className='centered-heading'>Update Food Details</h1>
+      <label>
+          Stock ID:
+          <input
+            type="text"
+            name="stockID"
+            onChange={handleChange}
+            value={foodinputs.stockID}
+            placeholder='Enter Stock ID'
+            required
+          />
+        </label>             
         <label>
           Name:
           <input
@@ -113,6 +126,17 @@ function UpdateFood() {
           />
         </label>
         <br />
+        <label>
+          Unit Price:
+          <input
+            type="text"
+            name="unitPrice"
+            onChange={handleChange}
+            value={foodinputs.unitPrice}
+            placeholder='Enter Food Item Name'
+            required
+          />
+        </label>
         <label>
           Unit:
           <select

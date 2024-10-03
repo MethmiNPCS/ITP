@@ -2,6 +2,10 @@ const mongoose = require("mongoose");
 const Schema = mongoose.Schema;
 
 const stockSchema = new Schema({
+    stockID:{
+        type : String,
+        required: true,
+    },
     name: {
         type: String,
         required: true,
@@ -23,6 +27,10 @@ const stockSchema = new Schema({
         type: Number,
         required: true,
     },
+    unitPrice:{
+        type : Number,
+        required: true,
+    },
     unit: {
         type: String,
         required: true,
@@ -30,7 +38,14 @@ const stockSchema = new Schema({
     instructions: {
         type: String,
         required: true,
-    }
+    },
+    totalPrice: {
+        type: Number,
+        required: true,
+        default: function() {
+            return this.unitPrice * this.quantity;
+        }
+    }    
 }, { toJSON: { getters: true } });
 
 module.exports = mongoose.model(

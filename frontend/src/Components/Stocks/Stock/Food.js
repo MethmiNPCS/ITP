@@ -15,8 +15,6 @@ function Food(props) {
         window.location.reload(); // Force a full page reload
       });
   };
-  
-  
 
   return (
     <div className="stock-container"> 
@@ -34,7 +32,6 @@ function Food(props) {
         <button className="s-update-button">Update</button>
       </Link>
       <button className="s-delete-button" onClick={deleteHandler}>Delete</button>
-
     </div>
   );
 }

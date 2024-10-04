@@ -37,17 +37,80 @@ function Medicines() {
       alert("No items available to download");
       return;
     }
-
-    html2canvas(componentsRef.current).then(canvas => {
-      const imgData = canvas.toDataURL('image/png');
-      const pdf = new jsPDF();
-
-      const imgWidth = 210; // A4 width in mm
-      const imgHeight = canvas.height * imgWidth / canvas.width;
-      pdf.addImage(imgData, 'PNG', 0, 0, imgWidth, imgHeight);
-      pdf.save("medicine_report.pdf");
+  
+    const pdf = new jsPDF();
+  
+    // Add titles
+    pdf.setFontSize(16);
+    const title = "National Seminary Farm";
+    const subtitle = "Inventory Report";
+    const pageWidth = pdf.internal.pageSize.getWidth();
+  
+    // Center title
+    const titleWidth = pdf.getStringUnitWidth(title) * pdf.internal.getFontSize() / pdf.internal.scaleFactor;
+    pdf.text(title, (pageWidth - titleWidth) / 2, 20); // Centered title
+  
+    // Center subtitle
+    const subtitleWidth = pdf.getStringUnitWidth(subtitle) * pdf.internal.getFontSize() / pdf.internal.scaleFactor;
+    pdf.text(subtitle, (pageWidth - subtitleWidth) / 2, 30); // Centered subtitle
+  
+    // Add a table
+    const startY = 40; // Starting position for the table
+    const columnHeaders = ["Stock ID", "Name", "Animal", "Stock Type", "Entry Date", "Quantity", "Unit Price", "Total Price", "Instructions"];
+    const columns = columnHeaders.length;
+  
+    // Set the column width and row height
+    const columnWidth = (pageWidth - 30) / columns; // Decreased margin and width to save space
+    const rowHeight = 10; // Default row height for better spacing
+  
+    // Add column headers
+    pdf.setFontSize(10);
+    pdf.setTextColor(255, 255, 255);
+    pdf.setFillColor(0, 128, 0); // Green background
+    pdf.rect(10, startY, pageWidth - 20, rowHeight, 'F'); // Header background
+  
+    columnHeaders.forEach((header, index) => {
+      // Center text in header
+      const headerX = 10 + index * columnWidth + columnWidth / 2;
+      pdf.text(header, headerX, startY + (rowHeight / 2), { align: "center" }); // Centered header
     });
+  
+    // Add rows
+    pdf.setTextColor(0); // Reset to black text
+  
+    let currentY = startY + rowHeight + 5; // Start position for the first data row (5 units below the header)
+    filteredMedicines.forEach((medicine) => {
+      const y = currentY; // Calculate the Y position for each row
+      const maxWidth = columnWidth - 5; // Reduced padding for max width
+  
+      // Wrap instructions with a maximum width
+      const instructionLines = pdf.splitTextToSize(medicine.instructions, maxWidth);
+      
+      // Write each column's data
+      pdf.text(medicine.stockID, 10 + 5, y); // Column 1 (with padding)
+      pdf.text(medicine.name, 10 + columnWidth + 5, y, { maxWidth }); // Column 2 (with word wrapping and padding)
+      pdf.text(medicine.animal, 10 + 2 * columnWidth + 5, y); // Column 3 (with padding)
+      pdf.text(medicine.type, 10 + 3 * columnWidth + 5, y); // Column 4 (with padding)
+      pdf.text(medicine.EXD, 10 + 4 * columnWidth + 5, y); // Column 5 (with padding)
+      pdf.text(`${medicine.quantity} ${medicine.unit}`, 10 + 5 * columnWidth + 5, y); // Column 6 (with padding)
+      pdf.text(`Rs. ${medicine.unitPrice}`, 10 + 6 * columnWidth + 5, y); // Column 7 (with padding)
+      pdf.text(`Rs. ${medicine.quantity * medicine.unitPrice}`, 10 + 7 * columnWidth + 5, y); // Column 8 (with padding)
+  
+      // Draw instructions and adjust Y position accordingly
+      instructionLines.forEach((line, index) => {
+        pdf.text(line, 10 + 8 * columnWidth + 5, y + index * rowHeight); // Column 9 (with padding)
+      });
+  
+      // Draw horizontal line below the entire content of the row
+      const totalRowHeight = rowHeight * Math.max(1, instructionLines.length) + 5; // Calculate total height needed for the row
+  
+      // Adjust the current Y position based on the number of lines for instructions
+      currentY += totalRowHeight; // Update the current Y position for the next row
+    });
+  
+    pdf.save("medicine_report.pdf");
   };
+  
 
   const handlePrint = () => {
     generatePDF();

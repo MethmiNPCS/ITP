@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import { Pie, Bar } from 'react-chartjs-2';
 import Nav from './Nav/Nav';
 import { Chart as ChartJS, ArcElement, Tooltip, Legend, CategoryScale, LinearScale, BarElement } from 'chart.js';
@@ -6,23 +6,49 @@ import { Chart as ChartJS, ArcElement, Tooltip, Legend, CategoryScale, LinearSca
 ChartJS.register(ArcElement, Tooltip, Legend, CategoryScale, LinearScale, BarElement);
 
 function StockHome() {
+  const [stocks, setStocks] = useState([]);
+  
+  // Fetch stock data from the backend
+  useEffect(() => {
+    const fetchStocks = async () => {
+      try {
+        const response = await fetch("http://localhost:5000/stocks"); // Ensure this URL matches your backend endpoint
+        const data = await response.json();
+        setStocks(data.stocks); // Update the state with fetched stocks
+      } catch (error) {
+        console.error("Error fetching stocks:", error);
+      }
+    };
+
+    fetchStocks();
+  }, []);
+
+  // Prepare data for Pie and Bar charts
   const pieData = {
     labels: ['Food', 'Medicine'],
     datasets: [
       {
-        data: [60, 40],
+        data: [
+          stocks.filter(stock => stock.type === 'Food').length, // Count food items
+          stocks.filter(stock => stock.type === 'Medicine').length // Count medicine items
+        ],
         backgroundColor: ['#36A2EB', '#FF6384'],
         hoverBackgroundColor: ['#36A2EB', '#FF6384'],
       },
     ],
   };
 
+  const animalCounts = stocks.reduce((acc, stock) => {
+    acc[stock.animal] = (acc[stock.animal] || 0) + 1; // Count by animal type
+    return acc;
+  }, {});
+
   const barData = {
-    labels: ['Hen', 'Cow', 'Goat', 'Pig'],
+    labels: Object.keys(animalCounts), // Unique animal types
     datasets: [
       {
         label: 'Animal Percentages',
-        data: [25, 30, 20, 25],
+        data: Object.values(animalCounts), // Counts of each animal type
         backgroundColor: ['#FFCE56', '#36A2EB', '#FF6384', '#4BC0C0'],
         borderColor: ['#FFCE56', '#36A2EB', '#FF6384', '#4BC0C0'],
         borderWidth: 1,
@@ -35,7 +61,7 @@ function StockHome() {
       y: {
         beginAtZero: true,
         ticks: {
-          stepSize: 10,
+          stepSize: 1, // Adjust based on your data
         },
       },
     },

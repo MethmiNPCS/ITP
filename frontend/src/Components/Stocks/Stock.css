@@ -86,29 +86,6 @@
   background-color: #db9b2c;
 }
 
-input, textarea, select {
-  border: 1px solid #ced4da;
-  border-radius: 4px;
-  padding: 10px;
-  width: 100%;
-  box-sizing: border-box;
-  font-size: 16px;
-}
-
-input[type="radio"] {
-  margin-right: 5px;
-  vertical-align: middle;
-}
-
-label {
-  display: block;
-  margin-bottom: 10px;
-}
-
-textarea {
-  resize: vertical;
-}
-
 /* Stock heading */
 .stock-heading {
   font-size: 28px;
@@ -260,7 +237,3 @@ textarea {
   height: 400px; /* Custom height for the pie chart */
 }
 
-h1, h2 {
-  color: #333;
-  font-family: Arial, sans-serif;
-}

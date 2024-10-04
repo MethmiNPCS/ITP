@@ -49,8 +49,8 @@ function UpdateMedicine() {
     <div>
       <Nav /><br />
       <form onSubmit={handleSubmit} className='s-form'>
-        <h1 className='centered-heading'>Update Medicine Details</h1>
-        <label>
+        <h1 className="text-4xl text-gray-700 font-bold text-center mb-4">UPDATE MEDICINE DETAILS</h1><br/>
+        <label className="block mb-2">
           Stock ID:
           <input
             type="text"
@@ -58,10 +58,11 @@ function UpdateMedicine() {
             onChange={handleChange}
             value={medicineInputs.stockID}
             placeholder='Enter Medicine ID'
+             className="mt-1 block w-full border border-gray-300 rounded-md p-2 focus:outline-none focus:ring focus:ring-green-200"
             required
           />
         </label>
-        <label>
+        <label className="block mb-2">
           Name:
           <input
             type="text"
@@ -69,16 +70,18 @@ function UpdateMedicine() {
             onChange={handleChange}
             value={medicineInputs.name}
             placeholder='Enter Medicine Name'
+             className="mt-1 block w-full border border-gray-300 rounded-md p-2 focus:outline-none focus:ring focus:ring-green-200"
             required
           />
         </label>
         <br />
-        <label>
+        <label className="block mb-2">
           Animal:
           <select
             name="animal"
             onChange={handleChange}
             value={medicineInputs.animal}
+             className="mt-1 block w-full border border-gray-300 rounded-md p-2 focus:outline-none focus:ring focus:ring-green-200"
             required
           >
             <option value="" disabled>Select an Animal</option>
@@ -89,28 +92,30 @@ function UpdateMedicine() {
           </select>
         </label>
         <br />
-        <label>
+        <label className="block mb-2">
           Type:
           <input
             type="text"
             name="type"
             value={medicineInputs.type}
+             className="mt-1 block w-full border border-gray-300 rounded-md p-2 focus:outline-none focus:ring focus:ring-green-200"
             readOnly
           />
         </label>
         <br />
-        <label>
+        <label className="block mb-2">
           Expiration Date:
           <input
             type="date"
             name="EXD"
             onChange={handleChange}
             value={medicineInputs.EXD}
+             className="mt-1 block w-full border border-gray-300 rounded-md p-2 focus:outline-none focus:ring focus:ring-green-200"
             required
           />
         </label>
         <br />
-        <label>
+        <label className="block mb-2">
           Quantity:
           <input
             type="number"
@@ -118,11 +123,12 @@ function UpdateMedicine() {
             onChange={handleChange}
             value={medicineInputs.quantity}
             placeholder='Enter the quantity'
+             className="mt-1 block w-full border border-gray-300 rounded-md p-2 focus:outline-none focus:ring focus:ring-green-200"
             required
           />
         </label>
         <br />
-        <label>
+        <label className="block mb-2">
           Unit Price:
           <input
             type="text"
@@ -130,15 +136,17 @@ function UpdateMedicine() {
             onChange={handleChange}
             value={medicineInputs.unitPrice}
             placeholder='Enter Unit Price '
+             className="mt-1 block w-full border border-gray-300 rounded-md p-2 focus:outline-none focus:ring focus:ring-green-200"
             required
           />
         </label>
-        <label>
+        <label className="block mb-2">
           Unit:
           <select
             name="unit"
             onChange={handleChange}
             value={medicineInputs.unit}
+             className="mt-1 block w-full border border-gray-300 rounded-md p-2 focus:outline-none focus:ring focus:ring-green-200"
             required
           >
             <option value="" disabled>Select a Unit</option>
@@ -151,18 +159,19 @@ function UpdateMedicine() {
           </select>
         </label>
         <br />
-        <label>
+        <label className="block mb-2">
           Instructions:
           <textarea
             name="instructions"
             onChange={handleChange}
             value={medicineInputs.instructions}
             placeholder='Type instructions here'
+             className="mt-1 block w-full border border-gray-300 rounded-md p-2 focus:outline-none focus:ring focus:ring-green-200"
             required
           ></textarea>
         </label>
         <br />
-        <button type="submit" className='s-add-button'>CONFIRM</button>
+        <button type="submit" className="s-add-button bg-green-500 text-white rounded-lg py-2 px-4 mt-4 hover:bg-green-600 transition duration-300">CONFIRM</button>
       </form>
     </div>
   );

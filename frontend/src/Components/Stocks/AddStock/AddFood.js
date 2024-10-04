@@ -56,7 +56,7 @@ function AddFood() {
       <Nav/> 
       <br/>
       <form onSubmit={handleSubmit} className="s-form mx-auto max-w-md p-5 bg-gray-100 rounded-lg shadow">
-      <h1 className="text-4xl text-gray-700 font-bold text-center mb-4">ADD NEW FOOD ITEM</h1>
+      <h1 className="text-4xl text-gray-700 font-bold text-center mb-4">ADD NEW FOOD ITEM</h1><br/>
       <label className="block mb-2">
           Stock ID:
           <input

@@ -27,7 +27,10 @@ const EditTask = () => {
       .then((response) => {
         setTitle(response.data.title);
         setDescription(response.data.description);
-        setDueDate(response.data.dueDate);
+        // Convert ISO date to yyyy-MM-dd format
+        const formattedDate = new Date(response.data.dueDate).toISOString().split('T')[0];
+        setDueDate(formattedDate); // Correctly formatted date for input type="date"
+
         setPriority(response.data.priority);
         setCategory(response.data.category);
         setTags(response.data.tags);
@@ -141,7 +144,7 @@ const EditTask = () => {
             onChange={(e) => setCategory(e.target.value)}
             className="border-2 border-gray-500 px-4 py-2 w-full"
           >
-            {['Orders', 'Stocks', 'Livestock Health', 'Products', 'Employees', 'Maintenance'].map((cat) => (
+            {['Orders', 'Stocks', 'Livestock Health', 'Products', 'Employees', 'Maintenance','Plantation'].map((cat) => (
               <option key={cat} value={cat}>
                 {cat}
               </option>

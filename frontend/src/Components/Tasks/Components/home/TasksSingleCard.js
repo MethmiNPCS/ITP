@@ -23,6 +23,7 @@ const categoryColors = {
   Products: 'bg-yellow-400 text-yellow-800',
   Employees: 'bg-pink-400 text-pink-800',
   Maintenance: 'bg-gray-400 text-gray-800',
+  Plantation: 'bg-green-400 text-green-800',
 };
 
 const TasksSingleCard = ({ task }) => {
@@ -57,7 +58,7 @@ const TasksSingleCard = ({ task }) => {
         </div>
         //change
         <div className='my-2'>
-          <span className='font-bold'>Assigned Employee:</span> 
+          <span className='font-bold'>Assigned Employee: </span> 
           {task.assignedEmployee ? `${task.assignedEmployee.FirstName} ${task.assignedEmployee.LastName}` : 'No employee assigned'}
         </div>
 

@@ -20,6 +20,8 @@ const categoryColors = {
   Products: 'bg-yellow-400 text-yellow-800',
   Employees: 'bg-pink-400 text-pink-800',
   Maintenance: 'bg-gray-400 text-gray-800',
+  Plantation: 'bg-green-400 text-green-800',
+
 };
 
 const ShowTask = () => {

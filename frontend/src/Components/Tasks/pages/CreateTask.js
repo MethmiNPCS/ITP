@@ -124,7 +124,7 @@ const CreateTask = () => {
                         onChange={(e) => setCategory(e.target.value)}
                         className="border-2 border-gray-500 px-4 py-2 w-full"
                     >
-                        {['Orders', 'Stocks', 'Livestock Health', 'Products', 'Employees', 'Maintenance'].map((cat) => (
+                        {['Orders', 'Stocks', 'Livestock Health', 'Products', 'Employees', 'Maintenance','Plantation'].map((cat) => (
                             <option key={cat} value={cat}>
                                 {cat}
                             </option>

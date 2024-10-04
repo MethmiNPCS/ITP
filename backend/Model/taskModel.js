@@ -48,7 +48,8 @@ const taskSchema = new mongoose.Schema({
         type: [String],
         default: []
     } ,
-    reminder: Date
+    reminder: Date,
+    assignedEmployee: { type: mongoose.Schema.Types.ObjectId, ref: 'EmployeeModel' } // Add this line
 });
 
 taskSchema.plugin(AutoIncrement, { inc_field: 'taskNo' });

@@ -55,6 +55,12 @@ const TasksSingleCard = ({ task }) => {
             {task.category}
           </span>
         </div>
+        //change
+        <div className='my-2'>
+          <span className='font-bold'>Assigned Employee:</span> 
+          {task.assignedEmployee ? `${task.assignedEmployee.FirstName} ${task.assignedEmployee.LastName}` : 'No employee assigned'}
+        </div>
+
         <div className='my-2'>
           <span className='font-bold'>Tags:</span> {Array.isArray(task.tags) ? task.tags.join(', ') : 'No tags'}
         </div>

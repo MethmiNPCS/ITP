@@ -12,6 +12,9 @@ const EditTask = () => {
   const [category, setCategory] = useState('Orders'); // Default category
   const [tags, setTags] = useState('');
   const [isCompleted, setIsCompleted] = useState(false); // Checkbox for status
+  const [employees, setEmployees] = useState([]); // State to hold employee list
+  const [assignedEmployee, setAssignedEmployee] = useState(''); // State for selected employee
+
   const [loading, setLoading] = useState(false);
 
   const { enqueueSnackbar } = useSnackbar();
@@ -29,12 +32,27 @@ const EditTask = () => {
         setCategory(response.data.category);
         setTags(response.data.tags);
         setIsCompleted(response.data.isCompleted);
+        setAssignedEmployee(response.data.assignedEmployee);
         setLoading(false);
       })
       .catch(error => {
         console.log(error.message);
         setLoading(false);
       });
+
+      // Adjust the API endpoint to correctly extract the employees array
+    axios.get('http://localhost:5000/employees') // Adjust this to your API endpoint
+    .then(response => {
+      // Check if the response has the expected structure
+      if (Array.isArray(response.data.employees)) {
+        setEmployees(response.data.employees); // Set employees state to the array
+      } else {
+        console.error('Unexpected response format:', response.data);
+      }
+    })
+    .catch(error => {
+      console.log(error.message);
+    });
   }, [id]);
 
   const handleEditTask = () => {
@@ -45,7 +63,8 @@ const EditTask = () => {
       priority,
       category,
       tags,
-      isCompleted
+      isCompleted,
+      assignedEmployee // Include assigned employee
     };
     setLoading(true);
 
@@ -129,6 +148,22 @@ const EditTask = () => {
             ))}
           </select>
         </div>
+
+        <div className="my-4">
+        <label className="text-xl mr-4 text-gray-700 font-semibold">Assign Employee</label>
+        <select
+          value={assignedEmployee}
+          onChange={(e) => setAssignedEmployee(e.target.value)}
+          className="border-2 border-gray-500 px-4 py-2 w-full"
+        >
+          <option value="">Select an employee</option>
+          {employees.map(employee => (
+            <option key={employee._id} value={employee._id}>
+             {`${employee.FirstName} ${employee.LastName}`}{/* Adjust based on your employee object structure */}
+            </option>
+          ))}
+        </select>
+      </div>
 
         <div className="my-4">
           <label className="text-xl mr-4 text-gray-700 font-semibold">Tags</label>

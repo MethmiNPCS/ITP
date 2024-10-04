@@ -7,6 +7,8 @@ import { MdOutlineAddBox } from 'react-icons/md';
 import TasksTable from '../Components/home/TasksTable';
 import TasksCard from '../Components/home/TasksCard';
 import SearchBar from '../Components/home/SearchBar';
+import BackToHome from '../../Home/BackToHome';
+
 
 const TasksHome = () => {
     const [tasks, setTasks] = useState([]);
@@ -158,6 +160,9 @@ const TasksHome = () => {
 
     return (
         <div className='p-4'>
+              <div className="absolute top-4 left-4">
+                <BackToHome /> {/* Add the BackToHome button here */}
+            </div>
             {/* Centered Title */}
             <div className='flex justify-center my-4'>
                 <h1 className='text-4xl font-extrabold text-center font-serif'>Tasks List</h1>

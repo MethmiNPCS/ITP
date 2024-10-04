@@ -4,7 +4,6 @@ import axios from 'axios';
 import '../../Stocks/Stock.css';
 import { Link } from 'react-router-dom';
 import jsPDF from 'jspdf';
-import html2canvas from 'html2canvas';
 
 const URL = "http://localhost:5000/stocks";
 

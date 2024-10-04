@@ -160,29 +160,30 @@ const TasksHome = () => {
 
     return (
         <div className='p-4'>
-              <div className="absolute top-4 left-4">
+            <div className="absolute top-4 left-4">
                 <BackToHome /> {/* Add the BackToHome button here */}
             </div>
             {/* Centered Title */}
             <div className='flex justify-center my-4'>
-                <h1 className='text-4xl font-extrabold text-center font-serif'>Tasks List</h1>
+                <h1 className='text-4xl font-extrabold text-center font-serif'>Tasks Dashboard</h1>
             </div>
 
             {/* Task Counts */}
             <div className='flex justify-between mb-4'>
-                <Link to='/tasks/IncompleteTasks' className='flex-1 bg-gray-200 p-4 rounded-lg shadow-md mx-2 text-center'>
-                    <h2 className='text-xl font-semibold'>Incomplete Tasks</h2>
-                    <p className='text-3xl font-bold'>{incompleteTasks}</p>
+                <Link to='/tasks/IncompleteTasks' className='flex-1 bg-gray-200 p-2 border border-gray-400 rounded-lg shadow-md mx-2 text-center hover:bg-gray-300'>
+                    <h2 className='text-lg font-semibold'>Incomplete Tasks</h2> {/* Reduced font size */}
+                    <p className='text-2xl font-bold'>{incompleteTasks}</p> {/* Reduced font size */}
                 </Link>
-                <Link to='/tasks/OverdueTasks' className='flex-1 bg-red-200 p-4 rounded-lg shadow-md mx-2 text-center'>
-                    <h2 className='text-xl font-semibold'>Overdue Tasks</h2>
-                    <p className='text-3xl font-bold'>{overdueTasks}</p>
+                <Link to='/tasks/OverdueTasks' className='flex-1 bg-red-200 p-2 border border-red-400 rounded-lg shadow-md mx-2 text-center hover:bg-red-300'>
+                    <h2 className='text-lg font-semibold'>Overdue Tasks</h2>
+                    <p className='text-2xl font-bold'>{overdueTasks}</p>
                 </Link>
-                <Link to='/tasks/UrgentTasks' className='flex-1 bg-yellow-200 p-4 rounded-lg shadow-md mx-2 text-center'>
-                    <h2 className='text-xl font-semibold'>Urgent Tasks</h2>
-                    <p className='text-3xl font-bold'>{urgentTasks}</p>
+                <Link to='/tasks/UrgentTasks' className='flex-1 bg-yellow-200 p-2 border border-yellow-400 rounded-lg shadow-md mx-2 text-center hover:bg-yellow-300'>
+                    <h2 className='text-lg font-semibold'>Urgent Tasks</h2>
+                    <p className='text-2xl font-bold'>{urgentTasks}</p>
                 </Link>
             </div>
+
 
             {/* Search Bar and Create Task Button */}
             <div className='flex justify-end items-center mb-4 gap-x-4'>

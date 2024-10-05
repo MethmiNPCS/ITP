@@ -40,9 +40,8 @@ function Nav() {
           <Link to="/medicinedetails" className="text-green-600 font-bold py-3 px-6 rounded-full transition duration-300 hover:bg-white hover:bg-opacity-20">
             AVAILABLE MEDICINES
           </Link>
-        </li>
-        
-      </ul>
+        </li>       
+      </ul>     
     </nav>
   );
 }

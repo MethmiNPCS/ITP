@@ -171,28 +171,40 @@ function Foods() {
     <div>
       <Nav />
       <br/>
-      <div className='header-container'>
-        <button onClick={handlePrint} className="download-button">Download Report</button>
-        <h1 className='centered-heading'>Available Foods</h1>
+      
+      <div className='header-container flex flex-col md:flex-row justify-between items-center p-6 bg-white-100 rounded-lg mb-6'>
+        <button
+          onClick={handlePrint}
+          className="download-button bg-orange-400 text-white font-semibold px-5 py-3 rounded-lg shadow-md hover:bg-orange-700 transition duration-300 ease-in-out focus:outline-none focus:ring-4 focus:ring-orange-300"
+        >
+          Download Report
+        </button>
 
-        <div className="flex items-center justify-center p-4">
+        <h1 className="text-2xl font-bold text-gray-800 mt-4 md:mt-0 md:mx-6">
+          AVAILABLE FOOD ITEMS
+        </h1>
+
+        <div className="flex items-center justify-center w-full md:w-auto mt-4 md:mt-0">
           <input
             onChange={handleSearchChange}
             value={searchQuery}
             type="text"
             name="search"
             placeholder="Search Foods"
-            className="w-full md:w-3/4 lg:w-2/3 px-6 py-3 text-gray-700 bg-white border border-gray-300 rounded-xl focus:outline-none focus:ring-2 focus:ring-green-500 shadow-lg transition duration-300 ease-in-out"
+            className="w-full md:w-80 px-4 py-2 border border-gray-300 rounded-lg shadow-sm text-gray-700 focus:outline-none focus:ring-2 focus:ring-green-500 transition duration-300 ease-in-out"
           />
         </div>
       </div>
 
+
       {noResults ? (
-        <div className="centered-box">
-          <div className="no-foods-message">
+        <div className="centered-box flex justify-center items-center min-h-[50vh]">
+          <div className="no-foods-message bg-red-200 text-red-800 text-xl font-bold p-6 rounded-lg border-2  border-red-400 shadow-md">
             Not Found
           </div>
         </div>
+
+
       ) : (
         <div ref={ComponentsRef} className="overflow-x-auto">
           <table className="min-w-full mx-auto table-auto border-collapse border border-gray-300 mt-6">

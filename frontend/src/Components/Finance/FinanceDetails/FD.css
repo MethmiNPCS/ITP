@@ -1,5 +1,12 @@
 
-.but{
+.I-h1 {
+    margin-top: 5%;
+    font-weight: bold; 
+    font-size: 20px;
+}
+
+
+.I-but{
 	background-color: #30b589;
 	color: #333;
 	padding: 10px 15px;
@@ -13,7 +20,7 @@
 	margin-bottom: 10px;
 }
 
-.but_up{
+.I-but_up{
     background-color: #30aab5;
 	color: #333;
 	padding: 10px 15px;
@@ -26,17 +33,17 @@
 	transition: background-color 0.3s ease, color 0.3s ease;
 	margin-bottom: 10px;
 }
-.but:hover{
+.I-but:hover{
 	background-color: orangered;
 	color: #fff;
 	border: none;
 }
-.but_up:hover{
+.I-but_up:hover{
 	background-color: rgb(57, 221, 71);
 	color: #fff;
 	border: none;
 }
-.info {
+.Fm_info {
 	padding: 10px;
 	text-align: center;
 	color: #ddd;
@@ -71,7 +78,7 @@ h2{
 
 /* Table Styles */
 
-.table-wrapper{
+.I-table-wrapper{
     margin: 10px 70px 70px;
     box-shadow: 0px 35px 50px rgba( 0, 0, 0, 0.2 );
 }

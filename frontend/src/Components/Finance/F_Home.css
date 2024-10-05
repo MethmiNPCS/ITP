@@ -1,17 +1,29 @@
-.con {
-    position: absolute; /* or fixed */
-    right: 0; /* Align to the left */
-    top: 50%; /* Center vertically */
-    transform: translateY(-50%); /* Adjust for exact center */
-    float: left; /* Align to the left */
-    margin-top: 20px; /* Add some top margin if needed */
-    margin-right: 10Px;
-}
-.text-black {
-    color: rgb(184, 28, 28);
+.home-container {
+    padding: 20px;
+    text-align: center;
   }
-
-.text{
-    color: rgb(102, 102, 102);
   
-}
+  .chart-container {
+    width: 80%;
+    margin: 0 auto;
+    padding: 20px;
+  }
+  
+  .links-section {
+    margin-top: 40px;
+  }
+  
+  .link-button {
+    display: inline-block;
+    padding: 10px 20px;
+    margin: 10px;
+    background-color: #007bff;
+    color: white;
+    border-radius: 5px;
+    text-decoration: none;
+  }
+  
+  .link-button:hover {
+    background-color: #0056b3;
+  }
+  

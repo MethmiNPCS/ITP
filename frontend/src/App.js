@@ -48,6 +48,8 @@ import AddFinance from './Components/Finance/AddFinance/AddFinance';
 import FinanceDetails from './Components/Finance/FinanceDetails/FinanceDetails';
 import UpdateFinance from './Components/Finance/UpdateFinance/UpdateFinance';
 import IncomeDetails from './Components/Finance/FinanceDetails/IncomeDetails';
+import PNL from './Components/Finance/Finance/PNL';
+import Atable from "./Components/Finance/Chart/Atable";
 
 //Order Routes
 import OrderHome from './Components/Orders/OrderHome';
@@ -112,6 +114,8 @@ function App() {
           <Route path="/financedetails" element={<FinanceDetails />} />
           <Route path="/incomedetails" element={<IncomeDetails />} />  
           <Route path="/updatefinance/:id" element={<UpdateFinance />} />
+          <Route path="/pnl" element={<PNL/>} />
+          <Route path="/atable" element={<Atable />} />
 
 
           <Route path="/orderhome" element={<OrderHome/>}/>

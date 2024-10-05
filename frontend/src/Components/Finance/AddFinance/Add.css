@@ -14,36 +14,39 @@ body {
   height: 100vh; /* Ensure the body takes the full viewport height */
 }
 
-.container {
+.f-container {
   display: flex;
   justify-content: center; /* Horizontally center the form */
   align-items: center;     /* Vertically center the form */
-  padding-left: 15%;           /* Make the container full height of the viewport */
+  padding-left: 0%;
+           /* Make the container full height of the viewport */
 }
 
 /*---------------------------------------*/
 /* Form Styling */
 /*---------------------------------------*/
-.signup-form {
+.f-signup-form {
   width: 400px;
   background: linear-gradient(to right, #ffffff 0%, #fafafa 50%, #ffffff 99%);
   border-radius: 10px;
   box-shadow: 0 2px 20px rgba(0, 0, 0, 0.2);
   overflow: hidden;
   margin: 0 auto; /* Centering the form horizontally */
+            /* Make the container full height of the viewport */
+
 }
 
 /*---------------------------------------*/
 /* Form Header */
 /*---------------------------------------*/
-.form-header {
+.f-form-header {
   background-color: #EFF0F1;
   padding: 20px;
   text-align: center;
   border-bottom: 1px solid #cccccc;
 }
 
-.form-header h1 {
+.f-form-header h1 {
   font-size: 24px;
   color: #666;
 }
@@ -51,21 +54,21 @@ body {
 /*---------------------------------------*/
 /* Form Body */
 /*---------------------------------------*/
-.form-body {
+.f-form-body {
   padding: 20px;
 }
 
-.form-group {
+.f-form-group {
   margin-bottom: 15px;
 }
 
-.label-title {
+.f-label-title {
   color: #1BBA93;
   font-size: 14px;
   font-weight: bold;
 }
 
-.form-input {
+.f-form-input {
   width: 100%;
   padding: 8px;
   font-size: 14px;
@@ -84,14 +87,14 @@ input[type="file"] {
 /*---------------------------------------*/
 /* Form Footer */
 /*---------------------------------------*/
-.form-footer {
+.f-form-footer {
   background-color: #EFF0F1;
   padding: 10px 20px;
   text-align: right;
   border-top: 1px solid #cccccc;
 }
 
-.btn {
+.f-btn {
   padding: 10px 20px;
   background-color: #1BBA93;
   font-size: 14px;
@@ -101,11 +104,11 @@ input[type="file"] {
   cursor: pointer;
 }
 
-.btn:hover {
+.f-btn:hover {
   background-color: #169c7b;
 }
 
-.single-card {
+.f-single-card {
   width: 400px;
   margin: 0 auto; /* Centering card horizontally */
   box-shadow: 0 2px 20px rgba(0, 0, 0, 0.2);
@@ -114,7 +117,7 @@ input[type="file"] {
   transition: box-shadow 0.3s ease;
 }
 
-.btn-container {
+.f-btn-container {
   text-align: center;
   margin-top: 20px;
 }

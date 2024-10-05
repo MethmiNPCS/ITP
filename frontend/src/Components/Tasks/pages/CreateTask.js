@@ -66,7 +66,7 @@ const CreateTask = () => {
     };
 
     return (
-        <div className="p-4">
+        <div className="p-4 bg-green-200">
             <h1 className="text-3xl my-4 text-center font-serif">Create Task</h1>
             <div className="bg-white flex flex-col border-2 border-dark-green rounded-xl w-[600px] p-4 mx-auto bg-light-green">
                 <div className="my-4">

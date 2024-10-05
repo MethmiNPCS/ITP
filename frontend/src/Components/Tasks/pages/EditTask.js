@@ -88,14 +88,14 @@ const EditTask = () => {
   return (
     <div className="p-4">
       <h1 className="text-3xl my-4 text-center font-serif">Edit Task</h1>
-      <div className="flex flex-col border-2 border-dark-green rounded-xl w-[600px] p-4 mx-auto bg-light-green">
+      <div className="bg-white flex flex-col border-2 border-dark-green rounded-xl w-[600px] p-4 mx-auto bg-light-green">
         <div className="my-4">
           <label className="text-xl mr-4 text-gray-700 font-semibold">Title</label>
           <input
             type="text"
             value={title}
             onChange={(e) => setTitle(e.target.value)}
-            className="border-2 border-gray-500 px-4 py-2 w-full"
+            className="border-2 border-green-700 px-4 py-2 w-full"
           />
         </div>
 
@@ -105,7 +105,7 @@ const EditTask = () => {
             type="text"
             value={description}
             onChange={(e) => setDescription(e.target.value)}
-            className="border-2 border-gray-500 px-4 py-2 w-full h-24"
+            className="border-2 border-green-700 px-4 py-2 w-full h-24"
           />
         </div>
 
@@ -115,7 +115,7 @@ const EditTask = () => {
             type="date"
             value={dueDate}
             onChange={(e) => setDueDate(e.target.value)}
-            className="border-2 border-gray-500 px-4 py-2 w-full"
+            className="border-2 border-green-700 px-4 py-2 w-full"
           />
         </div>
 
@@ -142,7 +142,7 @@ const EditTask = () => {
           <select
             value={category}
             onChange={(e) => setCategory(e.target.value)}
-            className="border-2 border-gray-500 px-4 py-2 w-full"
+            className="border-2 border-green-700 px-4 py-2 w-full"
           >
             {['Orders', 'Stocks', 'Livestock Health', 'Products', 'Employees', 'Maintenance','Plantation'].map((cat) => (
               <option key={cat} value={cat}>
@@ -157,7 +157,7 @@ const EditTask = () => {
         <select
           value={assignedEmployee}
           onChange={(e) => setAssignedEmployee(e.target.value)}
-          className="border-2 border-gray-500 px-4 py-2 w-full"
+          className="border-2 border-green-700 px-4 py-2 w-full"
         >
           <option value="">Select an employee</option>
           {employees.map(employee => (
@@ -174,7 +174,7 @@ const EditTask = () => {
             type="text"
             value={tags}
             onChange={(e) => setTags(e.target.value)}
-            className="border-2 border-gray-500 px-4 py-2 w-full"
+            className="border-2 border-green-700 px-4 py-2 w-full"
           />
         </div>
 
@@ -191,7 +191,7 @@ const EditTask = () => {
         </div>
 
         <div className="my-4 flex justify-center">
-          <button className="p-3 bg-sky-300 text-white font-bold rounded-lg w-full max-w-xs hover:bg-sky-400 transition-all" onClick={handleEditTask} disabled={loading}>
+          <button className="p-3 bg-green-700 text-white font-bold rounded-lg w-full max-w-xs hover:bg-sky-400 transition-all" onClick={handleEditTask} disabled={loading}>
             Save
           </button>
         </div>

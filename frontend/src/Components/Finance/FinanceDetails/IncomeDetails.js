@@ -122,7 +122,7 @@ function IncomeDetails() {
         item.amount
       ])
     });
-
+    doc.setFontSize(11); 
     doc.text(`Total Finance Amount: Rs. ${totalFinanceAmount.toLocaleString()}`, 14, doc.autoTable.previous.finalY + 10);
     doc.text(`Total Product Price: Rs. ${totalProductPrice.toLocaleString()}`, 14, doc.autoTable.previous.finalY + 20);
     doc.text(`Full Total Amount: Rs. ${fullTotalAmount.toLocaleString()}`, 14, doc.autoTable.previous.finalY + 30); // Add full total amount
@@ -171,12 +171,16 @@ function IncomeDetails() {
                     {item.amount !== 'Not available' ? `Rs. ${Number(item.amount).toLocaleString()}` : item.amount}
                   </td>
                   <td>
-                    <Link to={`/updatefinance/${item._id}`}>
-                      <button className="I-but_up">Update</button>
-                    </Link>
+                    {item.transactionType !== 'Product Income' && (
+                      <Link to={`/updatefinance/${item._id}`}>
+                        <button className="I-but_up">Update</button>
+                      </Link>
+                    )}
                   </td>
                   <td>
-                    <button className="I-but" onClick={() => deleteHandler(item._id)}>Delete</button>
+                    {item.transactionType !== 'Product Income' && (
+                      <button className="I-but" onClick={() => deleteHandler(item._id)}>Delete</button>
+                    )}
                   </td>
                 </tr>
               ))
@@ -187,21 +191,27 @@ function IncomeDetails() {
             )}
             {/* Row for total finance amount */}
             <tr>
-              <td colSpan="4" style={{ textAlign: 'right' }}><strong>Total Finance Amount:</strong></td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td style={{ textAlign: 'left' }}><strong>Total Finance Amount:</strong></td>
               <td style={{ textAlign: 'right' }}><strong>{totalFinanceAmount.toLocaleString()}</strong></td>
-              <td colSpan="2"></td>
             </tr>
             {/* Row for total product price */}
             <tr>
-              <td colSpan="4" style={{ textAlign: 'right' }}><strong>Total Product Price:</strong></td>
+            <td></td>
+              <td></td>
+              <td></td>
+              <td style={{ textAlign: 'left' }}><strong>Total Product Price:</strong></td>
               <td style={{ textAlign: 'right' }}><strong>{totalProductPrice.toLocaleString()}</strong></td>
-              <td colSpan="2"></td>
             </tr>
             {/* Row for full total amount */}
             <tr>
-              <td colSpan="4" style={{ textAlign: 'right' }}><strong>Full Total Amount:</strong></td>
+            <td></td>
+              <td></td>
+              <td></td>
+              <td style={{ textAlign: 'left' }}><strong>Full Total Amount:</strong></td>
               <td style={{ textAlign: 'right' }}><strong>{fullTotalAmount.toLocaleString()}</strong></td>
-              <td colSpan="2"></td>
             </tr>
           </tbody>
         </table>

@@ -15,7 +15,7 @@ function Nav() {
                
         <li className="nav-item">
           <Link to="/addfinance" className="nav-link">
-            Add Finance
+            Add Finances 
           </Link>
         </li>
 

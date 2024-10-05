@@ -16,17 +16,18 @@ body {
 
 .f-container {
   display: flex;
-  justify-content: center; /* Horizontally center the form */
-  align-items: center;     /* Vertically center the form */
+  justify-content: center; 
+  align-items: center;     
   padding-left: 0%;
-           /* Make the container full height of the viewport */
+  margin-top: 50px;
+  
+  
+           
 }
 
-/*---------------------------------------*/
-/* Form Styling */
-/*---------------------------------------*/
 .f-signup-form {
   width: 400px;
+  height: 100px;
   background: linear-gradient(to right, #ffffff 0%, #fafafa 50%, #ffffff 99%);
   border-radius: 10px;
   box-shadow: 0 2px 20px rgba(0, 0, 0, 0.2);
@@ -36,9 +37,7 @@ body {
 
 }
 
-/*---------------------------------------*/
-/* Form Header */
-/*---------------------------------------*/
+
 .f-form-header {
   background-color: #EFF0F1;
   padding: 20px;
@@ -98,6 +97,7 @@ input[type="file"] {
   padding: 10px 20px;
   background-color: #1BBA93;
   font-size: 14px;
+  width: 200px;
   border: none;
   border-radius: 5px;
   color: #ffffff;

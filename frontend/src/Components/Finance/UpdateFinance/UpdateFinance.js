@@ -82,15 +82,15 @@ function UpdateFinance() {
                   value={Inputs.category}
                   required
                 >
-                   <option value="" disabled>Select Your Category</option>
-                  <option value="Utilities">Utilities</option>
-                  <option value="Food">Food</option>
-                  <option value="Medicine">Medicine</option>
-                  <option value="Salary">Salary</option>
-                  <option value="Egg">Egg</option>
-                  <option value="Dairy">Dairy</option>
-                  <option value="Meat">Meat</option>
-                  <option value="Plans">Plans</option>
+                  <option value="" disabled>Select Your Category</option>
+                  <option value="Electricity Bill">Electricity Bill</option>
+                  <option value="Water Bill">Water Bill</option>
+                  <option value="Petty cash">Petty cash</option>
+                  <option value="Additional Salary payment">Additional Salary payment </option>
+                  <option value="Welfare">Welfare </option>
+                  <option value="Donation">Donation</option>
+                  <option value="Tax Payment">Tax Payment</option>
+                  <option value="Additional Orders">Additional Orders</option>
                   <option value="Other">Other</option>
                 </select>
               </div>

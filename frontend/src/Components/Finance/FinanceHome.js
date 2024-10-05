@@ -150,8 +150,8 @@ const Home = () => {
 
       {/* Navigation Links */}
       <div className="links-section">
-        <Link to="/finance-details" className="link-button">View Finance Details</Link>
-        <Link to="/income-details" className="link-button">View Income Details</Link>
+      <Link to="/financedetails" className="link-button">View Expenses Details</Link>
+      <Link to="/incomedetails" className="link-button">View Income Details</Link>
       </div>
     </div>
 

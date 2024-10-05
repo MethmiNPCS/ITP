@@ -31,7 +31,7 @@ const Atabe = () => {
         const financeData = financeResponse.data.finance || [];
         const incomeDateTotals = {};
         const expenseDateTotals = {};
-        
+
         financeData.forEach(item => {
           const date = item.date || 'Unknown'; 
           const amount = item.amount || 0;
@@ -46,12 +46,12 @@ const Atabe = () => {
 
         setFinanceByDate({ income: incomeDateTotals, expense: expenseDateTotals });
 
-        // Process Salary data by date
+        // Process Salary data by payDate
         const salaryData = salaryResponse.data.salaries || [];
         const salaryDateTotals = {};
         salaryData.forEach(item => {
-          const date = item.date || 'Salary Payment';
-          salaryDateTotals[date] = (salaryDateTotals[date] || 0) + item.totalSalary;
+          const payDate = new Date(item.payDate).toLocaleDateString('en-CA') || 'Salary Payment';
+          salaryDateTotals[payDate] = (salaryDateTotals[payDate] || 0) + item.totalSalary;
         });
         setSalaryByDate(salaryDateTotals);
 
@@ -107,7 +107,7 @@ const Atabe = () => {
     labels: formattedDates,
     datasets: [
       {
-        label: 'Income',
+        label: 'Other Income',
         data: allDates.map(date => financeByDate.income[date] || 0),
         backgroundColor: 'rgba(54, 162, 235, 0.2)',
         borderColor: '#36A2EB',
@@ -115,7 +115,7 @@ const Atabe = () => {
         fill: true,
       },
       {
-        label: 'Expense',
+        label: 'Other Expense',
         data: allDates.map(date => financeByDate.expense[date] || 0),
         backgroundColor: 'rgba(255, 99, 132, 0.2)',
         borderColor: '#FF6384',
@@ -124,7 +124,7 @@ const Atabe = () => {
       },
       {
         label: 'Salary',
-        data: allDates.map(date => salaryByDate[date] || 0),
+        data: allDates.map(date => salaryByDate[date] || 0),  // Here, payDate will be reflected in the chart
         backgroundColor: 'rgba(255, 206, 86, 0.2)',
         borderColor: '#FFCE56',
         borderWidth: 2,
@@ -157,7 +157,7 @@ const Atabe = () => {
       },
       title: {
         display: true,
-        text: 'Total Amounts by Date for Income, Expense, Salary, Stock, and Product',
+        text: 'Total Amounts by Date for Other Income, Other Expense, Salary, Stock, and Product',
       },
     },
     scales: {

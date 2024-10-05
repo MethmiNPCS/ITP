@@ -99,7 +99,7 @@ function ProfitAndLoss() {
           <thead>
             <tr>
               <th>Category</th>
-              <th>Amount (Rs.)</th>
+              <th class="Amount">Amount (Rs.)</th>
             </tr>
           </thead>
           <tbody>

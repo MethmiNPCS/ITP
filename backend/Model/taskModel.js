@@ -41,14 +41,15 @@ const taskSchema = new mongoose.Schema({
 
     category: {
         type: String,
-        enum: ['Orders', 'Stocks', 'Livestock Health', 'Products', 'Employees', 'Maintenance'], 
+        enum: ['Orders', 'Stocks', 'Livestock Health', 'Products', 'Employees', 'Maintenance','Plantation'], 
         default: 'Orders'
     },
     tags:{
         type: [String],
         default: []
     } ,
-    reminder: Date
+    reminder: Date,
+    assignedEmployee: { type: mongoose.Schema.Types.ObjectId, ref: 'EmployeeModel' } // Add this line
 });
 
 taskSchema.plugin(AutoIncrement, { inc_field: 'taskNo' });

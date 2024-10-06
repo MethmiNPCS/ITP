@@ -1,0 +1,143 @@
+/* UpdateOrder.css */
+
+#uupdate-order-container {
+    padding: 20px;
+    background-color: #f0f9f0; /* Light farm green background */
+    font-family: 'Arial', sans-serif;
+}
+
+#uupdate-order-title {
+    text-align: center;
+    color: #2f6b2f; /* Deep green color */
+    font-size: 32px;
+    margin-bottom: 20px;
+}
+
+#uupdate-order-form {
+    max-width: 670px;
+    margin: 0 auto;
+    padding: 40px;
+    background-color: #ffffff;
+    border-radius: 10px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+}
+
+#uorder-id-label,
+#uorder-type-label,
+#uorder-items-label,
+#usupplier-label,
+#udescription-label,
+#ustatus-label {
+    font-weight: bold;
+    color: #293502; /* Slightly darker green */
+}
+
+#uupdate-order-form input[type="text"],
+#uupdate-order-form input[type="number"],
+#uupdate-order-form textarea,
+#uupdate-order-form select {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    margin-bottom: 5px;
+    transition: border-color 0.3s ease;
+}
+
+#uupdate-order-form input[type="text"]:focus,
+#uupdate-order-form input[type="number"]:focus,
+#uupdate-order-form textarea:focus,
+#uupdate-order-form select:focus {
+    border-color: #8a9a5b; /* Highlight color on focus */
+}
+
+#uupdate-order-form input[type="radio"] {
+    margin-right: 10px;
+}
+
+#uorder-item-row-0, 
+#uorder-item-row-1, 
+#uorder-item-row-2, 
+#uorder-item-row-3 {
+    display: flex;
+    align-items: center;
+    margin-bottom: 10px;
+}
+
+#uorder-item-name-0, 
+#uorder-item-name-1,
+#uorder-item-name-2,
+#uorder-item-name-3,
+#uorder-item-quantity-0,
+#uorder-item-quantity-1,
+#uorder-item-quantity-2,
+#uorder-item-quantity-3,
+#uorder-item-unit-0,
+#uorder-item-unit-1,
+#uorder-item-unit-2,
+#uorder-item-unit-3 {
+    flex: 1;
+    margin-right: 10px;
+}
+
+#uadd-item-button,
+#uremove-item-button-0,
+#uremove-item-button-1,
+#uremove-item-button-2,
+#uremove-item-button-3 {
+    background-color: #3e8e41;
+    color: white;
+    padding: 5px 10px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+#uadd-item-button:hover,
+#uremove-item-button-0:hover,
+#uremove-item-button-1:hover,
+#uremove-item-button-2:hover,
+#uremove-item-button-3:hover {
+    background-color: #285e28;
+}
+
+#udescription-input {
+    height: 90px;
+    resize: vertical;
+}
+
+#error-message {
+    color: red;
+    font-size: 14px;
+}
+
+#uupdate-order-button,
+#ucancel-order-button {
+    display: inline-block;
+    padding: 10px 20px;
+    font-size: 16px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    margin-right: 10px;
+    transition: background-color 0.3s ease;
+}
+
+#uupdate-order-button {
+    background-color: #499d2a;
+    color: white;
+}
+
+#uupdate-order-button:hover {
+    background-color: #3b8e3b;
+}
+
+#ucancel-order-button {
+    background-color: #d9534f;
+    color: white;
+}
+
+#ucancel-order-button:hover {
+    background-color: #c9302c;
+}

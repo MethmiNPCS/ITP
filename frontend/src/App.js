@@ -64,8 +64,8 @@ import EmployeeHome from './Components/Employees/EmployeeHome';
 import AddEmployee from './Components/Employees/AddEmployee/AddEmployee';
 import Employees from "./Components/Employees/EmployeeDetails/Employees";
 import UpdateEmployee from "./Components/Employees/UpdateEmployee/UpdateEmployee";
-import SalaryCalculation from './Components/Employees/EmployeeDetails/SalaryCalculation'; 
-import SalariesPage from './Components/Employees/EmployeeDetails/Salaries';
+import Salary from "./Components/Employees/EmployeeDetails/Salary";
+import AddBonus from "./Components/Employees/AddEmployee/AddBonus";
 
 
 function App() {
@@ -130,8 +130,8 @@ function App() {
           <Route path="/addemployee" element={<AddEmployee />} />
           <Route path="/employeedetails" element={<Employees />} />
           <Route path="/updateemployeedetails/:id" element={<UpdateEmployee />} />
-          <Route path="/salarycalculation/:nic" element={<SalaryCalculation />} />
-          <Route path="/salaries" element={<SalariesPage />} />
+          <Route path="/salary" element={<Salary />} />
+          <Route path="/addbonus" element={<AddBonus />} />
 
         </Routes>
       </React.Fragment>

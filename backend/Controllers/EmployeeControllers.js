@@ -20,11 +20,11 @@ const getAllEmployees = async (req,res,next) =>{
 
 //data insert
 const addEmployee =async(req,res,next)=>{
-    const {FirstName,LastName,NIC,Gender,Adress,Position,ContactNumber} =req.body;
+    const {FirstName,LastName,NIC,Gender,Adress,Position,ContactNumber, BasicSalary} =req.body;
 
     let employees;
     try{
-        employees =new Employee ({FirstName,LastName,NIC,Gender,Adress,Position,ContactNumber});
+        employees =new Employee ({FirstName,LastName,NIC,Gender,Adress,Position,ContactNumber, BasicSalary});
         await employees.save();
     }
     catch (err){
@@ -62,13 +62,13 @@ const addEmployee =async(req,res,next)=>{
  // Update Employee Details
  const updateEmployee =async (req,res,next)=>{
     const id = req.params.id;
-    const {FirstName,LastName,NIC,Gender,Adress,Position,ContactNumber} =req.body;
+    const {FirstName,LastName,NIC,Gender,Adress,Position,ContactNumber,BasicSalary} =req.body;
 
     let employee;
 
     try {
         employee = await Employee.findByIdAndUpdate(id,
-        {FirstName: FirstName, LastName: LastName ,NIC:NIC ,Gender:Gender, Adress: Adress, Position: Position ,ContactNumber:ContactNumber});
+        {FirstName: FirstName, LastName: LastName ,NIC:NIC ,Gender:Gender, Adress: Adress, Position: Position ,ContactNumber:ContactNumber, BasicSalary:BasicSalary});
         employee = await employee.save();
 
     } catch (err) {

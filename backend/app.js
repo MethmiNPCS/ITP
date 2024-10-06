@@ -7,8 +7,8 @@ const mongoose = require("mongoose");
 
 // Import Routes
 const stockrouter = require("./Routes/StockRoutes");  // Stock
-const orderRoutes = require("./Routes/OrderRoutes");  // Order
-const supplierRoutes = require("./Routes/SupplierRoutes"); // Supplier
+
+
 const tasksRoute = require("./Routes/tasksRoute"); // Task
 const productRouter = require("./Routes/ProductRoutes"); // Product
 const animalrouter = require("./Routes/AnimalRoutes");  // Animal
@@ -24,8 +24,8 @@ app.use(express.json());
 app.use(cors());
 
 app.use("/stocks", stockrouter); // Stock
-app.use("/orders",orderRoutes); // Order
-app.use("/suppliers", supplierRoutes); // Supplier
+
+
 app.use("/tasks", tasksRoute); // Tasks
 app.use('/products', productRouter); // Product
 app.use("/animals",animalrouter); // Animal

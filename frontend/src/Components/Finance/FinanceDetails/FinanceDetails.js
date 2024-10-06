@@ -148,6 +148,7 @@ function FinanceDetails() {
         item.amount
       ])
     });
+    doc.setFontSize(11); 
     doc.text(`Total Finance Amount: Rs. ${totalFinanceAmount}`, 14, doc.autoTable.previous.finalY + 10);
     doc.text(`Total Salary Amount: Rs. ${totalSalaryAmount}`, 14, doc.autoTable.previous.finalY + 20);
     doc.text(`Total Stock Amount: Rs. ${totalStockAmount}`, 14, doc.autoTable.previous.finalY + 30);
@@ -211,28 +212,41 @@ function FinanceDetails() {
               </tr>
             )}
             <tr>
-              <td colSpan="4" style={{ textAlign: 'right' }}><strong>Total Finance Amount:</strong></td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td style={{ textAlign: 'left', }}><strong>Total Finance Amount:</strong></td>
               <td style={{ textAlign: 'right' }}><strong>Rs. {totalFinanceAmount}</strong></td>
-              <td colSpan="2"></td>
             </tr>
             <tr>
-              <td colSpan="4" style={{ textAlign: 'right' }}><strong>Total Salary Amount:</strong></td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td style={{ textAlign: 'left'  }}><strong>Total Salary Amount:</strong></td>
               <td style={{ textAlign: 'right' }}><strong>Rs. {totalSalaryAmount}</strong></td>
-              <td colSpan="2"></td>
+              
             </tr>
             <tr>
-              <td colSpan="4" style={{ textAlign: 'right' }}><strong>Total Stock Amount:</strong></td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td style={{ textAlign: 'left' }}><strong>Total Stock Amount:</strong></td>
               <td style={{ textAlign: 'right' }}><strong>Rs. {totalStockAmount}</strong></td>
-              <td colSpan="2"></td>
+              
             </tr>
             <tr>
-              <td colSpan="4" style={{ textAlign: 'right' }}><strong>Total Amount:</strong></td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td  style={{ textAlign: 'left' }}><strong>Total Amount:</strong></td>
               <td style={{ textAlign: 'right' }}><strong>Rs. {totalAmount}</strong></td>
-              <td colSpan="2"></td>
             </tr>
           </tbody>
         </table>
-        <button className="I-generate-report" onClick={generatePDF}>Generate Report</button>
+        <center>
+          <button className="I-but" onClick={generatePDF}>Generate Report</button>
+        </center>
+        
       </div>
     </div>
   );

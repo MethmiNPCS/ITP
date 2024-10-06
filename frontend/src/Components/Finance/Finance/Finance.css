@@ -95,9 +95,13 @@ h2{
     background-color: white;
 }
 
-.fp-table td,
-.fp-table th {
+.fp-table td{
     text-align: left; /* Center text in the table */
+    padding: 8px;
+
+}
+.fp-table th {
+    text-align: center; /* Center text in the table */
     padding: 8px;
 }
 
@@ -185,18 +189,7 @@ h2{
     position: relative;
 }
 
-
-
-/* new */
-
-/*
-.f-pie{
-    width: 300px;
-    height: 300px;
-    margin: 0 auto;
-    margin-bottom: 20px;
-    position: relative;
+.Amount{
+    text-align: right;
 }
-*/
-
   

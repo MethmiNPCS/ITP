@@ -79,10 +79,9 @@ function StockHome() {
   };
 
   return (
-    <div>
+    <div className="pt-16">
       <Nav />
-      <div className="container mx-auto px-4">
-        <h1 className="text-3xl font-semibold text-center my-8">Stock Dashboard</h1>
+      <div className="container mx-auto px-4">      
         <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
           {/* Bar Chart on the Left */}
           <div className="bg-white p-6 rounded-lg shadow-lg">

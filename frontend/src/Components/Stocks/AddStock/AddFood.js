@@ -51,7 +51,7 @@ function AddFood() {
   };
   
   return (
-    <div>
+    <div className="pt-16">
       <Nav/> 
       <br/>
       <form onSubmit={handleSubmit} className="w-full max-w-2xl mx-auto p-6 bg-gray-100 rounded-lg shadow-lg">

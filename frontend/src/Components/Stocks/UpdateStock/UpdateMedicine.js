@@ -46,7 +46,7 @@ function UpdateMedicine() {
   };
 
   return (
-    <div>
+    <div className="pt-16">
       <Nav /><br />
       <form onSubmit={handleSubmit} className="w-full max-w-2xl mx-auto p-6 bg-gray-100 rounded-lg shadow-lg">
           <h1 className="text-3xl text-gray-700 font-bold text-center mb-6">UPDATE MEDICINE DETAILS</h1>

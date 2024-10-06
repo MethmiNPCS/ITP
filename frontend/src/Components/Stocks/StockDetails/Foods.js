@@ -168,10 +168,9 @@ function Foods() {
   }
 
   return (
-    <div>
+    <div className="pt-16">
       <Nav />
-      <br/>
-      
+      <br/>     
       <div className='header-container flex flex-col md:flex-row justify-between items-center p-6 bg-white-100 rounded-lg mb-6'>
         <button
           onClick={handlePrint}

@@ -10,6 +10,7 @@ const animalrouter = require("./Routes/AnimalRoutes");
 const treatmentrouter = require("./Routes/TreatmentRoutes");
 const orderRoutes = require("./Routes/OrderRoutes");
 const supplierRoutes = require("./Routes/SupplierRoutes"); 
+const orderemailRoutes = require("./Routes/EmailRoutes");
 const financrouter = require("./Routes/financ");
 
 
@@ -25,6 +26,7 @@ app.use("/animals",animalrouter);
 app.use("/treatments",treatmentrouter);
 app.use("/orders",orderRoutes);
 app.use("/suppliers", supplierRoutes);
+app.use("/orderemails", orderemailRoutes); 
 app.use("/finance", financrouter);
 
 // Connect Database

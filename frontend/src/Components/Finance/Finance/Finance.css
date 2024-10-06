@@ -185,11 +185,20 @@ h2{
 .f-pie {
     width: 300px;
     height: 300px;
-    margin: 20px auto; /* Center the pie chart */
+    margin: 20px auto;  
     position: relative;
 }
 
 .Amount{
     text-align: right;
 }
-  
+.I-email-input{
+    width: 25%;
+    padding: 10px;
+    margin-bottom: 10px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    font-size: 16px;
+    color: #333;
+    transition: border-color 0.3s ease;
+}

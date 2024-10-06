@@ -4,6 +4,8 @@
 
 const express = require("express");
 const mongoose = require("mongoose");
+const bodyParser = require('body-parser');
+const nodemailer = require('nodemailer');
 
 // Import Routes
 const stockrouter = require("./Routes/StockRoutes");  // Stock
@@ -22,6 +24,7 @@ const app = express();
 const cors = require("cors");
 app.use(express.json());
 app.use(cors());
+app.use(bodyParser.json({ limit: '50mb' })); 
 
 app.use("/stocks", stockrouter); // Stock
 app.use("/orders",orderRoutes); // Order
@@ -41,3 +44,5 @@ mongoose.connect("mongodb+srv://admin:zoPvf0NUih9wBU3F@cluster0.yawwn.mongodb.ne
     app.listen(5000);
 })
 .catch((err)=> console.log(err));
+
+

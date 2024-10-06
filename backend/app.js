@@ -17,6 +17,10 @@ const employeeRouter = require('./Routes/EmployeeRoutes'); // Employee
 const salaryRouter = require('./Routes/SalaryRoutes'); // Salary
 const financrouter = require("./Routes/financ"); // Finance
 
+const orderRoutes = require("./Routes/OrderRoutes");
+const supplierRoutes = require("./Routes/SupplierRoutes"); 
+const orderemailRoutes = require("./Routes/EmailRoutes");
+
 // Middlewear
 const app = express();
 const cors = require("cors");
@@ -33,6 +37,10 @@ app.use("/treatments",treatmentrouter); // Treatment
 app.use('/employees', employeeRouter); //Employee
 app.use('/salaries', salaryRouter); // Salary
 app.use("/finance", financrouter); // Finance
+
+app.use("/orders",orderRoutes);
+app.use("/suppliers", supplierRoutes);
+app.use("/orderemails", orderemailRoutes); 
 
 // Connect Database
 mongoose.connect("mongodb+srv://admin:zoPvf0NUih9wBU3F@cluster0.yawwn.mongodb.net/")

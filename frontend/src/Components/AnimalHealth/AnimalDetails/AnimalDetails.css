@@ -1,13 +1,13 @@
 .animal-details-container {
     padding: 20px;
-    background-color: #f4f4f4;
+    /*background-color: #f4f4f4;*/
     border-radius: 8px;
     max-width: 1200px;
     margin: 0 auto;
 }
 
 .animal-details-header {
-    font-size: 24px; 
+    font-size: 24px;
     font-family: 'Arial', sans-serif;
     color: #333;
     text-align: center;
@@ -17,7 +17,7 @@
 .animal-container {
     background-color: white;
     border-radius: 8px;
-    padding: 15px; 
+    padding: 15px;
     box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
     margin-bottom: 20px;
 }
@@ -38,14 +38,15 @@
 .animal-detail-label {
     font-weight: bold;
     color: #333;
-    margin-right: 5px; 
+    margin-right: 5px;
 }
 
-.update-button, .delete-button {
-    padding: 8px 16px; 
+.animal-update-button,
+.animal-delete-button {
+    padding: 8px 16px;
     border: none;
     border-radius: 5px;
-    font-size: 14px; 
+    font-size: 14px;
     cursor: pointer;
     color: white;
     font-weight: bold;
@@ -55,28 +56,28 @@
     text-decoration: none;
 }
 
-.update-button {
+.animal-update-button {
     background-color: #4CAF50;
     margin-right: 10px;
 }
 
-.delete-button {
+.animal-delete-button {
     background-color: #f44336;
 }
 
-.update-button:hover {
+.animal-update-button:hover {
     background-color: #45a049;
     transform: scale(1.05);
 }
 
-.delete-button:hover {
+.animal-delete-button:hover {
     background-color: #d32f2f;
     transform: scale(1.05);
 }
 
-.search-container {
+.animal-search-container {
     display: flex;
-    justify-content: flex-end;
+    justify-content: flex-end; /* Align to the right */
     margin-bottom: 20px;
 }
 
@@ -98,7 +99,7 @@ input[name="search"]:focus {
     box-shadow: 0 3px 8px rgba(0, 0, 0, 0.15);
 }
 
-.search-button {
+.animal-search-button {
     padding: 10px 20px;
     border: none;
     background-color: #4CAF50;
@@ -110,37 +111,46 @@ input[name="search"]:focus {
     transition: background-color 0.3s ease, transform 0.3s ease;
 }
 
-.search-button:hover {
+.animal-search-button:hover {
     background-color: #45a049;
     transform: scale(1.05);
 }
 
+.animal-download-report-button {
+    padding: 10px 20px;
+    background-color: #007BFF; /* Blue background */
+    color: white; /* White text */
+    font-size: 16px; /* Font size */
+    border: none; /* Remove border */
+    border-radius: 5px; /* Rounded corners */
+    cursor: pointer; /* Pointer cursor on hover */
+    transition: background-color 0.3s ease, transform 0.3s ease; /* Smooth transition */
+    margin-top: 20px; /* Add some space above the button */
+}
+
+.animal-download-report-button:hover {
+    background-color: #0056b3; /* Darker blue on hover */
+    transform: scale(1.05); /* Slightly enlarge on hover */
+}
+
+
 /* Printable header */
-.printable-header {
+.animal-printable-header {
     display: none;
 }
 
 @media print {
-    .printable-header {
+    .animal-printable-header {
         display: block;
         text-align: center;
         margin-bottom: 20px;
     }
 
-    .report-logo {
-        display: block;
-        margin: 0 auto;
-        width: 100px;
-        height: 100px;
-        margin-bottom: 20px;
-    }
-
-    .animal-details-header, .search-container, .search-button, nav, button {
+    .animal-details-header, .animal-search-container, .animal-search-button, nav, button {
         display: none; /* Hide non-printable elements */
     }
 
-    .animal-container {
-        box-shadow: none; /* Remove shadow for clean printing */
+    .animal-title, .animal-details {
         margin-bottom: 10px;
     }
 
@@ -154,9 +164,7 @@ input[name="search"]:focus {
         color: #000;
     }
 
-    .update-button, .delete-button {
+    .animal-update-button, .animal-delete-button {
         display: none;
     }
 }
-
-

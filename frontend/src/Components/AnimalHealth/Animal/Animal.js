@@ -38,52 +38,52 @@ function Animal(props) {
   }).join(', ');
 
   return (
-    <div className="animal-container">
-      <h1 className="animal-heading">Animal Details</h1>
-      <div className="animal-details">
-        <div className="animal-detail">
-          <strong className="animal-detail-label">Animal ID:</strong> 
-          <span className="animal-detail-value">{animalID}</span>
+    <div className="animal-animal-container">
+      <h1 className="animal-animal-heading">Animal Details</h1>
+      <div className="animal-animal-details">
+        <div className="animal-animal-detail">
+          <strong className="animal-animal-detail-label">Animal ID:</strong> 
+          <span className="animal-animal-detail-value">{animalID}</span>
         </div>
-        <div className="animal-detail">
-          <strong className="animal-detail-label">Animal Type:</strong> 
-          <span className="animal-detail-value">{animalType}</span>
+        <div className="animal-animal-detail">
+          <strong className="animal-animal-detail-label">Animal Type:</strong> 
+          <span className="animal-animal-detail-value">{animalType}</span>
         </div>
-        <div className="animal-detail">
-          <strong className="animal-detail-label">Gender:</strong> 
-          <span className="animal-detail-value">{gender}</span>
+        <div className="animal-animal-detail">
+          <strong className="animal-animal-detail-label">Gender:</strong> 
+          <span className="animal-animal-detail-value">{gender}</span>
         </div>
-        <div className="animal-detail">
-          <strong className="animal-detail-label">Date of Birth:</strong> 
-          <span className="animal-detail-value">{new Date(dateOfBirth).toLocaleDateString()}</span>
+        <div className="animal-animal-detail">
+          <strong className="animal-animal-detail-label">Date of Birth:</strong> 
+          <span className="animal-animal-detail-value">{new Date(dateOfBirth).toLocaleDateString()}</span>
         </div>
-        <div className="animal-detail">
-          <strong className="animal-detail-label">Weight:</strong> 
-          <span className="animal-detail-value">{weight}</span>
+        <div className="animal-animal-detail">
+          <strong className="animal-animal-detail-label">Weight:</strong> 
+          <span className="animal-animal-detail-value">{weight}</span>
         </div>
-        <div className="animal-detail">
-          <strong className="animal-detail-label">Breeding Status:</strong> 
-          <span className="animal-detail-value">{breedingStatus}</span>
+        <div className="animal-animal-detail">
+          <strong className="animal-animal-detail-label">Breeding Status:</strong> 
+          <span className="animal-animal-detail-value">{breedingStatus}</span>
         </div>
-        <div className="animal-detail">
-          <strong className="animal-detail-label">Health Status:</strong> 
-          <span className="animal-detail-value">{healthStatus}</span>
+        <div className="animal-animal-detail">
+          <strong className="animal-animal-detail-label">Health Status:</strong> 
+          <span className="animal-animal-detail-value">{healthStatus}</span>
         </div>
-        <div className="animal-detail">
-          <strong className="animal-detail-label">Health Condition:</strong> 
-          <span className="animal-detail-value">{healthCondition}</span>
+        <div className="animal-animal-detail">
+          <strong className="animal-animal-detail-label">Health Condition:</strong> 
+          <span className="animal-animal-detail-value">{healthCondition}</span>
         </div>
-        <div className="animal-detail">
-          <strong className="animal-detail-label">Treatment Plans:</strong> 
-          <span className="animal-detail-value">{treatmentDescriptions}</span>
+        <div className="animal-animal-detail">
+          <strong className="animal-animal-detail-label">Treatment Plans:</strong> 
+          <span className="animal-animal-detail-value">{treatmentDescriptions}</span>
         </div>
       </div>
-      <div className="animal-button-group">
+      <div className="animal-animal-button-group">
         <Link to={`/animaldetails/${animalID}`}>
-          <button className="animal-button update-button">Update</button>
+          <button className="animal-animal-button animal-update-button">Update</button>
         </Link>
         <button
-          className="animal-button delete-button"
+          className="animal-animal-button animal-delete-button"
           onClick={deleteHandler}
         >
           Delete

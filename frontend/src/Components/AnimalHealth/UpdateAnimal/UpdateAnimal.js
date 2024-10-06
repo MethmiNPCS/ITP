@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import axios from "axios";
 import { useParams, useNavigate } from "react-router";
 import Nav from "../Nav/Nav"; 
-import "./UpdateAnimal.css"
+import "./UpdateAnimal.css";
 
 const URL = "http://localhost:5000/treatments"; 
 
@@ -88,35 +88,36 @@ function UpdateAnimal() {
   };
 
   return (
-    <div className="update-animal-container">
-      <Nav /> 
-      <h1 className="update-animal-header">Update Animal</h1>
-      <form onSubmit={handleSubmit} className="update-animal-form">
-        <label className="form-label">Animal ID</label>
+    <div><Nav />
+    <br/>
+    <div className="animal-update-animal-container">
+      <h1 className="animal-update-animal-header">Update Animal</h1>
+      <form onSubmit={handleSubmit} className="animal-form">
+        <label className="animal-form-label">Animal ID</label>
         <input
           type="text"
           name="animalID"
           value={inputs.animalID || ""}
           onChange={handleChange}
           readOnly
-          className="form-input"
+          className="animal-form-input"
         />
-<br/>
-        <label className="form-label">Animal Type</label>
+        <br/>
+        <label className="animal-form-label">Animal Type</label>
         <select
           name="animalType"
           value={inputs.animalType || ""}
           onChange={handleChange}
           required
-          className="form-select"
+          className="animal-form-select"
         >
           <option value="Cow">Cow</option>
           <option value="Chicken">Chicken</option>
           <option value="Pig">Pig</option>
         </select>
         <br/>
-        <label className="form-label">Gender</label>
-        <div className="gender-radio-group">
+        <label className="animal-form-label">Gender</label>
+        <div className="animal-gender-radio-group">
           <input
             type="radio"
             id="male"
@@ -125,9 +126,9 @@ function UpdateAnimal() {
             checked={inputs.gender === "Male"}
             onChange={handleChange}
             required
-            className="form-radio"
+            className="animal-form-radio"
           />
-          <label htmlFor="male" className="form-radio-label">Male</label>
+          <label htmlFor="male" className="animal-form-radio-label">Male</label>
 
           <input
             type="radio"
@@ -136,66 +137,66 @@ function UpdateAnimal() {
             value="Female"
             checked={inputs.gender === "Female"}
             onChange={handleChange}
-            className="form-radio"
+            className="animal-form-radio"
           />
-          <label htmlFor="female" className="form-radio-label">Female</label>
+          <label htmlFor="female" className="animal-form-radio-label">Female</label>
         </div>
         <br/>
-        <label className="form-label">Date of Birth</label>
+        <label className="animal-form-label">Date of Birth</label>
         <input
           type="date"
           name="dateOfBirth"
           value={inputs.dateOfBirth || ""}
           onChange={handleChange}
           required
-          className="form-input"
+          className="animal-form-input"
         />
-<br/>
-        <label className="form-label">Weight</label>
+        <br/>
+        <label className="animal-form-label">Weight</label>
         <input
           type="number"
           name="weight"
           value={inputs.weight || ""}
           onChange={handleChange}
-          className="form-input"
+          className="animal-form-input"
         />
-<br/>
-        <label className="form-label">Breeding Status</label>
+        <br/>
+        <label className="animal-form-label">Breeding Status</label>
         <input
           type="text"
           name="breedingStatus"
           value={inputs.breedingStatus || ""}
           onChange={handleChange}
-          className="form-input"
+          className="animal-form-input"
         />
-<br/>
-        <label className="form-label">Health Status</label>
+        <br/>
+        <label className="animal-form-label">Health Status</label>
         <select
           name="healthStatus"
           value={inputs.healthStatus || ""}
           onChange={handleChange}
           required
-          className="form-select"
+          className="animal-form-select"
         >
           <option value="Healthy">Healthy</option>
           <option value="Sick">Sick</option>
           <option value="Injured">Injured</option>
         </select>
         <br/>
-        <label className="form-label">Health Condition</label>
+        <label className="animal-form-label">Health Condition</label>
         <input
           type="text"
           name="healthCondition"
           value={inputs.healthCondition || ""}
           onChange={handleChange}
-          className="form-input"
+          className="animal-form-input"
         />
-<br/>
-        <label className="form-label">Treatment Plans</label>
-        <div className="checkbox-group">
+        <br/>
+        <label className="animal-form-label">Treatment Plans</label>
+        <div className="animal-checkbox-group">
           {treatmentPlans.length > 0 ? (
             treatmentPlans.map((plan) => (
-              <div key={plan.treatmentID} className="checkbox-item">
+              <div key={plan.treatmentID} className="animal-checkbox-item">
                 <input
                   type="checkbox"
                   id={plan.treatmentID}
@@ -203,9 +204,9 @@ function UpdateAnimal() {
                   value={plan.treatmentID}
                   checked={inputs.treatmentIDs.includes(plan.treatmentID)}
                   onChange={handleCheckboxChange}
-                  className="form-checkbox"
+                  className="animal-form-checkbox"
                 />
-                <label htmlFor={plan.treatmentID} className="form-checkbox-label">
+                <label htmlFor={plan.treatmentID} className="animal-form-checkbox-label">
                   {plan.treatmentID} - {plan.planDescription}
                 </label>
               </div>
@@ -215,8 +216,9 @@ function UpdateAnimal() {
           )}
         </div>
 
-        <button type="submit" className="submit-button">Submit</button>
+        <button type="submit" className="animal-submit-button">Submit</button>
       </form>
+    </div>
     </div>
   );
 }

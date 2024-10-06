@@ -11,12 +11,10 @@ function AddTreatment() {
     planDescription: "",
     startDate: "",
     endDate: "",
-    treatmentTime: "",
-    frequency: "",
-    animalIDs: "",
   });
 
   const [medicines, setMedicines] = useState([{ name: "", dose: "" }]);
+  const [treatmentTimes, setTreatmentTimes] = useState([""]);
   const [errors, setErrors] = useState({
     treatmentID: "",
   });
@@ -46,6 +44,21 @@ function AddTreatment() {
     setMedicines(updatedMedicines);
   };
 
+  const handleTreatmentTimeChange = (index, e) => {
+    const updatedTimes = [...treatmentTimes];
+    updatedTimes[index] = e.target.value;
+    setTreatmentTimes(updatedTimes);
+  };
+
+  const addTreatmentTime = () => {
+    setTreatmentTimes([...treatmentTimes, ""]);
+  };
+
+  const removeTreatmentTime = (index) => {
+    const updatedTimes = treatmentTimes.filter((_, i) => i !== index);
+    setTreatmentTimes(updatedTimes);
+  };
+
   const handleSubmit = (e) => {
     e.preventDefault();
     sendRequest();
@@ -53,10 +66,6 @@ function AddTreatment() {
 
   const sendRequest = async () => {
     try {
-      const animalIDsArray = inputs.animalIDs
-        ? inputs.animalIDs.split(",").map((id) => id.trim())
-        : [];
-
       const payload = {
         treatmentID: String(inputs.treatmentID),
         planDescription: String(inputs.planDescription),
@@ -64,13 +73,9 @@ function AddTreatment() {
           ? new Date(inputs.startDate).toISOString()
           : null,
         endDate: inputs.endDate ? new Date(inputs.endDate).toISOString() : null,
-        treatmentTime: String(inputs.treatmentTime),
-        frequency: String(inputs.frequency),
-        animalIDs: animalIDsArray,
+        treatmentTime: treatmentTimes, // Send the array of treatment times
         medicines,
       };
-
-      console.log("Prepared payload:", payload);
 
       const response = await axios.post(
         "http://localhost:5000/treatments",
@@ -82,7 +87,6 @@ function AddTreatment() {
         }
       );
 
-      console.log("Server response:", response.data);
       history("/treatmentdetails");
     } catch (error) {
       if (error.response && error.response.status === 400) {
@@ -101,11 +105,12 @@ function AddTreatment() {
   };
 
   return (
+    <div><Nav />
+    <br/>
     <div className="treatment-add-treatment-container">
-      <Nav />
       <h1 className="treatment-add-treatment-title">Add Treatment</h1>
       <form onSubmit={handleSubmit} className="treatment-add-treatment-form">
-      <br />
+        <br />
         <label className="treatment-form-label">Treatment ID</label>
         <br />
         <input
@@ -120,7 +125,7 @@ function AddTreatment() {
           <div className="treatment-error-message">{errors.treatmentID}</div>
         )}
         <br />
-        
+
         <label className="treatment-form-label">Plan Description</label>
         <br />
         <textarea
@@ -156,49 +161,59 @@ function AddTreatment() {
         />
         <br />
 
-        <label className="treatment-form-label">Treatment Time</label>
+        <label className="treatment-form-label">Treatment Time(s)</label>
         <br />
-        <input
-          type="text"
-          name="treatmentTime"
-          value={inputs.treatmentTime}
-          onChange={handleChange}
-          className="treatment-form-input"
-        />
-        <br />
-
-        <label className="treatment-form-label">Frequency</label>
-        <br />
-        <input
-          type="text"
-          name="frequency"
-          value={inputs.frequency}
-          onChange={handleChange}
-          className="treatment-form-input"
-        />
+        {treatmentTimes.map((time, index) => (
+          <div key={index} className="treatment-time-input-group">
+            <input
+              type="time"
+              name="treatmentTime"
+              value={time}
+              onChange={(e) => handleTreatmentTimeChange(index, e)}
+              className="treatment-form-input"
+              required
+            />
+            {treatmentTimes.length > 1 && (
+              <button
+                type="button"
+                className="treatment-remove-time-button"
+                onClick={() => removeTreatmentTime(index)}
+              >
+                Remove
+              </button>
+            )}
+          </div>
+        ))}
+        <button
+          type="button"
+          className="treatment-add-time-button"
+          onClick={addTreatmentTime}
+        >
+          Add Treatment Time
+        </button>
         <br />
 
         <label className="treatment-form-label">Medicines</label>
         <br />
         {medicines.map((medicine, index) => (
-          <div key={index} className="treatment-medicine-input-group">
+          <div key={index} className="treatment-medicine-group">
             <input
               type="text"
               name="name"
-              placeholder="Medicine name"
               value={medicine.name}
               onChange={(e) => handleMedicineChange(index, e)}
+              className="treatment-form-input"
+              placeholder="Medicine Name"
               required
-              className="treatment-form-input treatment-medicine-name-input"
             />
             <input
               type="text"
               name="dose"
-              placeholder="Dose"
               value={medicine.dose}
               onChange={(e) => handleMedicineChange(index, e)}
+              className="treatment-form-input"
+              placeholder="Dose"
               required
-              className="treatment-form-input treatment-medicine-dose-input"
             />
             {medicines.length > 1 && (
               <button
@@ -219,10 +234,12 @@ function AddTreatment() {
           Add Medicine
         </button>
         <br />
+
         <button type="submit" className="treatment-submit-button">
           Submit
         </button>
       </form>
+    </div>
     </div>
   );
 }

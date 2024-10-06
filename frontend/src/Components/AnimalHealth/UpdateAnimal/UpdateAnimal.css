@@ -1,4 +1,4 @@
-.update-animal-container {
+.animal-update-animal-container {
     width: 90%;
     max-width: 1200px;
     margin: 0 auto;
@@ -7,23 +7,23 @@
     border-radius: 8px;
 }
 
-h1.update-animal-header {
+h1.animal-update-animal-header {
     text-align: center;
     margin-bottom: 20px;
 }
 
-form {
+.animal-form {
     display: flex;
     flex-direction: column;
 }
 
-.form-label {
+.animal-form-label {
     font-weight: bold;
     margin-bottom: 5px;
 }
 
-.form-input,
-.form-select {
+.animal-form-input,
+.animal-form-select {
     margin-bottom: 15px;
     padding: 10px;
     font-size: 16px;
@@ -31,31 +31,31 @@ form {
     border: 1px solid #ccc;
 }
 
-.gender-radio-group {
+.animal-gender-radio-group {
     display: flex;
     gap: 15px;
     margin-bottom: 15px;
 }
 
-.form-radio {
+.animal-form-radio {
     margin-right: 5px;
 }
 
-.checkbox-group {
+.animal-checkbox-group {
     margin-bottom: 15px;
 }
 
-.checkbox-item {
+.animal-checkbox-item {
     display: flex;
     align-items: center;
 }
 
-.form-checkbox {
+.animal-form-checkbox {
     margin-right: 10px;
 }
 
-.submit-button {
-    background-color: #007bff;
+.animal-submit-button {
+    background-color: #45a049;
     color: white;
     padding: 10px 15px;
     border: none;
@@ -63,6 +63,6 @@ form {
     cursor: pointer;
 }
 
-.submit-button:hover {
-    background-color: #0056b3;
+.animal-submit-button:hover {
+    background-color: #387c3c;
 }

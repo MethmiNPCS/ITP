@@ -1,4 +1,4 @@
-.update-treatment-container {
+.treatment-update-treatment-container {
   width: 90%;
   max-width: 1200px;
   margin: 0 auto;
@@ -7,20 +7,23 @@
   border-radius: 8px;
 }
 
-form {
+h1.treatment-update-treatment-title {
+  text-align: center;
+  margin-bottom: 20px;
+}
+
+.treatment-update-treatment-form {
   display: flex;
   flex-direction: column;
 }
 
-.label {
+.treatment-form-label {
   font-weight: bold;
   margin-bottom: 5px;
 }
 
-input,
-select,
-textarea,
-button {
+.treatment-form-input,
+.treatment-form-textarea {
   margin-bottom: 15px;
   padding: 10px;
   font-size: 16px;
@@ -28,81 +31,76 @@ button {
   border: 1px solid #ccc;
 }
 
-button {
-  background-color: #007bff;
-  color: white;
-  border: none;
-  cursor: pointer;
-  padding: 10px 15px;
-}
-
-button:hover {
-  background-color: #0056b3;
-}
-
-.error-message {
-  color: red;
-  font-size: 0.875rem;
-  margin-top: 0.5rem;
-  font-weight: bold;
-}
-
-.add-medicine-container {
+.treatment-times-container {
   display: flex;
   flex-direction: column;
-}
-
-.add-medicine-container div {
-  display: flex;
   gap: 10px;
-  margin-bottom: 10px;
+  margin-bottom: 15px;
 }
 
-.add-medicine-container input {
-  flex: 1;
+.treatment-time-field {
+  display: flex;
+  align-items: center; /* Center align items vertically */
+  gap: 10px; /* Add some space between input and button */
 }
 
-.add-medicine-button,
-.submit-button,
-.remove-medicine-button {
-  padding: 5px 10px;
-  font-size: 14px;
+.treatment-form-input {
+  width: 150px; /* Set a fixed width for time fields */
+  margin-bottom: 0; /* Remove bottom margin to align inputs better */
+  flex-grow: 0; /* Prevent the input from taking the remaining space */
+}
+
+/* Remove button styles */
+.treatment-remove-treatment-time-button,
+.treatment-remove-medicine-button {
+  background-color: #ff6f61; /* Red */
+  color: white;
   border: none;
-  cursor: pointer;
+  padding: 10px 15px;
   border-radius: 4px;
-  transition: background-color 0.3s ease, transform 0.3s ease;
+  cursor: pointer;
 }
 
-.add-medicine-button {
-  background-color: #4CAF50;
+.treatment-remove-treatment-time-button:hover,
+.treatment-remove-medicine-button:hover {
+  background-color: #c55a4c; /* Darker red on hover */
+}
+
+/* Add button styles */
+.treatment-add-treatment-time-button{
+  background-color: #45a049; /* Green */
   color: white;
-  display: inline-block;
-  margin-right: auto;
+  border: none;
+  padding: 10px 15px; /* Set the same padding for both buttons */
+  border-radius: 4px;
+  cursor: pointer;
+  font-size: 16px; /* Ensure both buttons have the same font size */
+  width: fit-content;
+}
+.treatment-add-medicine-button {
+  background-color: #45a049; /* Green */
+  color: white;
+  border: none;
+  padding: 10px 15px; /* Set the same padding for both buttons */
+  border-radius: 4px;
+  cursor: pointer;
+  font-size: 16px; /* Ensure both buttons have the same font size */
 }
 
-.add-medicine-button:hover {
+.treatment-add-treatment-time-button:hover,
+.treatment-add-medicine-button:hover {
+  background-color: #387c3c; /* Darker green on hover */
+}
+
+.treatment-submit-button {
   background-color: #45a049;
-}
-
-.remove-medicine-button {
-  background-color: #ff4d4d;
   color: white;
-  margin-left: 10px;
+  padding: 10px 15px;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
 }
 
-.remove-medicine-button:hover {
-  background-color: #e60000;
-}
-
-.submit-button {
-  background-color: #45a049;
-  color: white;
-  margin: 20px auto;
-  display: block;
-  padding: 15px 30px;
-  font-size: 18px;
-}
-
-.submit-button:hover {
+.treatment-submit-button:hover {
   background-color: #387c3c;
 }

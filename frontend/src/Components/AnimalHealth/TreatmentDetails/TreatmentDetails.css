@@ -1,12 +1,12 @@
-.treatment-details-container {
+.treatment-treatment-details-container {
     padding: 20px;
-    background-color: #f4f4f4;
+    /*background-color: #f4f4f4;*/
     border-radius: 8px;
     max-width: 1200px;
     margin: 0 auto;
 }
 
-.treatment-details-header {
+.treatment-treatment-details-header {
     font-size: 24px;
     font-family: 'Arial', sans-serif;
     color: #333;
@@ -22,26 +22,26 @@
     margin-bottom: 20px;
 }
 
-.treatment-title {
+.treatment-treatment-title {
     font-size: 20px;
     font-weight: bold;
     color: #333;
     margin-bottom: 10px;
 }
 
-.treatment-details {
+.treatment-treatment-details {
     font-size: 14px;
     color: #555;
     margin-bottom: 15px;
 }
 
-.treatment-detail-label {
+.treatment-treatment-detail-label {
     font-weight: bold;
     color: #333;
     margin-right: 5px;
 }
 
-.update-button, .delete-button {
+.treatment-update-button, .treatment-delete-button {
     padding: 8px 16px;
     border: none;
     border-radius: 5px;
@@ -55,23 +55,29 @@
     text-decoration: none;
 }
 
-.update-button {
+.treatment-update-button {
     background-color: #4CAF50;
     margin-right: 10px;
 }
 
-.delete-button {
+.treatment-delete-button {
     background-color: #f44336;
 }
 
-.update-button:hover {
+.treatment-update-button:hover {
     background-color: #45a049;
     transform: scale(1.05);
 }
 
-.delete-button:hover {
+.treatment-delete-button:hover {
     background-color: #d32f2f;
     transform: scale(1.05);
+}
+
+.treatment-search-container {
+    display: flex;
+    justify-content: flex-end; /* Align to the right */
+    margin-bottom: 20px;
 }
 
 input[name="search"] {
@@ -92,7 +98,7 @@ input[name="search"]:focus {
     box-shadow: 0 3px 8px rgba(0, 0, 0, 0.15);
 }
 
-.search-button {
+.treatment-search-button {
     padding: 10px 20px;
     border: none;
     background-color: #4CAF50;
@@ -104,51 +110,61 @@ input[name="search"]:focus {
     transition: background-color 0.3s ease, transform 0.3s ease;
 }
 
-.search-button:hover {
-    background-color: #45a049 ;
+.treatment-search-button:hover {
+    background-color: #45a049;
     transform: scale(1.05);
 }
 
+.treatment-download-button {
+    padding: 10px 20px;
+    background-color: #007BFF; /* Blue background */
+    color: white; /* White text */
+    font-size: 16px; /* Font size */
+    border: none; /* Remove border */
+    border-radius: 5px; /* Rounded corners */
+    cursor: pointer; /* Pointer cursor on hover */
+    transition: background-color 0.3s ease, transform 0.3s ease; /* Smooth transition */
+    margin-top: 20px; /* Add some space above the button */
+}
+
+.treatment-download-button:hover {
+    background-color: #0056b3; /* Darker blue on hover */
+    transform: scale(1.05); /* Slightly enlarge on hover */
+}
+
+
 /* Printable header */
-.printable-header {
+.treatment-printable-header {
     display: none;
 }
 
 @media print {
-    .printable-header {
+    .treatment-printable-header {
         display: block;
         text-align: center;
         margin-bottom: 20px;
     }
 
-    .report-logo {
-        display: block;
-        margin: 0 auto;
-        width: 100px;
-        height: 100px;
-        margin-bottom: 20px;
-    }
-
-    .animal-details-header, .search-container, .search-button, nav, button {
+    .treatment-treatment-details-header, .treatment-search-container, .treatment-search-button, nav, button {
         display: none; /* Hide non-printable elements */
     }
 
-    .animal-container {
+    .treatment-container {
         box-shadow: none; /* Remove shadow for clean printing */
         margin-bottom: 10px;
     }
 
-    .animal-details-container {
+    .treatment-treatment-details-container {
         background-color: white;
         padding: 0;
     }
 
-    .animal-detail-label {
+    .treatment-treatment-detail-label {
         font-weight: bold;
         color: #000;
     }
 
-    .update-button, .delete-button {
+    .treatment-update-button, .treatment-delete-button {
         display: none;
     }
 }

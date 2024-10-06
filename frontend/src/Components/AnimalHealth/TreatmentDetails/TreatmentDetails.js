@@ -39,7 +39,9 @@ function TreatmentDetails() {
 
   const handleDownloadPDF = () => {
     const doc = new jsPDF();
-  
+    const pageHeight = doc.internal.pageSize.getHeight();
+    let currentY = 60; // Start position after logo and title
+
     // Add logo
     const logo = new Image();
     logo.src = "/favicon.ico"; // Path to your logo
@@ -48,79 +50,134 @@ function TreatmentDetails() {
       const logoHeight = 30; // Adjust logo height
       const logoX = (doc.internal.pageSize.getWidth() - logoWidth) / 2; // Center horizontally
       doc.addImage(logo, "ICO", logoX, 10, logoWidth, logoHeight);
-  
+
       // Center the title
       doc.setFontSize(18);
       const title = "Treatment Plan Report";
       const titleWidth = doc.getTextWidth(title);
       const titleX = (doc.internal.pageSize.getWidth() - titleWidth) / 2; // Center horizontally
       doc.text(title, titleX, 50);
-  
-      // Add treatment details
-      let currentY = 60;
-  
+
+      // Start adding treatments
+      currentY = 70; // Adjust starting position after title
       treatments.forEach((treatment) => {
+        const addNewPageIfNeeded = () => {
+          if (currentY > pageHeight - 20) {
+            doc.addPage();
+            currentY = 20;
+          }
+        };
+
+        // Add treatment details
         doc.setFontSize(14);
         doc.text(`Treatment ID: ${treatment.treatmentID}`, 10, currentY);
-        doc.text(`Plan Description: ${treatment.planDescription}`, 10, currentY + 5);
-        doc.text(`Start Date: ${new Date(treatment.startDate).toLocaleDateString()}`, 10, currentY + 10);
-        doc.text(`End Date: ${new Date(treatment.endDate).toLocaleDateString()}`, 10, currentY + 15);
-        doc.text(`Treatment Time: ${treatment.treatmentTime || "Not specified"}`, 10, currentY + 20);
-        doc.text(`Frequency: ${treatment.frequency || "Not specified"}`, 10, currentY + 25);
-        doc.text(`Associated Animal IDs: ${treatment.animalIDs.join(", ") || "None"}`, 10, currentY + 30);
-  
+        currentY += 10;
+        addNewPageIfNeeded();
+
+        doc.text(
+          `Plan Description: ${treatment.planDescription}`,
+          10,
+          currentY
+        );
+        currentY += 10;
+        addNewPageIfNeeded();
+
+        doc.text(
+          `Start Date: ${new Date(treatment.startDate).toLocaleDateString()}`,
+          10,
+          currentY
+        );
+        currentY += 10;
+        addNewPageIfNeeded();
+
+        doc.text(
+          `End Date: ${new Date(treatment.endDate).toLocaleDateString()}`,
+          10,
+          currentY
+        );
+        currentY += 10;
+        addNewPageIfNeeded();
+
+        doc.text(
+          `Treatment Time(s): ${
+            treatment.treatmentTime.join(", ") || "Not specified"
+          }`,
+          10,
+          currentY
+        );
+        currentY += 10;
+        addNewPageIfNeeded();
+
+        doc.text(
+          `Associated Animal IDs: ${treatment.animalIDs.join(", ") || "None"}`,
+          10,
+          currentY
+        );
+        currentY += 10;
+        addNewPageIfNeeded();
+
         // Add medicines details
         treatment.medicines.forEach((medicine, index) => {
-          doc.text(`Medicine Name: ${medicine.name}`, 10, currentY + 35 + index * 5);
-          doc.text(`Dose: ${medicine.dose}`, 10, currentY + 40 + index * 5);
+          doc.text(`Medicine Name: ${medicine.name}`, 10, currentY);
+          currentY += 10;
+          addNewPageIfNeeded();
+
+          doc.text(`Dose: ${medicine.dose}`, 10, currentY);
+          currentY += 10;
+          addNewPageIfNeeded();
         });
-  
-        // Update currentY for the next treatment
-        currentY += 60 + treatment.medicines.length * 5; // Adjust spacing between treatments
+
+        // Add a separator or some spacing before next treatment
+        currentY += 15;
+        addNewPageIfNeeded();
       });
-  
+
       doc.save("treatment_plan_report.pdf");
     };
   };
 
   return (
-    <div className="treatment-details-container">
-      <Nav />
-      <h1 className="treatment-details-header">Treatment Details Page</h1>
-
-      <div className="search-container">
+    <div><Nav />
+    <div className="treatment-treatment-details-container">
+      <h1 className="treatment-treatment-details-header">Treatment Plans</h1>
+      <div className="treatment-search-container">
         <input
-          className="search-input"
-          onChange={(e) => setSearchQuery(e.target.value)}
           type="text"
-          name="search"
           placeholder="Search"
+          value={searchQuery}
+          onChange={(e) => setSearchQuery(e.target.value)}
+          style={{
+            padding: "10px",
+            width: "100%",
+            maxWidth: "300px",
+            border: "1px solid #ccc",
+            borderRadius: "8px",
+            marginRight: "10px",
+            fontSize: "16px",
+            color: "#333",
+            boxShadow: "0 2px 5px rgba(0, 0, 0, 0.1)",
+            transition: "box-shadow 0.3s ease",
+          }}
         />
-        <button className="search-button" onClick={handleSearch}>
+        <button onClick={handleSearch} className="treatment-search-button">
           Search
         </button>
       </div>
 
-      {noResults ? (
-        <div className="no-results-container">
-          <p className="no-results-message">No Treatment Plan found</p>
-        </div>
-      ) : (
-        <div className="treatment-list-container">
-          <div className="printable-header">
-            <img src="/favicon.ico" alt="Logo" className="report-logo" />
-            <h2 className="report-title">Treatment Plan Report</h2>
-          </div>
-          {treatments.map((treatment, i) => (
-            <div key={i} className="treatment-container">
-              <Treatment treatment={treatment} refreshTreatment={refreshTreatment} />
-            </div>
-          ))}
-        </div>
-      )}
-      <button className="download-report-button" onClick={handleDownloadPDF}>
+      {noResults && <p>No results found.</p>}
+      <div className="treatment-list">
+        {treatments.map((treatment) => (
+          <Treatment
+            key={treatment.treatmentID}
+            treatment={treatment}
+            onRefresh={refreshTreatment}
+          />
+        ))}
+      </div>
+      <button onClick={handleDownloadPDF} className="treatment-download-button">
         Download Report
       </button>
+    </div>
     </div>
   );
 }

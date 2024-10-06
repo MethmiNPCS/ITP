@@ -99,8 +99,10 @@ function AddAnimal() {
 
   return (
     <div>
+      <Nav />
+      <br />
       <div className="animal-add-animal-container">
-        <Nav />
+        
         <h1 className="animal-add-animal-header">Add Animal</h1>
         <br />
         <form onSubmit={handleSubmit} className="animal-add-animal-form">

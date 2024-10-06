@@ -47,81 +47,121 @@ function AnimalDetails() {
 
   const handleDownloadPDF = () => {
     const doc = new jsPDF();
-    
+    const pageHeight = doc.internal.pageSize.getHeight();
+    let currentY = 60;
+
     // Add logo
     const logo = new Image();
     logo.src = "/favicon.ico"; // Path to your logo
     logo.onload = () => {
-      // Center the logo
       const logoWidth = 30; // Adjust logo width
       const logoHeight = 30; // Adjust logo height
       const logoX = (doc.internal.pageSize.getWidth() - logoWidth) / 2; // Center horizontally
       doc.addImage(logo, "ICO", logoX, 10, logoWidth, logoHeight);
-  
-      // Center the title
+
       doc.setFontSize(18);
       const title = "Animal Report";
       const titleWidth = doc.getTextWidth(title);
       const titleX = (doc.internal.pageSize.getWidth() - titleWidth) / 2; // Center horizontally
       doc.text(title, titleX, 50);
-  
-      // Add animal details with even spacing
-      let currentY = 60;
-      currentY += 10;
-      
-      // Start position for animal details
-      animals.forEach((animal, index) => {
+
+      currentY = 70; // Reset Y after title
+
+      animals.forEach((animal) => {
         doc.setFontSize(14);
+
+        const addNewPageIfNeeded = () => {
+          if (currentY > pageHeight - 30) {
+            doc.addPage();
+            currentY = 20;
+          }
+        };
+
+        // Add animal details
         doc.text(`Animal ID: ${animal.animalID}`, 10, currentY);
-        doc.text(`Animal Type: ${animal.animalType}`, 10, currentY + 5);
-        doc.text(`Gender: ${animal.gender}`, 10, currentY + 10);
-        doc.text(`Date of Birth: ${new Date(animal.dateOfBirth).toLocaleDateString()}`, 10, currentY + 15);
-        doc.text(`Weight: ${animal.weight}`, 10, currentY + 20);
-        doc.text(`Breeding Status: ${animal.breedingStatus}`, 10, currentY + 25);
-        doc.text(`Health Status: ${animal.healthStatus}`, 10, currentY + 30);
-        doc.text(`Health Condition: ${animal.healthCondition}`, 10, currentY + 35);
-        
+        currentY += 10;
+        addNewPageIfNeeded();
+
+        doc.text(`Animal Type: ${animal.animalType}`, 10, currentY);
+        currentY += 10;
+        addNewPageIfNeeded();
+
+        doc.text(`Gender: ${animal.gender}`, 10, currentY);
+        currentY += 10;
+        addNewPageIfNeeded();
+
+        doc.text(`Date of Birth: ${new Date(animal.dateOfBirth).toLocaleDateString()}`, 10, currentY);
+        currentY += 10;
+        addNewPageIfNeeded();
+
+        doc.text(`Weight: ${animal.weight}`, 10, currentY);
+        currentY += 10;
+        addNewPageIfNeeded();
+
+        doc.text(`Breeding Status: ${animal.breedingStatus}`, 10, currentY);
+        currentY += 10;
+        addNewPageIfNeeded();
+
+        doc.text(`Health Status: ${animal.healthStatus}`, 10, currentY);
+        currentY += 10;
+        addNewPageIfNeeded();
+
+        doc.text(`Health Condition: ${animal.healthCondition}`, 10, currentY);
+        currentY += 10;
+        addNewPageIfNeeded();
+
         // Find treatment descriptions
         const treatmentDescriptions = animal.treatmentIDs.map(id => {
           const treatment = treatments.find(t => t.treatmentID === id);
           return treatment ? treatment.planDescription : "No description available";
-        }).join(', ');
-        doc.text(`Treatment Plans: ${treatmentDescriptions}`, 10, currentY + 40);
-  
-        // Update currentY for next animal with even spacing
-        currentY += 50; // Adjust spacing between animals
+        });
+
+        // Add treatment descriptions, one per line
+        doc.text("Treatment Plans:", 10, currentY);
+        currentY += 10;
+        addNewPageIfNeeded();
+
+        treatmentDescriptions.forEach((description) => {
+          doc.text(`- ${description}`, 10, currentY);
+          currentY += 10;
+          addNewPageIfNeeded();
+        });
+
+        currentY += 10; // Add extra space after treatment info
+        addNewPageIfNeeded();
       });
-  
+
+      // Save the PDF
       doc.save("animal_report.pdf");
     };
   };
-  
+
   // Function to refresh the list of animals
   const refreshAnimals = () => {
     fetchAnimals();
   };
 
   return (
+    <div><Nav />
     <div className="animal-details-container">
-      <Nav />
       <h1 className="animal-details-header">Animal Details Page</h1>
 
-      <div className="search-container">
+      <div className="animal-search-container">
         <input
-          className="search-input"
+          className="animal-search-input"
           onChange={(e) => setSearchQuery(e.target.value)}
           type="text"
           name="search"
           placeholder="Search"
         />
-        <button className="search-button" onClick={handleSearch}>
+        <button className="animal-search-button" onClick={handleSearch}>
           Search
         </button>
       </div>
 
       {noResults ? (
-        <div className="no-results-container">
-          <p className="no-results-message">No Animal Details found</p>
+        <div className="animal-no-results-container">
+          <p className="animal-no-results-message">No Animal Details found</p>
         </div>
       ) : (
         <div className="animal-list-container">
@@ -133,9 +173,10 @@ function AnimalDetails() {
             ))}
         </div>
       )}
-      <button className="download-report-button" onClick={handleDownloadPDF}>
+      <button className="animal-download-report-button" onClick={handleDownloadPDF}>
         Download Report
       </button>
+    </div>
     </div>
   );
 }

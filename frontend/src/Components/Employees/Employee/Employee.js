@@ -3,7 +3,7 @@ import React from 'react';
 import { useNavigate } from 'react-router-dom';
 
 function Employee({ employee }) {
-  const { _id, FirstName, LastName, NIC, Gender, Adress, Position, ContactNumber } = employee;
+  const { _id, FirstName, LastName, NIC, Gender, Adress, Position, ContactNumber, BasicSalary, NetSalary} = employee;
   console.log(employee);
   const navigate = useNavigate(); // Initialize useNavigate
 
@@ -21,6 +21,11 @@ function Employee({ employee }) {
     navigate(`/updateemployeedetails/${_id}`); // Fixed template literal
   };
 
+  const calculateSalaryHandler = () => {
+    navigate("/salary", { state: { BasicSalary } }); // Pass BasicSalary to Salary.js
+  };
+
+
   return (
     <div>
       <h2>Employee Display</h2>
@@ -33,9 +38,12 @@ function Employee({ employee }) {
       <p>Adress: {Adress}</p>
       <p>Position: {Position}</p>
       <p>Contact Number: {ContactNumber}</p>
+      <p>Basic Salary: {BasicSalary}</p>
+      <p>Net Salary: {NetSalary}</p>
       <br />
       <button onClick={deleteHandler}>Delete</button>
-      <button onClick={updateHandler}>Update</button> {/* Added onClick handler */}
+      <button onClick={updateHandler}>Update</button>
+      <button onClick={calculateSalaryHandler}>Calculate Salary</button>
     </div>
   );
 }

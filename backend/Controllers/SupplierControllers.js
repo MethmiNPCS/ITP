@@ -20,7 +20,6 @@ const getAllSuppliers = async (req, res, next) => {
 // Add a new supplier
 const addSupplier = async (req, res, next) => {
     const { supplierID, supplierName, supplierType, supplierEmail, supplierPhone } = req.body;
-
     let supplier;
 
     try {
@@ -36,7 +35,6 @@ const addSupplier = async (req, res, next) => {
         console.log(err);
         return res.status(500).json({ message: "Failed to add supplier" });
     }
-
     return res.status(200).json({ supplier });
 };
 
@@ -133,6 +131,26 @@ const getSupplierCategoryCount = async (req, res, next) => {
     }
 };
 
+// Get supplier email by supplier name
+const getSupplierEmailByName = async (req, res, next) => {
+    const { supplierName } = req.params; // Get supplier name from request parameters
+
+    let supplier;
+
+    try {
+        supplier = await Supplier.findOne({ supplierName }); // Find supplier by name
+    } catch (err) {
+        console.log(err);
+        return res.status(500).json({ message: "Failed to retrieve supplier email" });
+    }
+
+    if (!supplier) {
+        return res.status(404).json({ message: "Supplier not found" });
+    }
+
+    return res.status(200).json({ email: supplier.supplierEmail }); // Send back the supplier email
+};
+
 
 // Export functions to routes
 exports.getAllSuppliers = getAllSuppliers;
@@ -142,6 +160,7 @@ exports.getBySupplierType = getBySupplierType;
 exports.updateSupplier = updateSupplier;
 exports.getSupplierCount = getSupplierCount;
 exports.getSupplierCategoryCount = getSupplierCategoryCount; 
+exports.getSupplierEmailByName = getSupplierEmailByName;
 
 
 

@@ -13,6 +13,7 @@ orderrouter.post("/",OrderController.addOrders);
 orderrouter.get("/:orderID",OrderController.getByorderID);
 orderrouter.put("/:orderID",OrderController.updateOrder);
 orderrouter.delete("/:orderID",OrderController.deleteOrder);
+orderrouter.patch("/update-status/:orderID", OrderController.updateOrderStatus);
 
 
 

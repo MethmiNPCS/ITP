@@ -29,6 +29,7 @@ function UpdateEmployee() {
                 Adress: String(inputs.Adress),
                 Position: String(inputs.Position),
                 ContactNumber: String(inputs.ContactNumber),
+                BasicSalary: Number(inputs.BasicSalary), // Add Basic Salary here
             });
             navigate('/employeedetails');
         } catch (error) {
@@ -133,6 +134,17 @@ function UpdateEmployee() {
                         name="ContactNumber"
                         onChange={handleChange}
                         value={inputs.ContactNumber || ""}
+                        style={styles.input}
+                        required
+                    />
+                </div>
+                <div style={styles.formGroup}>
+                    <label style={styles.label}>Basic Salary</label>
+                    <input
+                        type="number"
+                        name="BasicSalary"
+                        onChange={handleChange}
+                        value={inputs.BasicSalary || ""}
                         style={styles.input}
                         required
                     />

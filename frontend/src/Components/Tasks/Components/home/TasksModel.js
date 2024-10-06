@@ -40,6 +40,10 @@ const TaskModal = ({ task, onClose }) => {
           </span>
         </p>
         <p className='my-2'>
+          <span className='font-bold'>Assigned Employee:</span> 
+          {task.assignedEmployee ? `${task.assignedEmployee.FirstName} ${task.assignedEmployee.LastName}` : 'No employee assigned'}
+        </p>
+        <p className='my-2'>
           <span className='font-bold'>Tags:</span> {Array.isArray(task.tags) ? task.tags.join(', ') : 'No tags'}
         </p>
         <p className='my-2'>
@@ -73,6 +77,7 @@ const categoryColors = {
   Products: 'bg-yellow-400 text-yellow-800',
   Employees: 'bg-pink-400 text-pink-800',
   Maintenance: 'bg-gray-400 text-gray-800',
+  Plantation: 'bg-green-400 text-green-800',
 };
 
 

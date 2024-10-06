@@ -1,0 +1,139 @@
+.animal-add-animal-container {
+  width: 90%;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 20px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  border-radius: 8px;
+}
+
+.animal-add-animal-form {
+  display: flex;
+  flex-direction: column;
+}
+
+.animal-add-animal-label {
+  font-weight: bold;
+  margin-bottom: 5px;
+}
+
+.animal-add-animal-input,
+.animal-add-animal-select,
+.animal-add-animal-radio {
+  margin-bottom: 15px;
+  padding: 10px;
+  font-size: 16px;
+  border-radius: 4px;
+  border: 1px solid #ccc;
+}
+
+.animal-add-animal-radio-label {
+  margin-right: 10px;
+}
+
+.animal-error-message {
+  color: red;
+  font-size: 0.875rem;
+  margin-top: 0.5rem;
+  font-weight: bold;
+}
+
+.animal-checkbox-group {
+  margin-bottom: 15px;
+}
+
+.animal-checkbox-item {
+  margin-bottom: 10px;
+}
+
+.animal-add-animal-checkbox {
+  margin-right: 5px;
+}
+
+.animal-submit-button {
+  background-color: #45a049;
+  color: white;
+  border: none;
+  cursor: pointer;
+  padding: 10px 15px;
+}
+
+.animal-submit-button:hover {
+  background-color: #45a049;
+}
+.animal-add-animal-container {
+  width: 90%;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 20px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  border-radius: 8px;
+}
+
+.animal-add-animal-form {
+  display: flex;
+  flex-direction: column;
+}
+
+.animal-add-animal-label {
+  font-weight: bold;
+  margin-bottom: 5px;
+}
+
+.animal-add-animal-input,
+.animal-add-animal-select,
+.animal-add-animal-radio {
+  margin-bottom: 15px;
+  padding: 10px;
+  font-size: 16px;
+  border-radius: 4px;
+  border: 1px solid #ccc;
+}
+
+.animal-add-animal-radio-label {
+  margin-right: 10px;
+}
+
+.animal-error-message {
+  color: red;
+  font-size: 0.875rem;
+  margin-top: 0.5rem;
+  font-weight: bold;
+}
+
+.animal-checkbox-group {
+  margin-bottom: 15px;
+}
+
+.animal-checkbox-item {
+  margin-bottom: 10px;
+}
+
+.animal-add-animal-checkbox {
+  margin-right: 5px;
+}
+
+.animal-submit-button {
+  background-color: #4caf50; 
+  color: white;
+  border: none;
+  cursor: pointer;
+  padding: 15px 30px; 
+  font-size: 18px; 
+  margin: 20px auto; 
+  display: block; 
+}
+
+.animal-submit-button:hover {
+  background-color: #45a049; /* Darker green on hover */
+}
+
+.animal-no-treatments {
+  font-style: italic;
+  color: #555;
+}
+
+.animal-no-treatments {
+  font-style: italic;
+  color: #555;
+}

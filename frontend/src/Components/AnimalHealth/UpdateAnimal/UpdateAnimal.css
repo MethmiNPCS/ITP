@@ -1,0 +1,68 @@
+.animal-update-animal-container {
+    width: 90%;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 20px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    border-radius: 8px;
+}
+
+h1.animal-update-animal-header {
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+.animal-form {
+    display: flex;
+    flex-direction: column;
+}
+
+.animal-form-label {
+    font-weight: bold;
+    margin-bottom: 5px;
+}
+
+.animal-form-input,
+.animal-form-select {
+    margin-bottom: 15px;
+    padding: 10px;
+    font-size: 16px;
+    border-radius: 4px;
+    border: 1px solid #ccc;
+}
+
+.animal-gender-radio-group {
+    display: flex;
+    gap: 15px;
+    margin-bottom: 15px;
+}
+
+.animal-form-radio {
+    margin-right: 5px;
+}
+
+.animal-checkbox-group {
+    margin-bottom: 15px;
+}
+
+.animal-checkbox-item {
+    display: flex;
+    align-items: center;
+}
+
+.animal-form-checkbox {
+    margin-right: 10px;
+}
+
+.animal-submit-button {
+    background-color: #45a049;
+    color: white;
+    padding: 10px 15px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+.animal-submit-button:hover {
+    background-color: #387c3c;
+}

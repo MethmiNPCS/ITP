@@ -1,0 +1,106 @@
+.treatment-update-treatment-container {
+  width: 90%;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 20px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  border-radius: 8px;
+}
+
+h1.treatment-update-treatment-title {
+  text-align: center;
+  margin-bottom: 20px;
+}
+
+.treatment-update-treatment-form {
+  display: flex;
+  flex-direction: column;
+}
+
+.treatment-form-label {
+  font-weight: bold;
+  margin-bottom: 5px;
+}
+
+.treatment-form-input,
+.treatment-form-textarea {
+  margin-bottom: 15px;
+  padding: 10px;
+  font-size: 16px;
+  border-radius: 4px;
+  border: 1px solid #ccc;
+}
+
+.treatment-times-container {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  margin-bottom: 15px;
+}
+
+.treatment-time-field {
+  display: flex;
+  align-items: center; /* Center align items vertically */
+  gap: 10px; /* Add some space between input and button */
+}
+
+.treatment-form-input {
+  width: 150px; /* Set a fixed width for time fields */
+  margin-bottom: 0; /* Remove bottom margin to align inputs better */
+  flex-grow: 0; /* Prevent the input from taking the remaining space */
+}
+
+/* Remove button styles */
+.treatment-remove-treatment-time-button,
+.treatment-remove-medicine-button {
+  background-color: #ff6f61; /* Red */
+  color: white;
+  border: none;
+  padding: 10px 15px;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+.treatment-remove-treatment-time-button:hover,
+.treatment-remove-medicine-button:hover {
+  background-color: #c55a4c; /* Darker red on hover */
+}
+
+/* Add button styles */
+.treatment-add-treatment-time-button{
+  background-color: #45a049; /* Green */
+  color: white;
+  border: none;
+  padding: 10px 15px; /* Set the same padding for both buttons */
+  border-radius: 4px;
+  cursor: pointer;
+  font-size: 16px; /* Ensure both buttons have the same font size */
+  width: fit-content;
+}
+.treatment-add-medicine-button {
+  background-color: #45a049; /* Green */
+  color: white;
+  border: none;
+  padding: 10px 15px; /* Set the same padding for both buttons */
+  border-radius: 4px;
+  cursor: pointer;
+  font-size: 16px; /* Ensure both buttons have the same font size */
+}
+
+.treatment-add-treatment-time-button:hover,
+.treatment-add-medicine-button:hover {
+  background-color: #387c3c; /* Darker green on hover */
+}
+
+.treatment-submit-button {
+  background-color: #45a049;
+  color: white;
+  padding: 10px 15px;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+.treatment-submit-button:hover {
+  background-color: #387c3c;
+}

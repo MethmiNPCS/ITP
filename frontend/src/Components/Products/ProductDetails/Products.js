@@ -6,6 +6,8 @@ import { useNavigate } from 'react-router-dom';
 import jsPDF from 'jspdf';
 import 'jspdf-autotable';
 import { Link } from "react-router-dom";
+import { Bar } from 'react-chartjs-2';
+import Chart from 'chart.js/auto';
 
 const URL = "http://localhost:5000/products"; // API URL for fetching products
 
@@ -14,6 +16,7 @@ function Products() {
     const [products, setProducts] = useState([]);
     const [searchQuery, setSearchQuery] = useState("");
     const [noResults, setNoResults] = useState(false);
+    const [showChart, setShowChart] = useState(false); // State to toggle chart visibility
 
     // Fetch products from API
     const fetchHandler = async () => {
@@ -76,7 +79,7 @@ function Products() {
         return date.toISOString().split('T')[0];
     };
 
-    // Generate PDF report of products
+    // Generate PDF report of products with frame
     const generatePDF = () => {
         if (products.length === 0) {
             window.alert("No products available to generate the report.");
@@ -87,26 +90,98 @@ function Products() {
         if (!userConfirmed) return;
 
         const doc = new jsPDF();
-        doc.text("Products Report", 14, 16);
+        const currentDate = new Date().toISOString().split('T')[0];
 
-        doc.autoTable({
-            startY: 20,
-            head: [['ID', 'Type', 'Product', 'Price', 'MFD', 'EXP', 'Quantity', 'Total Price']],
-            body: products.map((item) => {
-                return [
-                    item.name || '', // Use the desired order
-                    item.type || '',
-                    item.product || '',
-                    item.price !== undefined && item.price !== null ? item.price.toFixed(2) : 'N/A', // Format Price
-                    formatDate(item.MFD), // Format MFD date
-                    formatDate(item.EXP), // Format EXP date
-                    item.quantity || '',
-                    item.TotalPrice !== undefined && item.TotalPrice !== null ? item.TotalPrice.toFixed(2) : 'N/A' // Format TotalPrice
-                ];
-            })
-        });
+        // Add border/frame to each page
+        const addFrame = () => {
+            doc.setDrawColor(0, 0, 0); // Set frame color (black)
+            doc.setLineWidth(1); // Set frame thickness
+            doc.rect(10, 10, doc.internal.pageSize.getWidth() - 20, doc.internal.pageSize.getHeight() - 20, 'S'); // Create a rectangle border
+        };
 
-        doc.save("products_report.pdf");
+        // Add header to each page
+        const addHeader = () => {
+            doc.setFontSize(16);
+            doc.text("Products Report", 105, 30, { align: 'center' }); // Centered header title
+            doc.setFontSize(12);
+            doc.text(`Generated on: ${currentDate}`, 14, 40); // Date below header on the left side
+        };
+
+        // Add footer to each page
+        const addFooter = (pageNum) => {
+            const pageHeight = doc.internal.pageSize.getHeight();
+            doc.setFontSize(10);
+            doc.text(`Page ${pageNum}`, doc.internal.pageSize.getWidth() - 20, pageHeight - 10, { align: 'right' }); // Footer page number on the right
+        };
+
+        // Custom function to add header and footer on each page
+        const addPageElements = (pageNum) => {
+            addFrame();
+            addHeader();
+            addFooter(pageNum);
+        };
+
+        // Call this function initially for the first page
+        addPageElements(1);
+
+        // Add logo (optional)
+        const logo = new Image();
+        logo.src = "/favicon.ico"; // Path to your logo
+        logo.onload = () => {
+            const logoWidth = 30; // Adjust logo width
+            const logoHeight = 30; // Adjust logo height
+            const logoX = (doc.internal.pageSize.getWidth() - logoWidth) / 2; // Center horizontally
+            doc.addImage(logo, "ICO", logoX, 15, logoWidth, logoHeight); // Add logo below header
+
+            // Add table
+            doc.autoTable({
+                startY: 60, // Start the table lower to make space for title, date, and logo
+                head: [['ID', 'Type', 'Product', 'Price', 'MFD', 'EXP', 'Quantity', 'Total Price']],
+                body: products.map((item) => {
+                    return [
+                        item._id || '',
+                        item.type || '',
+                        item.product || '',
+                        item.price !== undefined && item.price !== null ? item.price.toFixed(2) : 'N/A',
+                        formatDate(item.MFD),
+                        formatDate(item.EXP),
+                        item.quantity || '',
+                        item.TotalPrice !== undefined && item.TotalPrice !== null ? item.TotalPrice.toFixed(2) : (item.price * item.quantity).toFixed(2) // Calculate Total Price if not present
+                    ];
+                }),
+                didDrawPage: (data) => {
+                    const pageNum = doc.internal.getCurrentPageInfo().pageNumber;
+                    addPageElements(pageNum); // Add frame and header/footer for each new page
+                }
+            });
+
+            // Save the PDF with a file name that includes the current date
+            doc.save(`products_report_${currentDate}.pdf`);
+        };
+    };
+
+    // Chart data and options
+    const chartData = {
+        labels: products.map(product => product.product || 'Unknown Product'),
+        datasets: [
+            {
+                label: 'Product Prices',
+                data: products.map(product => product.price || 0),
+                backgroundColor: 'rgba(75, 192, 192, 0.6)',
+                borderColor: 'rgba(75, 192, 192, 1)',
+                borderWidth: 1
+            }
+        ]
+    };
+
+    const chartOptions = {
+        responsive: true,
+        plugins: {
+            legend: {
+                display: true,
+                position: 'top'
+            }
+        }
     };
 
     return (
@@ -117,22 +192,40 @@ function Products() {
 
                 {/* Centered Search Container */}
                 <center>
-                <div className="flex justify-center items-center mb-5">
-                    <input
-                        type="text"
-                        placeholder="Search products..."
-                        value={searchQuery}
-                        onChange={(e) => setSearchQuery(e.target.value)}
-                        className="p-2 border border-gray-300 rounded-md w-3/5" // Tailwind styles for the input
-                    />
-                    <button
-                        onClick={handleSearch}
-                        className="p-2 ml-3 rounded-md bg-green-700 text-white" // Tailwind styles for the button
-                    >
-                        Search
-                    </button>
-                </div>
+                    <div className="flex justify-center items-center mb-5">
+                        <input
+                            type="text"
+                            placeholder="Search products..."
+                            value={searchQuery}
+                            onChange={(e) => setSearchQuery(e.target.value)}
+                            className="p-2 border border-gray-300 rounded-md w-3/5" // Tailwind styles for the input
+                        />
+                        <button
+                            onClick={handleSearch}
+                            className="p-2 ml-3 rounded-md bg-green-700 text-white" // Tailwind styles for the button
+                        >
+                            Search
+                        </button>
+                    </div>
                 </center>
+
+                {/* Chart Button */}
+                <center>
+                    <button
+                        onClick={() => setShowChart(!showChart)}
+                        className="p-2 rounded-md bg-blue-600 text-white mb-5"
+                    >
+                        {showChart ? "Hide Chart" : "Show Chart"}
+                    </button>
+                </center>
+
+                {/* Display Chart */}
+                {showChart && (
+                    <div>
+                        <h4>Product Prices Chart</h4>
+                        <Bar data={chartData} options={chartOptions} />
+                    </div>
+                )}
 
                 {/* Product Table */}
                 <table>
@@ -157,18 +250,17 @@ function Products() {
                         ) : (
                             products.length > 0 ? (
                                 products.map((product) => {
-                                    const { _id, MFD, type, product: productType, EXP, quantity, price } = product;
-                                    const TotalPrice = price !== undefined && quantity ? (price * quantity).toFixed(2) : 'N/A'; // Calculate Total Price
+                                    const { _id, MFD, type, product: productType, EXP, quantity, price, TotalPrice } = product;
                                     return (
                                         <tr key={_id}>
                                             <td className="cell">{_id || ''}</td>
                                             <td className="cell">{type || ''}</td>
                                             <td className="cell">{productType || ''}</td>
-                                            <td className="cell">{price !== undefined ? price.toFixed(2) : 'N/A'}</td> {/* Display Price */}
-                                            <td className="cell">{formatDate(MFD)}</td> {/* Display formatted MFD */}
-                                            <td className="cell">{formatDate(EXP)}</td> {/* Display formatted EXP */}
+                                            <td className="cell">{price !== undefined ? price.toFixed(2) : 'N/A'}</td>
+                                            <td className="cell">{formatDate(MFD)}</td>
+                                            <td className="cell">{formatDate(EXP)}</td>
                                             <td className="cell">{quantity || ''}</td>
-                                            <td className="cell">{TotalPrice}</td> {/* Display Total Price */}
+                                            <td className="cell">{TotalPrice !== undefined ? TotalPrice.toFixed(2) : (price * quantity).toFixed(2)}</td> {/* Total price display */}
                                             <td className="cell">
                                                 <div className="action-buttons">
                                                     <button className="delete-button" onClick={() => deleteHandler(_id)}>
@@ -191,28 +283,9 @@ function Products() {
                     </tbody>
                 </table>
 
-                {/* Download Report Button */}
-                <button
-                    className="download-button"
-                    onClick={generatePDF}
-                    style={{
-                        padding: "12px 24px",
-                        backgroundColor: "#00712D",
-                        color: "white",
-                        border: "none",
-                        borderRadius: "5px",
-                        fontSize: "16px",
-                        cursor: "pointer",
-                        marginTop: "20px",
-                    }}
-                >
-                    DOWNLOAD REPORT
-                </button>
-
-                <button className="but-chart">      
-                    <Link to="/chartpage" className="nav-link">
-                        CHART
-                    </Link>
+                <br />
+                <button onClick={generatePDF} className="generate-report-button">
+                    Generate PDF Report
                 </button>
             </div>
         </center>

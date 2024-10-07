@@ -9,7 +9,7 @@ Chart.register(CategoryScale, LinearScale, BarElement, Title, Tooltip, Legend, A
 
 const Charts = ({ productData }) => {
   // Define colors for the rotation using hexadecimal format
-  const colorRotation = ['#FFA62F', '#FFC96F', '#6C0345','#FF8225','#FF6500'];
+  const colorRotation = ['#006BFF', '#6EC207','#640D5F'];
 
   // Helper function to apply color rotation
   const getColorRotation = (index) => colorRotation[index % colorRotation.length];
@@ -49,8 +49,8 @@ const Charts = ({ productData }) => {
       {
         label: 'Product Types',
         data: [typeData.Animal, typeData.Plantation],
-        backgroundColor: ['#025955', '#00917C'],
-        hoverBackgroundColor: ['#025955', '#00917C'],
+        backgroundColor: ['#F1F3C2', '#00917C'],
+        hoverBackgroundColor: ['#F1F3C2', '#00917C'],
       },
     ],
   };

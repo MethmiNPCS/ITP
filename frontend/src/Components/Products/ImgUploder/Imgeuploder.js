@@ -1,5 +1,6 @@
 import axios from 'axios';
 import React, { useEffect, useState } from 'react';
+import Nav from '../Nav/Nav';
 
 function ImageUploader() {
   const [image, setImage] = useState(null);
@@ -242,6 +243,7 @@ function ImageUploader() {
 
   return (
     <div style={styles.container}>
+      <Nav />
       <center>
         <h1>Image Uploader</h1>
         {errorMessage && <p style={styles.errorMessage}>{errorMessage}</p>}

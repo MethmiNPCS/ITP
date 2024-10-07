@@ -25,9 +25,9 @@ function UpdateProduct() {
     'Yoghurt - (1)': 50,
     'Fresh Milk - (1)': 450,
     'Egg - (1)': 25,
-    'Meat-Beef one pack': 2600,
-    'Meat-Chicken one pack': 900,
-    'Meat-Pork one pack': 2700,
+    'Beef one pack': 2600,
+    'Chicken one pack': 900,
+    'Pork one pack': 2700,
     'Coconut': 50,
     'Tea': 200,
     'Nut': 300,
@@ -82,12 +82,12 @@ function UpdateProduct() {
         price: newPrice,
       }));
     }
-
-    // Reset EXP if MFD changes
-    if (name === 'MFD') {
+    
+    // Reset EXP if product changes
+    if (name === 'product') {
       setInputs((prevState) => ({
         ...prevState,
-        EXP: '', // Clear the EXP field whenever MFD changes
+        EXP: '', // Clear the EXP field whenever the product changes
       }));
     }
   };
@@ -226,10 +226,10 @@ function UpdateProduct() {
               <input
                 type="date"
                 name="MFD"
-                onChange={handleChange}
                 value={inputs.MFD}
                 required
                 className="input"
+                readOnly // Make MFD read-only
               />
             </div>
 
@@ -238,11 +238,10 @@ function UpdateProduct() {
               <input
                 type="date"
                 name="EXP"
-                onChange={handleChange}
                 value={inputs.EXP}
                 required
                 className="input"
-                min={getMinExpiryDate(inputs.MFD)}
+                readOnly // Make EXP read-only
               />
             </div>
 

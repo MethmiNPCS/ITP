@@ -1,126 +1,111 @@
 const Employee = require("../Model/EmployeeModel");
 
-const getAllEmployees = async (req,res,next) =>{
-
+const getAllEmployees = async (req, res, next) => {
     let employees;
-    // Get all Employees
     try {
         employees = await Employee.find();
     } catch (err) {
         console.log(err);
     }
-    // Employee not found
-    if(!employees){
-        return res.status(404).json({message:"Employee not found"});
+    if (!employees) {
+        return res.status(404).json({ message: "Employees not found" });
     }
-
-    // Display all employees
-    return res.status(200).json({employees});
+    return res.status(200).json({ employees });
 };
 
-//data insert
-const addEmployee =async(req,res,next)=>{
-    const {FirstName,LastName,NIC,Gender,Adress,Position,ContactNumber, BasicSalary} =req.body;
-
+// Add Employee
+const addEmployee = async (req, res, next) => {
+    const { FirstName, LastName, NIC, Gender, Adress, Position, ContactNumber, BasicSalary,AddDate} = req.body;
     let employees;
-    try{
-        employees =new Employee ({FirstName,LastName,NIC,Gender,Adress,Position,ContactNumber, BasicSalary});
+    try {
+        employees = new Employee({ FirstName, LastName, NIC, Gender, Adress, Position, ContactNumber, BasicSalary,AddDate });
         await employees.save();
-    }
-    catch (err){
+    } catch (err) {
         console.log(err);
     }
-
-    //not inserting employee
-    if(!employees){
-        return res.status(404).json({message:" unable to add Employee"});
+    if (!employees) {
+        return res.status(404).json({ message: "Unable to add Employee" });
     }
-    return res.status(200).json({employees});
-
+    return res.status(200).json({ employees });
 };
 
-// get by id
- const getById = async(req,res,next) =>{
-
+// Get Employee by ID
+const getById = async (req, res, next) => {
     const id = req.params.id;
-
     let employee;
-
     try {
         employee = await Employee.findById(id);
     } catch (err) {
         console.log(err);
     }
-
-    //not available employee
-    if(!employee){
-        return res.status(404).json({message:"Employee not Found"});
+    if (!employee) {
+        return res.status(404).json({ message: "Employee not found" });
     }
-    return res.status(200).json({employee});
- };
+    return res.status(200).json({ employee });
+};
 
- // Update Employee Details
- const updateEmployee =async (req,res,next)=>{
+// Update Employee
+const updateEmployee = async (req, res, next) => {
     const id = req.params.id;
-    const {FirstName,LastName,NIC,Gender,Adress,Position,ContactNumber,BasicSalary} =req.body;
-
+    const { FirstName, LastName, NIC, Gender, Adress, Position, ContactNumber, BasicSalary,AddDate } = req.body;
     let employee;
-
     try {
-        employee = await Employee.findByIdAndUpdate(id,
-        {FirstName: FirstName, LastName: LastName ,NIC:NIC ,Gender:Gender, Adress: Adress, Position: Position ,ContactNumber:ContactNumber, BasicSalary:BasicSalary});
+        employee = await Employee.findByIdAndUpdate(id, {
+            FirstName, LastName, NIC, Gender, Adress, Position, ContactNumber, BasicSalary,AddDate
+        });
         employee = await employee.save();
-
     } catch (err) {
         console.log(err);
     }
-
-    //if
-    if(!employee){
-        return res.status(404).json({message:"Unable to Update Employee Details"});
+    if (!employee) {
+        return res.status(404).json({ message: "Unable to Update Employee" });
     }
-    return res.status(200).json({employee});
- };
+    return res.status(200).json({ employee });
+};
 
- // Delete Employee Details
- const deleteEmployee =async (req,res,next)=>{
+// Delete Employee
+const deleteEmployee = async (req, res, next) => {
     const id = req.params.id;
-
     let employee;
-
     try {
-        employee = await Employee.findByIdAndDelete(id)        
-
+        employee = await Employee.findByIdAndDelete(id);
     } catch (err) {
         console.log(err);
     }
-
-    //if
-    if(!employee){
-        return res.status(404).json({message:"Unable to Delete Employee Details"});
+    if (!employee) {
+        return res.status(404).json({ message: "Unable to Delete Employee" });
     }
-    return res.status(200).json({employee});
- };
+    return res.status(200).json({ employee });
+};
 
+// Add Bonus by Position
+const addBonusByPosition = async (req, res, next) => {
+    const { position, bonusAmount } = req.body;
+    try {
+        const employees = await Employee.find({ Position: position });
 
+        if (employees.length === 0) {
+            return res.status(404).json({ message: "No employees found for this position" });
+        }
 
+        for (let employee of employees) {
+            employee.Bonus += parseFloat(bonusAmount);
+            employee.NetSalary = employee.BasicSalary - employee.EPF - employee.ETF + employee.Bonus;
+            await employee.save();
+        }
 
+        res.status(200).json({ message: "Bonus added to employees", employees });
+    } catch (error) {
+        console.error("Error adding bonus by position:", error);
+        res.status(500).json({ message: "Error adding bonus by position", error });
+    }
+};
 
-exports.getAllEmployees = getAllEmployees;
-exports.addEmployee =addEmployee;
-exports.getById =getById;
-exports.updateEmployee =updateEmployee;
-exports.deleteEmployee =deleteEmployee;
-
-
-
-
-
-
-
-
-
-
-
-
-
+module.exports = {
+    getAllEmployees,
+    addEmployee,
+    getById,
+    updateEmployee,
+    deleteEmployee,
+    addBonusByPosition
+};

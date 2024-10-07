@@ -14,7 +14,10 @@ function AddEmployee() {
         Position: "",
         ContactNumber: "",
         BasicSalary: "",
+        AddDate:"",
     });
+    
+    const [errors, setErrors] = useState({}); // State to hold validation errors
 
     const handleChange = (e) => {
         setInputs((prevState) => ({
@@ -25,9 +28,51 @@ function AddEmployee() {
 
     const handleSubmit = (e) => {
         e.preventDefault();
+        
+        // Reset errors
+        setErrors({});
+
+        // Validation checks
+        const validationErrors = {};
+        if (!validateContactNumber(inputs.ContactNumber)) {
+            validationErrors.ContactNumber = "Contact number must be exactly 10 digits long and contain only numbers.";
+        }
+
+        if (!validateNIC(inputs.NIC)) {
+            validationErrors.NIC = "NIC must be exactly 12 characters long and contain only numbers.";
+        }
+
+        if (!validateBasicSalary(inputs.BasicSalary)) {
+            validationErrors.BasicSalary = "Basic salary must be a valid number.";
+        }
+
+        // Set errors if any
+        if (Object.keys(validationErrors).length > 0) {
+            setErrors(validationErrors);
+            return;
+        }
+
         console.log(inputs);
         sendRequest().then(() => history('/EmployeeDetails'));
-    }
+    };
+
+    const validateContactNumber = (contactNumber) => {
+        // Check if the contact number is exactly 10 digits and numeric
+        const regex = /^\d{10}$/; // Regular expression for exactly 10 digits
+        return regex.test(contactNumber);
+    };
+
+    const validateNIC = (nic) => {
+        // Check if the NIC number is 12 characters long and numeric
+        const regex = /^\d{12}$/; // Regular expression for exactly 12 digits
+        return regex.test(nic);
+    };
+
+    const validateBasicSalary = (basicSalary) => {
+        // Check if the Basic Salary is a valid number (integer or decimal)
+        const regex = /^[0-9]+(\.[0-9]+)?$/; // Regular expression for a valid number
+        return regex.test(basicSalary);
+    };
 
     const sendRequest = async () => {
         await axios.post("http://localhost:5000/employees", {
@@ -38,9 +83,10 @@ function AddEmployee() {
             Adress: String(inputs.Adress),
             Position: String(inputs.Position),
             ContactNumber: String(inputs.ContactNumber),
-            BasicSalary: Number(inputs.BasicSalary), // Send Basic Salary as a number
+            BasicSalary: Number(inputs.BasicSalary),
+            AddDate: Date(inputs.BasicSalary),
         }).then(res => res.data);
-    }
+    };
 
     return (
         <div>
@@ -59,6 +105,7 @@ function AddEmployee() {
                     <div style={styles.formGroup}>
                         <label htmlFor="nic" style={styles.label}>NIC</label>
                         <input type="text" id="nic" name="NIC" onChange={handleChange} value={inputs.NIC} required style={styles.input} />
+                        {errors.NIC && <p style={styles.error}>{errors.NIC}</p>} {/* Display NIC error */}
                     </div>
                     <div style={styles.formGroup}>
                         <label htmlFor="gender" style={styles.label}>Gender</label>
@@ -85,12 +132,27 @@ function AddEmployee() {
                     <div style={styles.formGroup}>
                         <label htmlFor="contactNumber" style={styles.label}>Contact Number</label>
                         <input type="text" id="contactNumber" name="ContactNumber" onChange={handleChange} value={inputs.ContactNumber} required style={styles.input} />
+                        {errors.ContactNumber && <p style={styles.error}>{errors.ContactNumber}</p>} {/* Display contact number error */}
                     </div>
-                    {/* Add Basic Salary Input */}
                     <div style={styles.formGroup}>
-                        <label htmlFor="basicSalary" style={styles.label}>Basic Salary</label>
-                        <input type="number" id="basicSalary" name="BasicSalary" onChange={handleChange} value={inputs.BasicSalary} required style={styles.input} />
+                        <label htmlFor="basicSalary" style={styles.label}>Basic Salary:</label>
+                        <input type="text" id="basicSalary" name="BasicSalary" onChange={handleChange} value={inputs.BasicSalary} required style={styles.input} />
+                        {errors.BasicSalary && <p style={styles.error}>{errors.BasicSalary}</p>} {/* Display basic salary error */}
                     </div>
+
+                    <div style={styles.formGroup}>
+  <label htmlFor="date" style={styles.label}>Date</label>
+  <input 
+    type="date" 
+    id="date" 
+    name="date" 
+    onChange={handleChange} 
+    value={inputs.date} 
+    required 
+    style={styles.input} 
+  />
+</div>
+                    
                     <button type="submit" style={styles.submitButton}>Add Employee</button>
                 </form>
                 <div style={styles.formFooter}>
@@ -141,14 +203,16 @@ const styles = {
         fontSize: '16px',
         cursor: 'pointer',
     },
-    submitButtonHover: {
-        backgroundColor: '#0056b3',
-    },
     formFooter: {
         textAlign: 'center',
         marginTop: '20px',
         fontSize: '14px',
         color: '#777',
+    },
+    error: {
+        color: 'red',
+        fontSize: '12px',
+        marginTop: '5px',
     }
 };
 

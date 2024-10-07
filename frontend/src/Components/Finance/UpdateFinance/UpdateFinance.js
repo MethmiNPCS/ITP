@@ -50,7 +50,7 @@ function UpdateFinance() {
   };
 
   return (
-    <div>
+    <div className="pt-16">
       <Nav /><br />
       <div className="fu-container">
         <div className="fu-single-card">

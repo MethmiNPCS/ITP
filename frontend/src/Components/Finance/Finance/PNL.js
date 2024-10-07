@@ -105,7 +105,7 @@ function ProfitAndLoss() {
   };
 
   return (
-    <div>
+    <div className="pt-4">
       <Nav />
       <center>
         <h1 className="I-h1">Profit and Loss Statement</h1>

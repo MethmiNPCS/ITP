@@ -157,7 +157,7 @@ function FinanceDetails() {
   };
 
   return (
-    <div>
+    <div className="pt-4">
       <Nav />
       <center><h1 className="I-h1">Finance Details</h1></center>
       

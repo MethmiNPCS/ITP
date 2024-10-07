@@ -171,7 +171,7 @@ const Atabe = () => {
   };
 
   return (
-    <div>
+    <div className="pt-12">
       <Nav />
     
       <div className="home-container">

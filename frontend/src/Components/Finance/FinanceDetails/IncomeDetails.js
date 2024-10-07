@@ -130,7 +130,7 @@ function IncomeDetails() {
   };
 
   return (
-    <div>
+    <div className="pt-4">
       <Nav />
       <center>
         <h1 className="I-h1">Income and Product Details</h1> {/* Update title */}

@@ -4,7 +4,7 @@ import { Link } from "react-router-dom";
 
 function Nav() {
   return (
-    <div className='nbody'>
+    <div className='nvbody'>
     <nav className="navbar">
       <ul className="nav-list">
         

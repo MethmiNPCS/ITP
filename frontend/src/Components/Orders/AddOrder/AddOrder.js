@@ -187,7 +187,7 @@ function AddOrder() {
                             <option value="l">l</option>
                         </select>
                         {index > 0 && (
-                            <button id={`remove-item-button-${index}`} type="button" onClick={() => removeItemField(index)}>-</button>
+                            <button id={`remove-item-button-${index}`} type="button" onClick={() => removeItemField(index)}  style={{ backgroundColor: '#c7c1c1', padding: '4px 10px' }}>-</button>
                         )}
                     </div>
                 ))}

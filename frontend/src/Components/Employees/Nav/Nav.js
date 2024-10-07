@@ -1,32 +1,39 @@
 import React from 'react';
-import './Nav.css'; 
 import { Link } from "react-router-dom";
+import BackToHome from '../../Home/BackToHome';
 
 function Nav() {
   return (
-    <nav className="navbar">
-      <ul className="nav-list">
-        
-        <li className="nav-item">
-          <Link to="/employeehome" className="nav-link">
-            Employee Home
-          </Link>
-        </li>
-               
-        <li className="nav-item">
-          <Link to="/addemployee" className="nav-link">
-            Add Employee
-          </Link>
-        </li>
-                
-        <li className="nav-item">
-          <Link to="/employeedetails" className="nav-link">
-            Employee Details
-          </Link>
+    <nav className="bg-green-500 bg-opacity-0 backdrop-blur-md rounded-lg shadow-lg p-6 flex items-center fixed top-0 w-full z-50">
+      
+      {/* Left-aligned Back to Home button */}
+      <div className="flex-shrink-0">
+        <BackToHome />
+      </div>
 
+      {/* Spacer to push nav items to the center */}
+      <div className="flex-grow"></div>
+
+      {/* Centered navigation links */}
+      <ul className="flex space-x-10 items-center">
+
+
+        <li>
+          <Link to="/addemployee" className="text-green-600 font-bold py-3 px-6 rounded-full transition duration-300 hover:bg-white hover:bg-opacity-20">
+            ADD Employee
+          </Link>
         </li>
-        
+
+        <li>
+          <Link to="/employeedetails" className="text-green-600 font-bold py-3 px-6 rounded-full transition duration-300 hover:bg-white hover:bg-opacity-20">
+            Employee Deatails
+          </Link>
+        </li>
+
       </ul>
+
+      {/* Spacer to balance the layout */}
+      <div className="flex-grow"></div>
     </nav>
   );
 }

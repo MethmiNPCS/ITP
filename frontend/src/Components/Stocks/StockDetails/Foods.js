@@ -38,78 +38,108 @@ function Foods() {
       return;
     }
   
-    const pdf = new jsPDF();
+    // Fetch the favicon image as Base64
+    const faviconPath = "/favicon.ico"; // path to the favicon in the public folder
+    const img = new Image();
+    img.src = faviconPath;
   
-    // Add titles
-    pdf.setFontSize(16);
-    const title = "National Seminary Farm";
-    const subtitle = "Inventory Report";
-    const pageWidth = pdf.internal.pageSize.getWidth();
+    img.onload = () => {
+      const pdf = new jsPDF();
   
-    // Center title
-    const titleWidth = pdf.getStringUnitWidth(title) * pdf.internal.getFontSize() / pdf.internal.scaleFactor;
-    pdf.text(title, (pageWidth - titleWidth) / 2, 20); // Centered title
+      // Add the favicon image to the PDF
+      const imgWidth = 20;  // width of the image
+      const imgHeight = 20; // height of the image
+      const imgX = 10;      // X coordinate for the image
+      const imgY = 20;      // Y coordinate for the image
+      pdf.addImage(img, 'PNG', imgX, imgY, imgWidth, imgHeight); // Add favicon to PDF
   
-    // Center subtitle
-    const subtitleWidth = pdf.getStringUnitWidth(subtitle) * pdf.internal.getFontSize() / pdf.internal.scaleFactor;
-    pdf.text(subtitle, (pageWidth - subtitleWidth) / 2, 30); // Centered subtitle
+      // Add titles
+      pdf.setFontSize(16);
+      const title = "NATIONAL SEMINARY FARM";
+      const subtitle = "Inventory Report - Animal Foods";
+      const pageWidth = pdf.internal.pageSize.getWidth();
   
-    // Add a table
-    const startY = 40; // Starting position for the table
-    const columnHeaders = ["Stock ID", "Name", "Animal", "Stock Type", "Entry Date", "Quantity", "Unit Price", "Total Price", "Instructions"];
-    const columns = columnHeaders.length;
+      // Center title (adjusted to leave space for the logo)
+      const titleWidth = pdf.getStringUnitWidth(title) * pdf.internal.getFontSize() / pdf.internal.scaleFactor;
+      const titleX = (pageWidth - titleWidth) / 2; // Centered X coordinate for the title
   
-    // Set the column width and row height
-    const columnWidth = (pageWidth - 30) / (columns); // Default width for all columns
-    const rowHeight = 10; // Default row height for better spacing
+      const subtitleWidth = pdf.getStringUnitWidth(subtitle) * pdf.internal.getFontSize() / pdf.internal.scaleFactor;
+      const subtitleX = (pageWidth - subtitleWidth) / 2; // Centered X coordinate for the subtitle
   
-    // Add column headers
-    pdf.setFontSize(10);
-    pdf.setTextColor(255, 255, 255);
-    pdf.setFillColor(0, 128, 0); // Green background
-    pdf.rect(10, startY, pageWidth - 20, rowHeight, 'F'); // Header background
+      // Draw rectangle around logo and titles
+      const rectX = 5; // X coordinate for the rectangle
+      const rectY = 15; // Y coordinate for the rectangle
+      const rectWidth = pageWidth - 10; // Full width, leaving padding
+      const rectHeight = 35; // Height enough to contain logo and titles
+      pdf.rect(rectX, rectY, rectWidth, rectHeight); // Draw rectangle
   
-    columnHeaders.forEach((header, index) => {
-      // Center text in header
-      const headerX = 10 + index * columnWidth + columnWidth / 2;
-      pdf.text(header, headerX, startY + (rowHeight / 2), { align: "center" }); // Centered header
-    });
+      // Set bold font for the titles
+      pdf.setFont("helvetica", "bold");
   
-    // Add rows
-    pdf.setTextColor(0); // Reset to black text
+      // Adjusted Y coordinates for titles
+      pdf.text(title, titleX, 30); // Adjusted Y coordinate to align with the logo
+      pdf.text(subtitle, subtitleX, 40); // Adjusted Y coordinate for the subtitle
   
-    let currentY = startY + rowHeight + 5; // Start position for the first data row (5 units below the header)
-    filteredFoods.forEach((food) => {
-      const y = currentY; // Calculate the Y position for each row
-      const maxWidth = columnWidth - 5; // Reduced padding for max width
+      // Add a gap between the rectangle and the report content
+      const gapAfterRectangle = 10; // Add a 10 units gap after the rectangle
+      const startY = rectY + rectHeight + gapAfterRectangle; // Starting Y position for the table after the gap
   
-      // Wrap instructions with a maximum width
-      const instructionLines = pdf.splitTextToSize(food.instructions, maxWidth);
-      
-      // Write each column's data
-      pdf.text(food.stockID, 10 + 5, y); // Column 1 (with padding)
-      pdf.text(food.name, 10 + columnWidth + 5, y, { maxWidth }); // Column 2 (with word wrapping and padding)
-      pdf.text(food.animal, 10 + 2 * columnWidth + 5, y); // Column 3 (with padding)
-      pdf.text(food.type, 10 + 3 * columnWidth + 5, y); // Column 4 (with padding)
-      pdf.text(food.EXD, 10 + 4 * columnWidth + 5, y); // Column 5 (with padding)
-      pdf.text(`${food.quantity} ${food.unit}`, 10 + 5 * columnWidth + 5, y); // Column 6 (with padding)
-      pdf.text(`Rs. ${food.unitPrice}`, 10 + 6 * columnWidth + 5, y); // Column 7 (with padding)
-      pdf.text(`Rs. ${food.quantity * food.unitPrice}`, 10 + 7 * columnWidth + 5, y); // Column 8 (with padding)
+      // Reset font to normal for table content
+      pdf.setFont("helvetica", "normal");
   
-      // Draw instructions and adjust Y position accordingly
-      instructionLines.forEach((line, index) => {
-        pdf.text(line, 10 + 8 * columnWidth + 5, y + index * rowHeight); // Column 9 (with padding)
+      // Add a table (logic remains the same)
+      const columnHeaders = ["Stock ID", "Name", "Animal", "Stock Type", "Entry Date", "Quantity", "Unit Price", "Total Price", "Instructions"];
+      const columns = columnHeaders.length;
+  
+      const columnWidth = (pageWidth - 30) / columns; // Default width for all columns
+      const rowHeight = 10; // Default row height for better spacing
+  
+      pdf.setFontSize(10);
+      pdf.setTextColor(255, 255, 255);
+      pdf.setFillColor(0, 128, 0); // Green background
+      pdf.rect(10, startY, pageWidth - 20, rowHeight, 'F'); // Header background
+  
+      columnHeaders.forEach((header, index) => {
+        const headerX = 10 + index * columnWidth + columnWidth / 2;
+        pdf.text(header, headerX, startY + (rowHeight / 2), { align: "center" });
       });
   
-      // Draw horizontal line below the entire content of the row
-      const totalRowHeight = rowHeight * Math.max(1, instructionLines.length) + 5; // Calculate total height needed for the row
+      pdf.setTextColor(0); // Reset to black text
   
-      // Adjust the current Y position based on the number of lines for instructions
-      currentY += totalRowHeight; // Update the current Y position for the next row
-    });
+      let currentY = startY + rowHeight + 5;
+      filteredFoods.forEach((food) => {
+        const y = currentY;
+        const maxWidth = columnWidth - 5;
   
-    pdf.save("medicine_report.pdf");
+        const instructionLines = pdf.splitTextToSize(food.instructions, maxWidth);
+  
+        pdf.text(food.stockID, 10 + 5, y);
+        pdf.text(food.name, 10 + columnWidth + 5, y, { maxWidth });
+        pdf.text(food.animal, 10 + 2 * columnWidth + 5, y);
+        pdf.text(food.type, 10 + 3 * columnWidth + 5, y);
+        pdf.text(food.EXD, 10 + 4 * columnWidth + 5, y);
+        pdf.text(`${food.quantity} ${food.unit}`, 10 + 5 * columnWidth + 5, y);
+        pdf.text(`Rs. ${food.unitPrice}`, 10 + 6 * columnWidth + 5, y);
+        pdf.text(`Rs. ${food.quantity * food.unitPrice}`, 10 + 7 * columnWidth + 5, y);
+  
+        instructionLines.forEach((line, index) => {
+          pdf.text(line, 10 + 8 * columnWidth + 5, y + index * rowHeight);
+        });
+  
+        const totalRowHeight = rowHeight * Math.max(1, instructionLines.length) + 5;
+        currentY += totalRowHeight;
+      });
+  
+      pdf.save("Food_report.pdf");
+    };
+  
+    img.onerror = () => {
+      console.error("Failed to load favicon.");
+    };
   };
+  
+  
+  
   
   
   const handlePrint = () => {

@@ -1,13 +1,11 @@
 import '../Finance/F_Home.css';
 import Nav from '../Finance/Nav/Nav';
 
-
 import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import axios from 'axios';
 import { Bar } from 'react-chartjs-2';
 import { Chart as ChartJS, CategoryScale, LinearScale, BarElement, Title, Tooltip, Legend } from 'chart.js';
-
 
 // Register Chart.js components
 ChartJS.register(CategoryScale, LinearScale, BarElement, Title, Tooltip, Legend);
@@ -18,11 +16,6 @@ const stockURL = "http://localhost:5000/stocks";
 const productURL = "http://localhost:5000/products";
 
 const Home = () => {
-  const [finance, setFinance] = useState([]);
-  const [salaries, setSalaries] = useState([]);
-  const [stocks, setStocks] = useState([]);
-  const [products, setProducts] = useState([]);
-
   const [financeByCategory, setFinanceByCategory] = useState({});
   const [salaryByDepartment, setSalaryByDepartment] = useState({});
   const [stockByCategory, setStockByCategory] = useState({});
@@ -36,11 +29,17 @@ const Home = () => {
         const stockResponse = await axios.get(stockURL);
         const productResponse = await axios.get(productURL);
 
+        // Log data for debugging
+        console.log('Finance Data:', financeResponse.data);  // Check finance data
+        console.log('Salary Data:', salaryResponse.data);    // Check salary data
+        console.log('Stock Data:', stockResponse.data);      // Check stock data
+        console.log('Product Data:', productResponse.data);  // Check product data
+
         // Process Finance data by category
         const financeData = financeResponse.data.finance || [];
         const financeCategoryTotals = {};
         financeData.forEach(item => {
-          const category = item.category || 'Unknown'; // Use a default 'Unknown' category if missing
+          const category = item.category || 'Unknown';
           financeCategoryTotals[category] = (financeCategoryTotals[category] || 0) + item.amount;
         });
         setFinanceByCategory(financeCategoryTotals);
@@ -49,7 +48,7 @@ const Home = () => {
         const salaryData = salaryResponse.data.salaries || [];
         const salaryDepartmentTotals = {};
         salaryData.forEach(item => {
-          const department = item.department || 'Salary Payment';
+          const department = item.department || 'Unknown';
           salaryDepartmentTotals[department] = (salaryDepartmentTotals[department] || 0) + item.totalSalary;
         });
         setSalaryByDepartment(salaryDepartmentTotals);
@@ -132,6 +131,7 @@ const Home = () => {
       },
       y: {
         stacked: true,
+        beginAtZero: true, // Ensure the y-axis starts from 0
       },
     },
   };
@@ -140,21 +140,20 @@ const Home = () => {
     <div>
       <Nav />
     
-    <div className="home-container">
-      <h1>Welcome to Finance Management Dashboard</h1>
+      <div className="home-container">
+        <h1>Welcome to Finance Management Dashboard</h1>
 
-      {/* Chart Section */}
-      <div className="chart-container">
-        <Bar data={chartData} options={chartOptions} />
+        {/* Chart Section */}
+        <div className="chart-container">
+          <Bar data={chartData} options={chartOptions} />
+        </div>
+
+        {/* Navigation Links */}
+        <div className="links-section">
+          <Link to="/financedetails" className="link-button">View Expenses Details</Link>
+          <Link to="/incomedetails" className="link-button">View Income Details</Link>
+        </div>
       </div>
-
-      {/* Navigation Links */}
-      <div className="links-section">
-      <Link to="/financedetails" className="link-button">View Expenses Details</Link>
-      <Link to="/incomedetails" className="link-button">View Income Details</Link>
-      </div>
-    </div>
-
     </div>
   );
 };

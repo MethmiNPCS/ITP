@@ -27,6 +27,11 @@ const Atabe = () => {
         const stockResponse = await axios.get(stockURL);
         const productResponse = await axios.get(productURL);
 
+        console.log('Finance Data:', financeResponse.data);  // Check Finance Data
+        console.log('Salary Data:', salaryResponse.data);    // Check Salary Data
+        console.log('Stock Data:', stockResponse.data);      // Check Stock Data
+        console.log('Product Data:', productResponse.data);  // Check Product Data
+
         // Process Finance data by date
         const financeData = financeResponse.data.finance || [];
         const incomeDateTotals = {};
@@ -84,6 +89,10 @@ const Atabe = () => {
   // Function to format dates to dd/mm/yyyy
   const formatDate = (dateString) => {
     const date = new Date(dateString);
+    if (isNaN(date)) {
+      console.error(`Invalid date: ${dateString}`);
+      return 'Unknown';
+    }
     const day = String(date.getDate()).padStart(2, '0');
     const month = String(date.getMonth() + 1).padStart(2, '0'); 
     const year = date.getFullYear();
@@ -97,7 +106,7 @@ const Atabe = () => {
     ...Object.keys(salaryByDate),
     ...Object.keys(stockByDate),
     ...Object.keys(productByDate),
-  ]));
+  ])).filter(date => date !== 'Unknown');
 
   // Format the dates to dd/mm/yyyy
   const formattedDates = allDates.map(date => formatDate(date));
@@ -124,7 +133,7 @@ const Atabe = () => {
       },
       {
         label: 'Salary',
-        data: allDates.map(date => salaryByDate[date] || 0),  // Here, payDate will be reflected in the chart
+        data: allDates.map(date => salaryByDate[date] || 0),  // Salary reflected by payDate
         backgroundColor: 'rgba(255, 206, 86, 0.2)',
         borderColor: '#FFCE56',
         borderWidth: 2,
@@ -157,7 +166,7 @@ const Atabe = () => {
       },
       title: {
         display: true,
-        text: 'Total Amounts by Date for Other Income, Other Expense, Salary, Stock, and Product',
+        text: 'Total Amounts by Date for Income, Expense, Salary, Stock, and Product',
       },
     },
     scales: {

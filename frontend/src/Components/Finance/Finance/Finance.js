@@ -20,7 +20,7 @@ function Finance({ finance }) {
   };
 
    return (
-    <div>
+    <div class>
       <table >
         <tbody>
           <tr>

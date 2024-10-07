@@ -23,7 +23,7 @@ const orderemailRoutes = require("./Routes/EmailRoutes");
 const cron = require('node-cron');
 const twilio = require('twilio');
 const Treatment = require('./Model/TreatmentModel');
-const cors = require("cors");
+//const cors = require("cors");
 require('dotenv').config();
 
 // Middlewear
@@ -33,8 +33,6 @@ app.use(express.json());
 app.use(cors());
 
 app.use("/stocks", stockrouter); // Stock
-
-
 app.use("/tasks", tasksRoute); // Tasks
 app.use('/products', productRouter); // Product
 app.use("/animals",animalrouter); // Animal

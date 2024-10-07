@@ -4,6 +4,7 @@ import { Link } from "react-router-dom";
 
 function Nav() {
   return (
+    <div className='nbody'>
     <nav className="navbar">
       <ul className="nav-list">
         
@@ -39,6 +40,7 @@ function Nav() {
         
       </ul>
     </nav>
+    </div>
   );
 }
 

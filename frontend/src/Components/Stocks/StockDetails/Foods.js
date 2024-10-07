@@ -80,6 +80,13 @@ function Foods() {
       pdf.text(title, titleX, 30); // Adjusted Y coordinate to align with the logo
       pdf.text(subtitle, subtitleX, 40); // Adjusted Y coordinate for the subtitle
   
+      // *** Add Generate Date Below the Subtitle ***
+      const generateDate = `Generate Date: ${new Date().toLocaleDateString()}`; // Get the current date
+      pdf.setFontSize(10); // Set a smaller font size for the date
+      const dateWidth = pdf.getStringUnitWidth(generateDate) * pdf.internal.getFontSize() / pdf.internal.scaleFactor;
+      const dateX = (pageWidth - dateWidth) / 2; // Center the date
+      pdf.text(generateDate, dateX, 45); // Display the date below the subtitle
+  
       // Add a gap between the rectangle and the report content
       const gapAfterRectangle = 10; // Add a 10 units gap after the rectangle
       const startY = rectY + rectHeight + gapAfterRectangle; // Starting Y position for the table after the gap
@@ -88,7 +95,7 @@ function Foods() {
       pdf.setFont("helvetica", "normal");
   
       // Add a table (logic remains the same)
-      const columnHeaders = ["Stock ID", "Name", "Animal", "Stock Type", "Entry Date", "Quantity", "Unit Price", "Total Price", "Instructions"];
+      const columnHeaders = ["Stock ID", "Name", "Animal", "Stock Type", "Entry Date", "Quantity", "Unit Price", "Total Price"];
       const columns = columnHeaders.length;
   
       const columnWidth = (pageWidth - 30) / columns; // Default width for all columns
@@ -111,8 +118,6 @@ function Foods() {
         const y = currentY;
         const maxWidth = columnWidth - 5;
   
-        const instructionLines = pdf.splitTextToSize(food.instructions, maxWidth);
-  
         pdf.text(food.stockID, 10 + 5, y);
         pdf.text(food.name, 10 + columnWidth + 5, y, { maxWidth });
         pdf.text(food.animal, 10 + 2 * columnWidth + 5, y);
@@ -122,12 +127,7 @@ function Foods() {
         pdf.text(`Rs. ${food.unitPrice}`, 10 + 6 * columnWidth + 5, y);
         pdf.text(`Rs. ${food.quantity * food.unitPrice}`, 10 + 7 * columnWidth + 5, y);
   
-        instructionLines.forEach((line, index) => {
-          pdf.text(line, 10 + 8 * columnWidth + 5, y + index * rowHeight);
-        });
-  
-        const totalRowHeight = rowHeight * Math.max(1, instructionLines.length) + 5;
-        currentY += totalRowHeight;
+        currentY += rowHeight + 5;
       });
   
       pdf.save("Food_report.pdf");
@@ -137,10 +137,6 @@ function Foods() {
       console.error("Failed to load favicon.");
     };
   };
-  
-  
-  
-  
   
   const handlePrint = () => {
     generatePDF();

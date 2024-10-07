@@ -183,12 +183,14 @@ function AddMedicine() {
           ></textarea>
         </label>
 
-        <button
-          type="submit"
-          className="stockBtn w-full max-w-xs mx-auto bg-green-500 text-white font-semibold py-3 rounded-md border border-green-400 hover:bg-green-600 transition duration-300"
-        >
-          ADD
-        </button>
+        <div className="flex justify-center">
+          <button
+            type="submit"
+            className="stockBtn w-full max-w-xs mx-auto bg-green-500 text-white font-semibold py-3 rounded-md border border-green-400 hover:bg-green-600 transition duration-300"
+          >
+            ADD
+          </button>
+        </div>
       </form>
     </div>
   );

@@ -6,11 +6,11 @@ function Nav() {
   return (
     <nav className="bg-green-500 bg-opacity-0 backdrop-blur-md rounded-lg shadow-lg p-6 flex items-center fixed top-0 w-full z-50">
       
-      {/* Left-aligned Back to Home button */
+      {/* Left-aligned Back to Home button */}
       <div className="flex-shrink-0">
         <BackToHome />
       </div>
-      }
+
       {/* Spacer to push nav items to the center */}
       <div className="flex-grow"></div>
 
@@ -30,19 +30,13 @@ function Nav() {
 
         <li>
           <Link to="/financedetails" className="text-green-600 font-bold py-3 px-6 rounded-full transition duration-300 hover:bg-white hover:bg-opacity-20">
-          EXPENSE
+            EXPENSES TABLE
           </Link>
         </li>
 
         <li>
           <Link to="/incomedetails" className="text-green-600 font-bold py-3 px-6 rounded-full transition duration-300 hover:bg-white hover:bg-opacity-20">
-            INCOME
-          </Link>
-        </li>
-
-        <li>
-          <Link to="/atable" className="text-green-600 font-bold py-3 px-6 rounded-full transition duration-300 hover:bg-white hover:bg-opacity-20">
-            MONTHLY INFORMATION
+            INCOME TABLE
           </Link>
         </li>
 
@@ -52,6 +46,11 @@ function Nav() {
           </Link>
         </li>
 
+        
+        <li>
+          <Link to="/atable" className="text-green-600 font-bold py-3 px-6 rounded-full transition duration-300 hover:bg-white hover:bg-opacity-20">
+            MONTHLY INFORMATION
+        </li>
       </ul>
 
       {/* Spacer to balance the layout */}
@@ -61,7 +60,6 @@ function Nav() {
 }
 
 export default Nav;
-
 
 /*
 import React from 'react';
@@ -113,6 +111,5 @@ function Nav() {
     </nav>
   );
 }
+export default Nav;*/
 
-export default Nav;
-*/

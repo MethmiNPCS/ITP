@@ -9,9 +9,11 @@ import { Link } from 'react-router-dom';
 import ReactToPrint from 'react-to-print';
 import OrderSummaryReport from '../OrderReport/OrderSummaryReport';
 
+
 function ViewOrder() {
   const [orderID, setOrderID] = useState('');
   const [orderData, setOrderData] = useState(null);
+  const [supplierEmail, setSupplierEmail] = useState('');
   const [error, setError] = useState('');
   const navigate = useNavigate(); 
   const orderSummaryReportRef = useRef(); 
@@ -47,6 +49,39 @@ function ViewOrder() {
     }
   };
 
+  const sendEmail = async () => {
+    // Confirm before proceeding
+    const confirmSend = window.confirm("Are you sure you want to send the email to the supplier?");
+    if (!confirmSend) {
+      return; // Exit if the user chooses 'Cancel'
+    }
+  
+    if (!supplierEmail) {
+      alert('Supplier email is not available.');
+      return;
+    }
+  
+    try {
+      // Send the email to the supplier
+      await axios.post('http://localhost:5000/orderemails/send-email', {
+        to: supplierEmail,
+        order: orderData,  // Use supplierEmail captured from Order.js
+      });
+      alert('Email sent successfully!');
+
+      // Update the order status to 'processed'
+      await axios.patch(`http://localhost:5000/orders/update-status/${orderID}`);
+      alert('Order status updated to processed!');
+      
+    } catch (error) {
+      console.error('Error sending email or updating order status:', error);
+      alert('Failed to send email or update order status.');
+    }
+};
+
+  
+  
+
   return (
     <div id="vview-order-container">
       <Nav />
@@ -68,7 +103,13 @@ function ViewOrder() {
       {orderData && (
         <div id="vorder-details-card">
           <h2 id="vorder-details-header">Order Details</h2>
-          <Order order={orderData} /> {/* Use Order component to display details */}
+          
+
+          <Order 
+            order={orderData} 
+            onEmailFetched={(email) => setSupplierEmail(email)}  // Capture supplierEmail here
+          />
+
           <Link to={`/vieworder/${orderID}`}><button id="vupdate-order-button">Update</button></Link>
           
           <button id="vdelete-order-button" onClick={deleteHandler}>Delete</button>
@@ -87,7 +128,7 @@ function ViewOrder() {
               order={orderData}
             />
           </div>
-          <button id="vsend-to-supplier-button">Send to Supplier</button>
+          <button id="vsend-to-supplier-button" onClick={sendEmail}>Send to Supplier</button>
         </div>
       )}
     </div>

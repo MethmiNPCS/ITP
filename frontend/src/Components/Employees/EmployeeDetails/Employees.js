@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import Nav from '../Nav/Nav';
 import axios from 'axios';
 import Employee from '../Employee/Employee';
-import { Link } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom'; // Keep only useNavigate if Link is not used
 
 const URL = "http://localhost:5000/employees";
 
@@ -18,6 +18,7 @@ const fetchHandler = async () => {
 
 function Employees() {
   const [employees, setEmployees] = useState([]);
+  const navigate = useNavigate(); // Initialize useNavigate
 
   useEffect(() => {
     fetchHandler().then((data) => {
@@ -25,21 +26,20 @@ function Employees() {
     });
   }, []);
 
+  const addBonusHandler = () => {
+    navigate('/addbonus'); // Navigate to AddBonus.js
+  };
+
   return (
     <div style={styles.container}>
       <Nav />
+      <button onClick={addBonusHandler}>Add Bonus</button> 
       <h1 style={styles.header}>Employee Details</h1>
-      <Link to="/salaries" style={styles.salaryLink}>
-        <button style={styles.button}>View All Salaries</button>
-      </Link>
       <div style={styles.employeeList}>
         {employees.length > 0 ? (
           employees.map((employee) => (
             <div key={employee._id} style={styles.employeeCard}>
               <Employee employee={employee} />
-              <Link to={`/salarycalculation/${employee.NIC}`} style={styles.salaryLink}>
-                <button style={styles.button}>Calculate Salary</button>
-              </Link>
             </div>
           ))
         ) : (

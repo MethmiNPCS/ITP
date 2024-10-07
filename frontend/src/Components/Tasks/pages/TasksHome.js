@@ -7,6 +7,8 @@ import { MdOutlineAddBox } from 'react-icons/md';
 import TasksTable from '../Components/home/TasksTable';
 import TasksCard from '../Components/home/TasksCard';
 import SearchBar from '../Components/home/SearchBar';
+import BackToHome from '../../Home/BackToHome';
+
 
 const TasksHome = () => {
     const [tasks, setTasks] = useState([]);
@@ -16,7 +18,7 @@ const TasksHome = () => {
 
     useEffect(() => {
         setLoading(true);
-        axios.get('http://localhost:5555/tasks')
+        axios.get('http://localhost:5000/tasks')
             .then(response => {
                 setTasks(response.data.data);
                 setLoading(false);
@@ -158,55 +160,62 @@ const TasksHome = () => {
 
     return (
         <div className='p-4'>
+            <div className="absolute top-4 left-4">
+                <BackToHome /> {/* Add the BackToHome button here */}
+            </div>
             {/* Centered Title */}
             <div className='flex justify-center my-4'>
-                <h1 className='text-4xl font-extrabold text-center font-serif'>Tasks List</h1>
+                <h1 className='text-4xl font-extrabold text-center font-serif'>Tasks Dashboard</h1>
             </div>
 
             {/* Task Counts */}
             <div className='flex justify-between mb-4'>
-                <Link to='/tasks/IncompleteTasks' className='flex-1 bg-gray-200 p-4 rounded-lg shadow-md mx-2 text-center'>
-                    <h2 className='text-xl font-semibold'>Incomplete Tasks</h2>
-                    <p className='text-3xl font-bold'>{incompleteTasks}</p>
+                <Link to='/tasks/IncompleteTasks' className='flex-1 bg-purple-300 p-2 border border-green-700 rounded-lg shadow-md mx-2 text-center hover:bg-gray-300'>
+                    <h2 className='text-lg font-semibold  text-black'>Incomplete Tasks : {incompleteTasks}</h2> {/* Reduced font size */}
+                    
                 </Link>
-                <Link to='/tasks/OverdueTasks' className='flex-1 bg-red-200 p-4 rounded-lg shadow-md mx-2 text-center'>
-                    <h2 className='text-xl font-semibold'>Overdue Tasks</h2>
-                    <p className='text-3xl font-bold'>{overdueTasks}</p>
+                <Link to='/tasks/OverdueTasks' className='flex-1 bg-red-200 p-2 border border-red-500 rounded-lg shadow-md mx-2 text-center hover:bg-red-300'>
+                    <h2 className='text-lg font-semibold text-black'>Overdue Tasks : {overdueTasks}</h2>
+                   
                 </Link>
-                <Link to='/tasks/UrgentTasks' className='flex-1 bg-yellow-200 p-4 rounded-lg shadow-md mx-2 text-center'>
-                    <h2 className='text-xl font-semibold'>Urgent Tasks</h2>
-                    <p className='text-3xl font-bold'>{urgentTasks}</p>
+                <Link to='/tasks/UrgentTasks' className='flex-1 bg-yellow-200 p-2 border border-yellow-600 rounded-lg shadow-md mx-2 text-center hover:bg-yellow-300'>
+                    <h2 className='text-lg font-semibold text-black'>Urgent Tasks : {urgentTasks}</h2>
+                   
                 </Link>
             </div>
 
+
             {/* Search Bar and Create Task Button */}
-            <div className='flex justify-end items-center mb-4 gap-x-4'>
+            <div className='flex justify-between items-center mb-4'>
+                {/* Search Bar aligned to the left */}
                 <div className='flex items-center space-x-2'>
-                    <SearchBar searchQuery={searchQuery} setSearchQuery={setSearchQuery} className='w-48' />
-                    <Link to='/tasks/create' className='flex items-center bg-slate-300 hover:bg-slate-400 px-3 py-2 rounded-lg'>
-                        <MdOutlineAddBox className='text-2xl mr-2' />
-                        <span>Create Task</span>
-                    </Link>
-                    <button
-                        onClick={generateReport}
-                        className='flex items-center bg-green-300 hover:bg-green-400 px-3 py-2 rounded-lg'
-                    >
-                        <span>Generate Report</span>
-                    </button>
+                    <SearchBar searchQuery={searchQuery} setSearchQuery={setSearchQuery} className='border-2 border-black rounded-lg px-4 py-2 w-48' /> {/* Adjust width as needed */}
                 </div>
+                    <div className='flex items-center gap-x-4'>
+                        <Link to='/tasks/create' className='flex items-center text-white bg-blue-500 hover:bg-blue-900 px-3 py-2 rounded-lg w-64'>
+                            <MdOutlineAddBox className='text-2xl mr-2' />
+                            <span>Create Task</span>
+                        </Link>
+                        <button
+                            onClick={generateReport}
+                            className='flex justify-center items-center text-white bg-green-800 hover:bg-green-400 px-3 py-2 rounded-lg'
+                        >
+                            <span>Generate Report</span>
+                        </button>
+                    </div>
             </div>
 
             {/* View Toggle Buttons */}
-            <div className='flex justify-center items-center gap-x-4 mb-4'>
+            <div className='flex justify-center items-center gap-x-0 mb-4'>
                 <button
-                    className={`px-4 py-2 border rounded ${showType === 'table' ? 'bg-gray-300' : 'bg-white'}`}
+                    className={`px-4 py-2 border rounded ${showType === 'table' ? 'bg-green-500 text-black' : 'bg-green-700'}`}
                     onClick={() => setShowType('table')}
                 >
                     <AiOutlineTable className='inline mr-2' />
                     Table View
                 </button>
                 <button
-                    className={`px-4 py-2 border rounded ${showType === 'card' ? 'bg-gray-300' : 'bg-white'}`}
+                    className={`px-4 py-2 border rounded ${showType === 'card' ? 'bg-blue-400' : 'bg-yellow-600'}`}
                     onClick={() => setShowType('card')}
                 >
                     <AiOutlineAppstore className='inline mr-2' />

@@ -8,7 +8,7 @@ const router = express.Router();
 // Route to save a new task
 router.post("/", async (request, response) => {
     try {
-        const { title, description, dueDate, priority, category, tags, isCompleted } = request.body;
+        const { title, description, dueDate, priority, category, tags, isCompleted,assignedEmployee } = request.body;
 
         if (!title || !description || !dueDate || !priority) {
             return response.status(400).send({ message: "Please fill all the required fields" });
@@ -22,6 +22,7 @@ router.post("/", async (request, response) => {
             category: category?.trim() || 'Orders', // Default to 'Orders' if category is not provided
             tags: tags || [], // Default to empty array if tags are not provided
             isCompleted: isCompleted || false, // Default to false
+            assignedEmployee
         };
 
         const task = await Task.create(newTask);
@@ -36,7 +37,8 @@ router.post("/", async (request, response) => {
 // Route to get ALL tasks from the database
 router.get("/", async (request, response) => {
     try {
-        const tasks = await Task.find({});
+        const tasks = await Task.find({}).populate('assignedEmployee', 'FirstName LastName');
+
         return response.status(200).json({
             count: tasks.length,
             data: tasks
@@ -66,7 +68,7 @@ router.get("/:id", async (request, response) => {
 router.put("/:id", async (request, response) => {
     try {
         const { id } = request.params;
-        const { title, description, dueDate, priority, category, tags, isCompleted } = request.body;
+        const { title, description, dueDate, priority, category, tags, isCompleted,assignedEmployee  } = request.body;
 
         if (!title || !description || !dueDate || !priority) {
             return response.status(400).send({ message: "Please fill all the required fields" });
@@ -80,6 +82,7 @@ router.put("/:id", async (request, response) => {
             category: category?.trim() || 'Orders',
             tags: tags || [],
             isCompleted: isCompleted || false,
+            assignedEmployee //added a change
         };
 
         const result = await Task.findByIdAndUpdate(id, updatedTask, { new: true });

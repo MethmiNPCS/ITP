@@ -10,7 +10,7 @@
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
 }
 
-#o-order-id, #o-order-type, #o-order-supplier, #o-order-date, #o-order-status {
+#o-order-id, #o-order-type, #o-order-supplier, #o-order-supplieremail, #o-order-date, #o-order-status {
     font-size: 20px;
     color: #293502;
     margin-bottom: 10px;

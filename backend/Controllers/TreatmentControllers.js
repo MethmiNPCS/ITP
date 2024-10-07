@@ -36,9 +36,18 @@ const addTreatment = async (req, res, next) => {
             return res.status(400).json({ message: "Treatment ID already exists" });
         }
 
-        const treatment = new Treatment({ treatmentID, planDescription, medicines, startDate, endDate, treatmentTime, frequency, animalIDs });
-        await treatment.save();
+        const treatment = new Treatment({
+            treatmentID,
+            planDescription,
+            medicines,
+            startDate,
+            endDate,
+            treatmentTime,  // treatmentTime is already an array in the model
+            frequency,
+            animalIDs
+        });
 
+        await treatment.save();
         return res.status(200).json({ treatment });
 
     } catch (err) {

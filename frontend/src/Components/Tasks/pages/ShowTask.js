@@ -20,24 +20,37 @@ const categoryColors = {
   Products: 'bg-yellow-400 text-yellow-800',
   Employees: 'bg-pink-400 text-pink-800',
   Maintenance: 'bg-gray-400 text-gray-800',
+  Plantation: 'bg-green-400 text-green-800',
+
 };
 
 const ShowTask = () => {
   const [task, setTask] = useState({});
+  const [employee, setEmployee] = useState(null); // State for the employee
   const [loading, setLoading] = useState(false);
   const { id } = useParams();
 
   useEffect(() => {
-    setLoading(true);
-    axios.get(`http://localhost:5555/tasks/${id}`)
-      .then(response => {
-        setTask(response.data);
-        setLoading(false);
-      })
-      .catch(error => {
+    const fetchTaskAndEmployee = async () => {
+      setLoading(true);
+      try {
+        // Fetch the task
+        const taskResponse = await axios.get(`http://localhost:5000/tasks/${id}`);
+        setTask(taskResponse.data);
+
+        // Fetch the assigned employee if there is one
+        if (taskResponse.data.assignedEmployee) {
+          const employeeResponse = await axios.get(`http://localhost:5000/employees/${taskResponse.data.assignedEmployee}`);
+          setEmployee(employeeResponse.data);
+        }
+      } catch (error) {
         console.log(error.message);
+      } finally {
         setLoading(false);
-      });
+      }
+    };
+
+    fetchTaskAndEmployee();
   }, [id]);
 
   const priorityClass = priorityButtonColors[task.priority] || 'bg-gray-200 text-gray-800';
@@ -71,7 +84,10 @@ const ShowTask = () => {
           <span className='text-xl font-medium mr-4 text-gray-600'>Category:</span>
           <span className={`px-2 py-1 rounded ${categoryClass}`}>{task.category}</span>
         </div>
-
+        <div className='my-4'>
+          <span className='text-xl font-medium mr-4 text-gray-600'>Assigned Employee:</span>
+          <span className='text-lg'>{employee ? employee.name : 'No employee assigned'}</span>
+        </div>
         <div className='my-4'>
           <span className='text-xl font-medium mr-4 text-gray-600'>Tags:</span>
           <span className='text-lg'>{Array.isArray(task.tags) ? task.tags.join(', ') : 'No tags'}</span>

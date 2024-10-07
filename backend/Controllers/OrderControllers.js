@@ -17,10 +17,9 @@ const getAllOrders = async (req, res, next) => {
     return res.status(200).json({orders});
 };
 
-//data insert
+//data insert - order
 const addOrders = async (req, res, next) => {
     const{orderID,orderType, items, description, supplier} = req.body;
-
     let orders;
 
     try{
@@ -46,11 +45,10 @@ const addOrders = async (req, res, next) => {
     return res.status(200).json({orders});
 };
 
-//retrive data by using orderID
+//retrive order data by using orderID
 const getByorderID = async (req, res, next) => {
-
+    
     const id = req.params.orderID;
-
     let order;
 
     try{
@@ -62,10 +60,8 @@ const getByorderID = async (req, res, next) => {
     //order not available on db
     if(!order){
         return res.status(404).json({message: "Order not found"});
-
     }
     return res.status(200).json({order});
-
 }
 
 //update order data
@@ -156,6 +152,31 @@ const getOrderCategoryStats = async (req, res, next) => {
     }
   };
 
+  // Update order status from pending to processed
+const updateOrderStatus = async (req, res, next) => {
+    const id = req.params.orderID; // Get orderID from the request parameters
+    let order;
+
+    try {
+        // Find the order by orderID and update the status to 'processed'
+        order = await Order.findOneAndUpdate(
+            { orderID: id, status: "pending" }, // Match only if the status is 'pending'
+            { status: "processed" }, // Update the status to 'processed'
+            { new: true } // Return the updated order
+        );
+    } catch (err) {
+        console.log(err);
+        return res.status(500).json({ message: "Error updating order status" });
+    }
+
+    // If no order is found (maybe it's already processed or doesn't exist)
+    if (!order) {
+        return res.status(404).json({ message: "Order not found or already processed" });
+    }
+
+    return res.status(200).json({ message: "Order status updated successfully", order });
+};
+
 
 
 
@@ -167,4 +188,5 @@ exports.updateOrder = updateOrder;
 exports.deleteOrder = deleteOrder;
 exports.getOrderStats = getOrderStats;
 exports.getOrderCategoryStats = getOrderCategoryStats;
+exports.updateOrderStatus = updateOrderStatus;
 

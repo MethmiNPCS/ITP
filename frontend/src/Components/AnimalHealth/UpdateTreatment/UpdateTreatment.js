@@ -3,7 +3,7 @@ import Nav from "../Nav/Nav";
 import axios from "axios";
 import { useParams } from "react-router";
 import { useNavigate } from "react-router";
-import "./UpdateTreatment.css"
+import "./UpdateTreatment.css";
 
 function UpdateTreatment() {
   const [inputs, setInputs] = useState({
@@ -11,11 +11,12 @@ function UpdateTreatment() {
     planDescription: "",
     startDate: "",
     endDate: "",
-    treatmentTime: "",
+    treatmentTimes: [""], // Updated to an array for treatment times
     frequency: "",
     animalIDs: "",
     medicines: [{ name: "", dose: "" }],
   });
+
   const history = useNavigate();
   const { id: treatmentID } = useParams();
 
@@ -38,8 +39,9 @@ function UpdateTreatment() {
             endDate: new Date(data.treatment.endDate)
               .toISOString()
               .split("T")[0],
+            treatmentTimes: data.treatment.treatmentTime || [""], // Update to handle treatment times
             medicines: medicinesArray,
-            animalIDs: data.treatment.animalIDs.join(", "), // Join array to string
+            animalIDs: data.treatment.animalIDs.join(", "),
           });
         });
     };
@@ -51,6 +53,24 @@ function UpdateTreatment() {
       ...prevState,
       [e.target.name]: e.target.value,
     }));
+  };
+
+  const handleTreatmentTimeChange = (index, value) => {
+    const updatedTimes = [...inputs.treatmentTimes];
+    updatedTimes[index] = value;
+    setInputs((prevState) => ({ ...prevState, treatmentTimes: updatedTimes }));
+  };
+
+  const addTreatmentTimeField = () => {
+    setInputs((prevState) => ({
+      ...prevState,
+      treatmentTimes: [...prevState.treatmentTimes, ""],
+    }));
+  };
+
+  const removeTreatmentTimeField = (index) => {
+    const updatedTimes = inputs.treatmentTimes.filter((_, i) => i !== index);
+    setInputs((prevState) => ({ ...prevState, treatmentTimes: updatedTimes }));
   };
 
   const handleMedicineChange = (index, field, value) => {
@@ -82,7 +102,7 @@ function UpdateTreatment() {
         planDescription: String(inputs.planDescription),
         startDate: new Date(inputs.startDate).toISOString(),
         endDate: new Date(inputs.endDate).toISOString(),
-        treatmentTime: String(inputs.treatmentTime),
+        treatmentTime: inputs.treatmentTimes, // Send as array
         frequency: String(inputs.frequency),
         animalIDs: animalIDsArray,
         medicines: inputs.medicines,
@@ -96,107 +116,125 @@ function UpdateTreatment() {
   };
 
   return (
-    <div className="add-animal-container"> 
-      <Nav />
-      <h1>Update Treatment</h1>
-      <br></br>
-      <form onSubmit={handleSubmit}>
-        <label>Treatment ID</label>
+    <div><Nav />
+    <br/>
+    <div className="treatment-update-treatment-container"> 
+      <h1 className="treatment-update-treatment-title">Update Treatment</h1>
+      <br />
+      <form onSubmit={handleSubmit} className="treatment-update-treatment-form">
+        <label className="treatment-form-label">Treatment ID</label>
         <input
           type="text"
           name="treatmentID"
           value={inputs.treatmentID}
           onChange={handleChange}
+          className="treatment-form-input"
           readOnly
         />
-
-        <label>Plan Description</label>
+        <br />
+        <label className="treatment-form-label">Plan Description</label>
         <textarea
           name="planDescription"
           value={inputs.planDescription}
           onChange={handleChange}
+          className="treatment-form-textarea"
           required
         />
-
-        <label>Start Date</label>
+        <br />
+        <label className="treatment-form-label">Start Date</label>
         <input
           type="date"
           name="startDate"
           value={inputs.startDate}
           onChange={handleChange}
+          className="treatment-form-input"
           required
         />
-
-        <label>End Date</label>
+        <br />
+        <label className="treatment-form-label">End Date</label>
         <input
           type="date"
           name="endDate"
           value={inputs.endDate}
           onChange={handleChange}
+          className="treatment-form-input"
           required
         />
-
-        <label>Treatment Time</label>
-        <input
-          type="text"
-          name="treatmentTime"
-          value={inputs.treatmentTime}
-          onChange={handleChange}
-        />
-
-        <label>Frequency</label>
-        <input
-          type="text"
-          name="frequency"
-          value={inputs.frequency}
-          onChange={handleChange}
-        />
-
-        <label>Medicines</label>
-        <div className="add-medicine-container">
-          {inputs.medicines.map((medicine, index) => (
-            <div key={index}>
+        <br />
+        <label className="treatment-form-label">Treatment Times</label>
+        <div className="treatment-times-container">
+          {inputs.treatmentTimes.map((time, index) => (
+            <div key={index} className="treatment-time-field">
               <input
-                type="text"
-                placeholder="Medicine Name"
-                value={medicine.name}
-                onChange={(e) =>
-                  handleMedicineChange(index, "name", e.target.value)
-                }
-                required
-              />
-              <input
-                type="text"
-                placeholder="Dose"
-                value={medicine.dose}
-                onChange={(e) =>
-                  handleMedicineChange(index, "dose", e.target.value)
-                }
+                type="time"
+                value={time}
+                onChange={(e) => handleTreatmentTimeChange(index, e.target.value)}
+                className="treatment-form-input"
                 required
               />
               <button
                 type="button"
-                className="remove-medicine-button"
-                onClick={() => removeMedicineField(index)}
+                onClick={() => removeTreatmentTimeField(index)}
+                className="treatment-remove-treatment-time-button"
               >
                 Remove
               </button>
             </div>
           ))}
+          <button
+            type="button"
+            onClick={addTreatmentTimeField}
+            className="treatment-add-treatment-time-button"
+          >
+            Add Treatment Time
+          </button>
         </div>
-
-        <button
-          type="button"
-          className="add-medicine-button"
-          onClick={addMedicineField}
-        >
-          Add Medicine
-        </button>
-
-        <button type="submit" className="submit-button">
-          Submit
+        <br />
+        
+        
+        <label className="treatment-form-label">Medicines</label>
+        <div className="treatment-medicines-container">
+          {inputs.medicines.map((med, index) => (
+            <div key={index} className="treatment-medicine-field">
+              <input
+                type="text"
+                placeholder="Medicine Name"
+                value={med.name}
+                onChange={(e) => handleMedicineChange(index, "name", e.target.value)}
+                className="treatment-form-input"
+                required
+              />
+              <input
+                type="text"
+                placeholder="Dose"
+                value={med.dose}
+                onChange={(e) => handleMedicineChange(index, "dose", e.target.value)}
+                className="treatment-form-input"
+                required
+              />
+              <button
+                type="button"
+                onClick={() => removeMedicineField(index)}
+                className="treatment-remove-medicine-button"
+              >
+                Remove
+              </button>
+            </div>
+          ))}
+          <button
+            type="button"
+            onClick={addMedicineField}
+            className="treatment-add-medicine-button"
+          >
+            Add Medicine
+          </button>
+        </div>
+        <br />
+        <button type="submit" className="treatment-submit-button">
+          Update Treatment
         </button>
       </form>
+    </div>
     </div>
   );
 }

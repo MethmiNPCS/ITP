@@ -1,0 +1,69 @@
+/* SupplierDetails.css */
+
+/* Styling for the supplier details container */
+#supplier-details {
+  background-color: #f0f9f0; /* Light green farm-related background */
+  padding: 20px;
+  font-family: 'Arial', sans-serif;
+  margin-top: 20px; /* Adds space below the fixed navbar */
+}
+
+/* Header styling */
+#supplier-header {
+  text-align: center;
+  color: #2f6b2f; /* Farm-themed green */
+  font-size: 32px;
+  font-weight: bold;
+  margin-bottom: 20px;
+}
+
+/* Search bar styling */
+#search-container {
+  text-align: center;
+  margin-bottom: 20px;
+}
+
+#search-input {
+  width: 50%;
+  padding: 10px;
+  border: 2px solid #2f6b2f;
+  border-radius: 4px;
+  font-size: 16px;
+}
+
+/* Table styling */
+#supplier-table {
+  width: 100%;
+  border-collapse: collapse;
+  margin: 0 auto;
+  background-color: #ffffff;
+}
+
+#supplier-table th, #supplier-table td {
+  border: 1px solid #d0e4d0; /* Light green border */
+  padding: 12px;
+  text-align: left;
+}
+
+#supplier-table th {
+  background-color: #cae6ca;
+  color: #2f6b2f;
+  font-size: 18px;
+}
+
+#supplier-table td {
+  font-size: 16px;
+  color: #555555;
+}
+
+/* Row hover effect */
+#supplier-table tbody tr:hover {
+  background-color: #f1f8f1;
+}
+
+/* Styling for "No search results" message */
+#no-results-message {
+  text-align: center;
+  font-size: 18px;
+  color: #cc0000;
+}

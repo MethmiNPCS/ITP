@@ -1,6 +1,6 @@
 /* Styles for the navigation bar */
 .navbar {
-    background-color: green; /* Background color of the navbar */
+    background-color: rgb(49, 186, 49); /* Background color of the navbar */
     padding: 10px;
     border-radius: 8px; /* Rounded corners for the navbar */
     display: flex;

@@ -1,58 +1,69 @@
-/* Styles for the AddProduct component */
-
-.container {
+.p-container {
+    background-image: url('../../img/farm.jpg'); /* Ensure this path is correct */
     display: flex;
-    justify-content: center;
+    flex-direction: column;
     align-items: center;
-    padding: 20px;
-    gap: 20px;
-}
-
-.formContainer {
-    background-image: url('../img/farm2.jpg'); /* Ensure path is correct */
+    justify-content: flex-start;
+    min-height: 100vh;
+    background-color: #f4f4f9;
     background-size: cover;
-    background-position: center;
-    padding: 40px;
-    border-radius: 8px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-    max-width: 500px;
-    margin: 50px auto;
-    color: white;
+    padding: 40px; /* Added padding for overall container */
 }
 
-.title {
+.p-form-container {
+    position: relative;
+    padding: 60px; /* Increased padding for more internal space */
+    border-radius: 12px;
+    box-shadow: 0 8px 26px rgba(0, 0, 0, 0.8);
+    max-width: 800px; /* Increased max-width for a larger container */
+    width: 80%;
+    margin: 30px auto;
+    color: white;
+    background-color: rgba(0, 0, 0, 0.7); /* Darker overlay for better contrast */
+}
+
+.p-title {
     text-align: center;
-    font-size: 24px;
+    font-size: 28px; /* Slightly increased font size for better visibility */
     margin-bottom: 30px;
 }
 
-.form {
+.p-form {
     display: flex;
     flex-direction: column;
-    gap: 20px;
+    gap: 15px;
 }
 
-.formGroup {
+.p-form-group {
     display: flex;
     flex-direction: column;
-    margin: 15px 0;
+    margin: 10px 0;
 }
 
-.label {
-    margin-bottom: 8px;
+.p-label {
+    margin-bottom: 6px;
     font-weight: bold;
 }
 
-.input, .select {
-    padding: 10px;
+.p-input {
+    padding: 12px; /* Increased padding for larger input fields */
     font-size: 16px;
     border: 1px solid #fff;
     border-radius: 5px;
-    background-color: rgba(255, 255, 255, 0.8);
+    background-color: rgba(255, 255, 255, 0.9); /* Lighter input background */
     color: #000;
 }
 
-.submitButton {
+.p-select {
+    padding: 12px; /* Increased padding for larger select fields */
+    font-size: 16px;
+    border: 1px solid #fff;
+    border-radius: 5px;
+    background-color: rgba(255, 255, 255, 0.9);
+    color: #000;
+}
+
+.p-submit-button {
     padding: 12px;
     border: none;
     border-radius: 5px;
@@ -61,4 +72,5 @@
     font-size: 16px;
     cursor: pointer;
     margin-top: 20px;
+    width: 100%; /* Ensures the button takes the full width of the container */
 }

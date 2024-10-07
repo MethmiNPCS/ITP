@@ -30,10 +30,10 @@
 /* Header cell styles */
 .header {
     padding: 15px; /* More padding for header */
-    background-color: #00712D; /* Darker green */
+    background-color: #071706; /* Darker green */
     color: white; /* White text for contrast */
     font-weight: bold; /* Bold font for headers */
-    border-bottom: 3px solid #005a23; /* Darker green for emphasis */
+    border-bottom: 3px solid #06190d; /* Darker green for emphasis */
     text-transform: uppercase; /* Uppercase headers for emphasis */
 }
 
@@ -59,7 +59,9 @@
 /* Button container styles */
 .button-container {
     display: flex;
+    justify-content: center; /* Center buttons horizontally */
     gap: 20px; /* Increased gap between buttons */
+    margin-top: 20px; /* Add some margin above the button container */
 }
 
 /* General button styles */
@@ -67,7 +69,7 @@
     padding: 12px 24px; /* Slightly larger padding */
     cursor: pointer;
     border: none;
-    background-color: #00712D; /* Green background */
+    background-color: #097e11; /* Green background */
     color: white;
     border-radius: 5px; /* Rounded corners */
     transition: background-color 0.3s, transform 0.2s; /* Smooth transition */
@@ -91,7 +93,7 @@
     padding: 12px 24px; /* Consistent padding */
     cursor: pointer;
     border: none;
-    background-color: #5bc0de; /* Light blue color for update */
+    background-color: #147814; /* Light green color for update */
     color: white;
     border-radius: 5px; /* Rounded corners */
     transition: background-color 0.3s, transform 0.2s; /* Smooth transition */
@@ -110,7 +112,7 @@
 }
 
 .update-button:hover {
-    background-color: #31b0d5; /* Darker blue on hover */
+    background-color: #22790b; /* Darker green on hover */
     transform: scale(1.05); /* Slight scale effect on hover */
 }
 

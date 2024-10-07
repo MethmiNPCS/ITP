@@ -1,188 +1,284 @@
-import React, { useEffect, useState } from 'react';
+import React, { useState, useEffect } from 'react';
+import Nav from '../Nav/Nav';
 import axios from 'axios';
-import { useParams, useNavigate } from 'react-router-dom';
-import './UpdateProduct.css'; // Import the CSS file
+import './UpdateProduct.css';
+import { useNavigate, useParams } from 'react-router-dom';
 
 function UpdateProduct() {
-    const [inputs, setInputs] = useState({
-        name: '',
-        MFD: '',
-        type: '',
-        product: '',
-        date: '',
-        quantity: 0,
-    });
-    const [loading, setLoading] = useState(false);
-    const [error, setError] = useState(null);
-    const navigate = useNavigate();
-    const { id } = useParams();
+  const [inputs, setInputs] = useState({
+    type: '',
+    product: '',
+    price: 0,
+    MFD: '',
+    EXP: '',
+    quantity: 0
+  });
+  const [totalPrice, setTotalPrice] = useState(0);
+  const [errorMessage, setErrorMessage] = useState('');
+  const navigate = useNavigate();
+  const { id } = useParams(); // Get product ID from URL parameters
 
-    // Define the product options for each type
-    const productOptions = {
-        Animal: ["Cheese", "Butter", "Yoghurt","Frsh Milk","Egg","Meet-Beef","Meet-Chiken","Meet-Pork"],
-        Plantation: ["Coconut", "Timber","Nut"],
+  // Defined product prices for auto-calculation
+  const productPrices = {
+    'Cheese one box': 850,
+    'Butter - onepack(50g)': 500,
+    'Yoghurt - (1)': 50,
+    'Fresh Milk - (1)': 450,
+    'Egg - (1)': 25,
+    'Meat-Beef one pack': 2600,
+    'Meat-Chicken one pack': 900,
+    'Meat-Pork one pack': 2700,
+    'Coconut': 50,
+    'Tea': 200,
+    'Nut': 300,
+  };
+
+  // Product options based on the type
+  const productOptions = {
+    Animal: ['Cheese one box', 'Butter - onepack(50g)', 'Yoghurt - (1)', 'Fresh Milk - (1)', 'Egg - (1)', 'Meat-Beef one pack', 'Meat-Chicken one pack', 'Meat-Pork one pack'],
+    Plantation: ['Coconut', 'Tea', 'Nut'],
+  };
+
+  // Fetch product data on mount
+  useEffect(() => {
+    const fetchProduct = async () => {
+      try {
+        const response = await axios.get(`http://localhost:5000/products/${id}`);
+        const productData = response.data.product; // Assuming the product data is under product
+
+        // Set fetched product data to inputs state
+        setInputs({
+          type: productData.type,
+          product: productData.product,
+          price: productData.price,
+          MFD: productData.MFD.substring(0, 10), // Ensure the date is in YYYY-MM-DD format
+          EXP: productData.EXP.substring(0, 10),
+          quantity: productData.quantity
+        });
+      } catch (error) {
+        console.error('Error fetching product:', error);
+        setErrorMessage('Failed to fetch product data. Please try again.');
+      }
     };
 
-    useEffect(() => {
-        const fetchHandler = async () => {
-            try {
-                const res = await axios.get(`http://localhost:5000/products/${id}`);
-                if (res.data && res.data.product) {
-                    setInputs(res.data.product);
-                } else {
-                    setError('No product data found');
-                }
-            } catch (err) {
-                setError('Error fetching product data. Please try again later.');
-            }
-        };
-        fetchHandler();
-    }, [id]);
+    fetchProduct();
+  }, [id]);
 
-    const sendRequest = async () => {
-        try {
-            setLoading(true);
-            await axios.put(`http://localhost:5000/products/${id}`, {
-                name: String(inputs.name),
-                MFD: new Date(inputs.MFD).toISOString(),
-                type: String(inputs.type),
-                product: String(inputs.product),  // Update product selection
-                date: new Date(inputs.date).toISOString(),
-                quantity: Number(inputs.quantity),
-            });
-            window.alert('Product updated successfully!');
-        } catch (err) {
-            setError('Error updating product. Please try again.');
-        } finally {
-            setLoading(false);
-        }
-    };
+  // Handle input changes
+  const handleChange = (e) => {
+    const { name, value } = e.target;
+    const parsedValue = name === 'quantity' ? Number(value) : value;
 
-    const handleChange = (e) => {
-        setInputs((prevState) => ({
-            ...prevState,
-            [e.target.name]: e.target.value,
-        }));
-    };
+    setInputs((prevState) => ({
+      ...prevState,
+      [name]: parsedValue,
+    }));
 
-    const handleSubmit = async (e) => {
-        e.preventDefault();
+    // Auto-set the price based on the selected product
+    if (name === 'product') {
+      const newPrice = productPrices[value] || 0;
+      setInputs((prevState) => ({
+        ...prevState,
+        price: newPrice,
+      }));
+    }
 
-        if (!inputs.name || !inputs.MFD || !inputs.type || !inputs.product || !inputs.date || inputs.quantity <= 0) {
-            setError('Please fill out all fields correctly.');
-            return;
-        }
+    // Reset EXP if MFD changes
+    if (name === 'MFD') {
+      setInputs((prevState) => ({
+        ...prevState,
+        EXP: '', // Clear the EXP field whenever MFD changes
+      }));
+    }
+  };
 
-        try {
-            await sendRequest();
-            navigate('/productdetails');
-        } catch (error) {
-            console.error('Error during form submission:', error);
-        }
-    };
+  // Update total price whenever price or quantity changes
+  useEffect(() => {
+    const calculatedTotalPrice = inputs.price * inputs.quantity;
+    setTotalPrice(calculatedTotalPrice);
+  }, [inputs.price, inputs.quantity]);
 
-    return (
-        <div className="image-container">
-            <div className="form-container">
-                <h1 className="title">Update Product</h1>
-                {error && <p className="error">{error}</p>}
-                <form onSubmit={handleSubmit} className="form">
-                    <div className="form-group">
-                        <label htmlFor="name" className="label">Product Name</label>
-                        <input
-                            type="text"
-                            name="name"
-                            id="name"
-                            onChange={handleChange}
-                            value={inputs.name}
-                            required
-                            className="input"
-                        />
-                    </div>
+  // Format date to YYYY-MM-DD
+  const formatDate = (dateString) => {
+    if (!dateString) return '';
+    const date = new Date(dateString);
+    const year = date.getFullYear();
+    const month = String(date.getMonth() + 1).padStart(2, '0');
+    const day = String(date.getDate()).padStart(2, '0');
+    return `${year}-${month}-${day}`;
+  };
 
-                    <div className="form-group">
-                        <label htmlFor="MFD" className="label">Manufacturing Date (MFD)</label>
-                        <input
-                            type="date"
-                            name="MFD"
-                            id="MFD"
-                            onChange={handleChange}
-                            value={inputs.MFD.substring(0, 10)}
-                            required
-                            className="input"
-                        />
-                    </div>
+  // Get minimum expiry date based on manufacturing date
+  const getMinExpiryDate = (mfd) => {
+    if (!mfd) return '';
+    const mfdDate = new Date(mfd);
+    mfdDate.setDate(mfdDate.getDate() + 1);
+    return formatDate(mfdDate.toISOString());
+  };
 
-                    <div className="form-group">
-                        <label htmlFor="type" className="label">Type</label>
-                        <select
-                            name="type"
-                            id="type"
-                            onChange={handleChange}
-                            value={inputs.type}
-                            required
-                            className="input"
-                        >
-                            <option value="">Select Type</option>
-                            <option value="Animal">Animal</option>
-                            <option value="Plantation">Plantation</option>
-                        </select>
-                    </div>
+  // Handle form submission
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    setErrorMessage('');
 
-                    {inputs.type && (
-                        <div className="form-group">
-                            <label htmlFor="product" className="label">Product</label>
-                            <select
-                                name="product"
-                                id="product"
-                                onChange={handleChange}
-                                value={inputs.product}
-                                required
-                                className="input"
-                            >
-                                <option value="">Select Product</option>
-                                {productOptions[inputs.type]?.map((option) => (
-                                    <option key={option} value={option}>
-                                        {option}
-                                    </option>
-                                ))}
-                            </select>
-                        </div>
-                    )}
+    const formattedMFD = formatDate(inputs.MFD);
+    const formattedEXP = formatDate(inputs.EXP);
 
-                    <div className="form-group">
-                        <label htmlFor="date" className="label">Expiration Date</label>
-                        <input
-                            type="date"
-                            name="date"
-                            id="date"
-                            onChange={handleChange}
-                            value={inputs.date.substring(0, 10)}
-                            required
-                            className="input"
-                        />
-                    </div>
+    // Ensure the expiry date is after the manufacturing date
+    if (new Date(formattedEXP) <= new Date(formattedMFD)) {
+      setErrorMessage('Expiry date must be after the manufacturing date.');
+      return;
+    }
 
-                    <div className="form-group">
-                        <label htmlFor="quantity" className="label">Quantity</label>
-                        <input
-                            type="number"
-                            name="quantity"
-                            id="quantity"
-                            onChange={handleChange}
-                            value={inputs.quantity}
-                            required
-                            className="input"
-                        />
-                    </div>
+    try {
+      await sendRequest({
+        ...inputs,
+        MFD: formattedMFD,
+        EXP: formattedEXP,
+      });
+      window.alert('Product updated successfully!');
+      navigate('/productdetails');
+    } catch (error) {
+      console.error('Error:', error);
+      setErrorMessage('Failed to update product. Please try again.');
+    }
+  };
 
-                    <button type="submit" disabled={loading} className={loading ? "loading-button" : "submit-button"}>
-                        {loading ? 'Updating...' : 'Update Product'}
-                    </button>
-                </form>
+  // Send request to the backend
+  const sendRequest = async (formattedInputs) => {
+    console.log('Payload to be sent:', formattedInputs); // Log the payload
+    try {
+      await axios.put(`http://localhost:5000/products/${id}`, {
+        type: formattedInputs.type,
+        product: formattedInputs.product,
+        price: Number(formattedInputs.price),
+        MFD: formattedInputs.MFD,
+        EXP: formattedInputs.EXP,
+        quantity: Number(formattedInputs.quantity),
+        Totalprice: Number(formattedInputs.price) * Number(formattedInputs.quantity),
+      });
+    } catch (error) {
+      console.error("Failed to update product:", error.response ? error.response.data : error.message);
+      throw new Error(error.response ? error.response.data : error.message);
+    }
+  };
+
+  return (
+    <div className="p-page-container">
+      <Nav />
+      <div className="p-container">
+        <div className="p-form-container">
+          <h1 className="p-title">UPDATE PRODUCT</h1>
+          <form onSubmit={handleSubmit} className="p-form">
+            <div className="p-form-group">
+              <label htmlFor="type" className="p-label">Type</label>
+              <select
+                name="type"
+                onChange={handleChange}
+                value={inputs.type}
+                required
+                className="select"
+                style={{ width: '600px', height: '40px' }} // Updated style for consistency
+              >
+                <option value="">Select Type</option>
+                <option value="Animal">Animal</option>
+                <option value="Plantation">Plantation</option>
+              </select>
             </div>
+
+            {inputs.type && (
+              <div className="p-form-group">
+                <label htmlFor="product" className="p-label">Product</label>
+                <select
+                  name="product"
+                  onChange={handleChange}
+                  value={inputs.product}
+                  required
+                  className="select"
+                  style={{ width: '600px', height: '40px' }}
+                >
+                  <option value="">Select Product</option>
+                  {productOptions[inputs.type]?.map((prod, index) => (
+                    <option key={index} value={prod}>
+                      {prod}
+                    </option>
+                  ))}
+                </select>
+              </div>
+            )}
+
+            <div className="p-form-group">
+              <label htmlFor="price" className="p-label">Price</label>
+              <input
+                type="number"
+                name="price"
+                onChange={handleChange}
+                value={inputs.price}
+                required
+                className="input"
+                min="0"
+                readOnly // Price is read-only as it's auto-set based on product selection
+              />
+            </div>
+
+            <div className="p-form-group">
+              <label htmlFor="MFD" className="p-label">Manufacturing Date</label>
+              <input
+                type="date"
+                name="MFD"
+                onChange={handleChange}
+                value={inputs.MFD}
+                required
+                className="input"
+              />
+            </div>
+
+            <div className="p-form-group">
+              <label htmlFor="EXP" className="p-label">Expiry Date</label>
+              <input
+                type="date"
+                name="EXP"
+                onChange={handleChange}
+                value={inputs.EXP}
+                required
+                className="input"
+                min={getMinExpiryDate(inputs.MFD)}
+              />
+            </div>
+
+            <div className="p-form-group">
+              <label htmlFor="quantity" className="p-label">Quantity</label>
+              <input
+                type="number"
+                name="quantity"
+                onChange={handleChange}
+                value={inputs.quantity}
+                required
+                className="input"
+                min="0"
+              />
+            </div>
+
+            <div className="p-form-group">
+              <label className="p-label">Total Price</label>
+              <input
+                type="text"
+                value={totalPrice}
+                readOnly
+                className="input"
+              />
+            </div>
+
+            {errorMessage && (
+              <p className="error-message">{errorMessage}</p>
+            )}
+
+            <button type="submit" className="submit-button">UPDATE PRODUCT</button>
+          </form>
         </div>
-    );
+      </div>
+    </div>
+  );
 }
 
 export default UpdateProduct;

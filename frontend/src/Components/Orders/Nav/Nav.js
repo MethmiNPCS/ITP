@@ -17,31 +17,31 @@ function Nav() {
       {/* Centered navigation links */}
       <ul className="flex space-x-10 items-center">
         <li>
-          <Link to="/orderhome" className="text-green-600 font-bold py-3 px-6 rounded-full transition duration-300 hover:bg-white hover:bg-opacity-20">
+          <Link to="/orderhome" className="text-lg text-green-600 font-bold py-3 px-6 rounded-full transition duration-300 hover:bg-white hover:bg-opacity-20">
             DASHBOARD
           </Link>
         </li>
 
         <li>
-          <Link to="/addorder" className="text-green-600 font-bold py-3 px-6 rounded-full transition duration-300 hover:bg-white hover:bg-opacity-20">
+          <Link to="/addorder" className="text-lg text-green-600 font-bold py-3 px-6 rounded-full transition duration-300 hover:bg-white hover:bg-opacity-20">
             ADD ORDER
           </Link>
         </li>
 
         <li>
-          <Link to="/orderdetails" className="text-green-600 font-bold py-3 px-6 rounded-full transition duration-300 hover:bg-white hover:bg-opacity-20">
+          <Link to="/orderdetails" className="text-lg text-green-600 font-bold py-3 px-6 rounded-full transition duration-300 hover:bg-white hover:bg-opacity-20">
             ORDER DETAILS
           </Link>
         </li>
 
         <li>
-          <Link to="/vieworder" className="text-green-600 font-bold py-3 px-6 rounded-full transition duration-300 hover:bg-white hover:bg-opacity-20">
+          <Link to="/vieworder" className="text-lg text-green-600 font-bold py-3 px-6 rounded-full transition duration-300 hover:bg-white hover:bg-opacity-20">
             VIEW ORDER
           </Link>
         </li>
 
         <li>
-          <Link to="/supplierdetails" className="text-green-600 font-bold py-3 px-6 rounded-full transition duration-300 hover:bg-white hover:bg-opacity-20">
+          <Link to="/supplierdetails" className="text-lg text-green-600 font-bold py-3 px-6 rounded-full transition duration-300 hover:bg-white hover:bg-opacity-20">
             SUPPLIERS
           </Link>
         </li>

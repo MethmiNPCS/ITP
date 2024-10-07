@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import Nav from '../Nav/Nav';
 import axios from 'axios';
 import Employee from '../Employee/Employee';
-import { useNavigate } from 'react-router-dom'; // Keep only useNavigate if Link is not used
+import { useNavigate } from 'react-router-dom';
 
 const URL = "http://localhost:5000/employees";
 
@@ -13,18 +13,36 @@ const fetchHandler = async () => {
     return response.data;
   } catch (error) {
     console.error("Error fetching employees:", error);
+    throw error; // Re-throw the error for handling in the component
   }
 };
 
 function Employees() {
   const [employees, setEmployees] = useState([]);
-  const navigate = useNavigate(); // Initialize useNavigate
+  const [loading, setLoading] = useState(true); // Loading state
+  const [error, setError] = useState(null); // Error state
+  const [searchQuery, setSearchQuery] = useState(''); // State for search query
+  const navigate = useNavigate();
 
   useEffect(() => {
-    fetchHandler().then((data) => {
-      setEmployees(data.employees || []);
-    });
+    const loadEmployees = async () => {
+      try {
+        const data = await fetchHandler();
+        setEmployees(data.employees || []);
+      } catch (error) {
+        setError("Failed to fetch employee data. Please try again.");
+      } finally {
+        setLoading(false); // Set loading to false after fetching
+      }
+    };
+
+    loadEmployees();
   }, []);
+
+  // Filter employees by NIC based on search query
+  const filteredEmployees = employees.filter((employee) =>
+    employee.NIC.toLowerCase().includes(searchQuery.toLowerCase())
+  );
 
   const addBonusHandler = () => {
     navigate('/addbonus'); // Navigate to AddBonus.js
@@ -33,19 +51,35 @@ function Employees() {
   return (
     <div style={styles.container}>
       <Nav />
-      <button onClick={addBonusHandler}>Add Bonus</button> 
-      <h1 style={styles.header}>Employee Details</h1>
-      <div style={styles.employeeList}>
-        {employees.length > 0 ? (
-          employees.map((employee) => (
-            <div key={employee._id} style={styles.employeeCard}>
-              <Employee employee={employee} />
-            </div>
-          ))
-        ) : (
-          <p style={styles.noEmployees}>No employees found</p>
-        )}
+      <div style={styles.actionContainer}>
+        <input
+          type="text"
+          placeholder="Search by NIC"
+          value={searchQuery}
+          onChange={(e) => setSearchQuery(e.target.value)}
+          style={styles.searchInput}
+        />
+        <button onClick={addBonusHandler} style={styles.button}>Add Bonus</button>
       </div>
+      
+      <h1 style={styles.header}>Employee Details</h1>
+      {loading ? (
+        <p>Loading employees...</p>
+      ) : error ? (
+        <p style={styles.error}>{error}</p>
+      ) : (
+        <div style={styles.employeeList}>
+          {filteredEmployees.length > 0 ? (
+            filteredEmployees.map((employee) => (
+              <div key={employee._id} style={styles.employeeCard}>
+                <Employee employee={employee} />
+              </div>
+            ))
+          ) : (
+            <p style={styles.noEmployees}>No employees found</p>
+          )}
+        </div>
+      )}
     </div>
   );
 }
@@ -61,11 +95,6 @@ const styles = {
     marginBottom: '20px',
     color: '#333',
   },
-  salaryLink: {
-    display: 'flex',
-    justifyContent: 'center',
-    marginBottom: '20px',
-  },
   button: {
     padding: '10px 20px',
     backgroundColor: '#007bff',
@@ -75,6 +104,19 @@ const styles = {
     cursor: 'pointer',
     fontSize: '16px',
     transition: 'background-color 0.3s ease',
+    marginLeft: '10px', // Margin for spacing between input and button
+  },
+  actionContainer: {
+    display: 'flex',
+    alignItems: 'center',
+    marginBottom: '20px',
+  },
+  searchInput: {
+    padding: '10px',
+    border: '1px solid #ccc',
+    borderRadius: '5px',
+    width: '70%',
+    marginRight: '10px', // Margin for spacing between input and button
   },
   employeeList: {
     display: 'flex',
@@ -96,6 +138,10 @@ const styles = {
     textAlign: 'center',
     fontSize: '18px',
     color: '#888',
+  },
+  error: {
+    color: 'red',
+    textAlign: 'center',
   },
 };
 

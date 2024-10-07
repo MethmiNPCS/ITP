@@ -54,7 +54,7 @@ function AddFinance() {
   };
 
   return (
-    <div>
+    <div className='body'>
       <Nav />
       <br />
       <div className="f-container">

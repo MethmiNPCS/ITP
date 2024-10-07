@@ -78,7 +78,7 @@ body {
   box-sizing: border-box;
 }
 
-input[type="file"] {
+.input[type="file"] {
   cursor: pointer;
   font-size: 14px;
 }

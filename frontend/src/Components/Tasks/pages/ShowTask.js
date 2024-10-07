@@ -38,10 +38,14 @@ const ShowTask = () => {
         const taskResponse = await axios.get(`http://localhost:5000/tasks/${id}`);
         setTask(taskResponse.data);
 
-        // Fetch the assigned employee if there is one
-        if (taskResponse.data.assignedEmployee) {
-          const employeeResponse = await axios.get(`http://localhost:5000/employees/${taskResponse.data.assignedEmployee}`);
-          setEmployee(employeeResponse.data);
+        // Fetch all employees, and find the one assigned to this task
+        const employeeResponse = await axios.get('http://localhost:5000/employees'); // Adjust your API endpoint as needed
+        if (Array.isArray(employeeResponse.data.employees)) {
+          // Find the employee assigned to the task
+          const assignedEmployee = employeeResponse.data.employees.find(emp => emp._id === taskResponse.data.assignedEmployee);
+          setEmployee(assignedEmployee || null); // Set to null if no match found
+        } else {
+          console.error('Unexpected response format:', employeeResponse.data);
         }
       } catch (error) {
         console.log(error.message);
@@ -57,7 +61,7 @@ const ShowTask = () => {
   const categoryClass = categoryColors[task.category] || 'bg-gray-200 text-gray-800';
 
   return (
-    <div className='p-4'>
+    <div className='bg-white p-4'>
       <h1 className='text-3xl my-4 text-center font-serif'>Show Task</h1>
       <div className='flex flex-col border-2 border-dark-green rounded-xl w-fit p-4 mx-auto bg-light-green'>
         <div className='my-4'>
@@ -86,7 +90,7 @@ const ShowTask = () => {
         </div>
         <div className='my-4'>
           <span className='text-xl font-medium mr-4 text-gray-600'>Assigned Employee:</span>
-          <span className='text-lg'>{employee ? employee.name : 'No employee assigned'}</span>
+          <span className='text-lg'>{employee ? `${employee.FirstName} ${employee.LastName}` : 'Not assigned'}</span>
         </div>
         <div className='my-4'>
           <span className='text-xl font-medium mr-4 text-gray-600'>Tags:</span>

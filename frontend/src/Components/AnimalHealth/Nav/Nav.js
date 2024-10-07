@@ -6,6 +6,13 @@ function Nav() {
   return (
     <nav className='navbar'>
       <ul className='nav-list'>
+      <li className='nav-item'>
+            <Link to="/home" className="nav-link">
+            <h1>Home</h1>
+            </Link>
+        </li>
+
+
         <li className='nav-item'>
             <Link to="/animalhome" className="nav-link">
             <h1>Animal Home</h1>

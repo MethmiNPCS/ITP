@@ -75,6 +75,7 @@ function App() {
       <React.Fragment>
         <Routes>
           <Route path="/" element={<Home/>}/>
+          <Route path="/home" element = {<Home/>}/>
 
           <Route path="/producthome" element={<ProductHome />} />
         <Route path="/imageuploder" element={<Imageuploder />} />

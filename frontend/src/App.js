@@ -68,6 +68,9 @@ import UpdateEmployee from "./Components/Employees/UpdateEmployee/UpdateEmployee
 import Salary from "./Components/Employees/EmployeeDetails/Salary";
 import AddBonus from "./Components/Employees/AddEmployee/AddBonus";
 
+//Login and Registration
+import Login from "./Components/Login/Login";
+import Register from "./Components/Register/Register";
 
 function App() {
   return (
@@ -134,6 +137,9 @@ function App() {
           <Route path="/updateemployeedetails/:id" element={<UpdateEmployee />} />
           <Route path="/salary" element={<Salary />} />
           <Route path="/addbonus" element={<AddBonus />} />
+
+          <Route path="/login" element={<Login/>}/>
+          <Route path="/register" element={<Register/>}/>
 
         </Routes>
       </React.Fragment>

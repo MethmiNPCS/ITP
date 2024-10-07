@@ -24,8 +24,6 @@ function Nav() {
             Employee Details
           </Link>
 
-         
-
         </li>
         
       </ul>

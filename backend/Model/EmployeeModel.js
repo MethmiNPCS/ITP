@@ -59,6 +59,12 @@ const employeeSchema = new Schema({
             return this.BasicSalary - this.EPF - this.ETF + this.Bonus;
         }
     },
+    AddDate: {
+        type: Date, // Store as a string to format the date as YYYY-MM-DD
+        default: function() {
+            return new Date().toISOString().split('T')[0]; // Format: YYYY-MM-DD
+        }
+    }
 });
 
 module.exports = mongoose.model("EmployeeModel", employeeSchema);

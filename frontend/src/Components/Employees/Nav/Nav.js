@@ -30,6 +30,12 @@ function Nav() {
           </Link>
         </li>
 
+        <li>
+          <Link to="/addbonus" className="text-green-600 font-bold py-3 px-6 rounded-full transition duration-300 hover:bg-white hover:bg-opacity-20">
+            ADD BONUS
+          </Link>
+        </li>
+
       </ul>
 
       {/* Spacer to balance the layout */}

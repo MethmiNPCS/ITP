@@ -42,15 +42,15 @@ function Nav() {
 
         <li>
           <Link to="/pnl" className="text-green-600 font-bold py-3 px-6 rounded-full transition duration-300 hover:bg-white hover:bg-opacity-20">
-          PROFIT & LOSSES
+            PROFIT & LOSSES
           </Link>
         </li>
 
-        
         <li>
           <Link to="/atable" className="text-green-600 font-bold py-3 px-6 rounded-full transition duration-300 hover:bg-white hover:bg-opacity-20">
             MONTHLY INFORMATION
-        </li>
+          </Link>
+        </li> {/* Fixed closing tag */}
       </ul>
 
       {/* Spacer to balance the layout */}
@@ -59,57 +59,4 @@ function Nav() {
   );
 }
 
-export default Nav;
-
-/*
-import React from 'react';
-import './Nav.css'; 
-import { Link } from "react-router-dom";
-
-function Nav() {
-  return (
-    <nav className="navbar">
-      <ul className="nav-list">
-        
-        <li className="nav-item">
-          <Link to="/" className="nav-link">
-            Home
-          </Link>
-        </li>
-               
-        <li className="nav-item">
-          <Link to="/addfinance" className="nav-link">
-            Add Finances 
-          </Link>
-        </li>
-
-        <li className="nav-item">
-          <Link to="/financedetails" className="nav-link">
-            Expense Details
-          </Link>
-        </li>
-
-        <li className="nav-item">
-          <Link to="/incomedetails" className="nav-link">
-            Income Details
-          </Link>
-        </li>
-
-        <li className="nav-item">
-          <Link to="/atable" className="nav-link">
-            Monthly Information
-          </Link>
-        </li>
-
-        <li className="nav-item">
-          <Link to="/pnl" className="nav-link">
-            Profti and losses
-          </Link>
-        </li>
-        
-      </ul>
-    </nav>
-  );
-}
-export default Nav;*/
-
+export default Nav;

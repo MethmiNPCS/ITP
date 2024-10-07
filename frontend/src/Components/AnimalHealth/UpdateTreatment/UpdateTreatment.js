@@ -116,10 +116,10 @@ function UpdateTreatment() {
   };
 
   return (
-    <div><Nav /><br/><br/><br/>
+    <div className="pt-24"><Nav />
     <br/>
     <div className="treatment-update-treatment-container"> 
-      <h1 className="treatment-update-treatment-title">Update Treatment</h1>
+      <h1 className="treatment-update-treatment-title" style={{ fontWeight: 'bold', fontSize: '24px' }}>Update Treatment</h1>
       <br />
       <form onSubmit={handleSubmit} className="treatment-update-treatment-form">
         <label className="treatment-form-label">Treatment ID</label>

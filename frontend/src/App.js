@@ -8,9 +8,10 @@ import ProductHome from './Components/Products/ProductHome';
 import Products from './Components/Products/ProductDetails/Products';
 import AddProduct from './Components/Products/AddProduct/AddProduct';
 import UpdateProduct from './Components/Products/UpdateProduct/UpdateProduct';
-import Imguploder from './Components/Products/ImgUploder/Imguploder';
 import Chart from './Components/Products/Chart/Chart' ;
 import Register from './Components/Products/Register/Register';
+import Imageuploder from './Components/Products/ImgUploder/Imgeuploder';
+import ChartPage from './Components/Products/Chart/ChartPage';
 
 // Task Routes
 import TasksHome from './Components/Tasks/pages/TasksHome';
@@ -73,13 +74,14 @@ function App() {
         <Routes>
           <Route path="/" element={<Home/>}/>
 
-        <Route path="/producthome" element={<ProductHome />} />
+          <Route path="/producthome" element={<ProductHome />} />
+        <Route path="/imageuploder" element={<Imageuploder />} />
         <Route path="/addproduct" element={<AddProduct />} />
         <Route path="/productdetails" element={<Products />} />
         <Route path="/updateproduct/:id" element={<UpdateProduct />} />
-        <Route path="/imguploder" element={<Imguploder />} />
         <Route path="/chart" element={<Chart />} />
         <Route path="/regi" element={<Register />} />
+        <Route path="/chartpage" element={<ChartPage />} />
 
           <Route path='/taskhome' element={<TasksHome />} />
           <Route path='/tasks/details/:id' element={<ShowTask />} />

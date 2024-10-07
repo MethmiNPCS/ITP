@@ -1,75 +1,98 @@
-// Charts.jsx
-import React, { useEffect, useRef } from 'react';
+// src/components/Charts.js
+
+import React from 'react';
+import { Bar, Pie } from 'react-chartjs-2';
 import { Chart, CategoryScale, LinearScale, BarElement, Title, Tooltip, Legend, ArcElement } from 'chart.js';
-import { Bar, Doughnut, Pie } from 'react-chartjs-2';
-import 'chart.js/auto';
-import jsPDF from 'jspdf';
-import html2canvas from 'html2canvas';
+import Nav from '../Nav/Nav';
 
 Chart.register(CategoryScale, LinearScale, BarElement, Title, Tooltip, Legend, ArcElement);
 
-const Charts = () => {
-  const chartRef = useRef(null);
+const Charts = ({ productData }) => {
+  // Define colors for the rotation using hexadecimal format
+  const colorRotation = ['#FFA62F', '#FFC96F', '#6C0345','#FF8225','#FF6500'];
 
-  const barData = {
-    labels: ['January', 'February', 'March', 'April', 'May', 'June'],
+  // Helper function to apply color rotation
+  const getColorRotation = (index) => colorRotation[index % colorRotation.length];
+
+  // Monthly product comparison
+  const monthlyData = productData.reduce((acc, product) => {
+    const month = new Date(product.MFD).toLocaleString('default', { month: 'long' });
+    acc[month] = (acc[month] || 0) + product.quantity;
+    return acc;
+  }, {});
+
+  const monthlyBarData = {
+    labels: Object.keys(monthlyData),
     datasets: [
       {
-        label: 'Number of Product Categories',
-        data: [50, 70, 45, 90, 65, 80],
-        backgroundColor: 'rgba(75, 192, 192, 0.2)',
-        borderColor: 'rgba(75, 192, 192, 1)',
+        label: 'Number of Products',
+        data: Object.values(monthlyData),
+        backgroundColor: Object.keys(monthlyData).map((_, index) => getColorRotation(index)),
+        borderColor: Object.keys(monthlyData).map((_, index) => getColorRotation(index)),
         borderWidth: 1,
       },
     ],
   };
 
-  const barDataYogurtPork = {
-    labels: ['Cheese', 'Butter', 'Yoghurt', 'Fresh Milk', 'Egg', 'Meat - Beef', 'Meat - Chicken', 'Meat - Pork'],
+  // Animal vs Plantation product comparison
+  const typeData = productData.reduce(
+    (acc, product) => {
+      acc[product.type] = (acc[product.type] || 0) + product.quantity;
+      return acc;
+    },
+    { Animal: 0, Plantation: 0 }
+  );
+
+  const typePieData = {
+    labels: ['Animal', 'Plantation'],
     datasets: [
       {
-        label: 'Products Sold',
-        data: [120, 90, 200, 200, 80, 150, 130, 160],
-        backgroundColor: 'rgba(255, 159, 64, 0.2)',
-        borderColor: 'rgba(255, 159, 64, 1)',
+        label: 'Product Types',
+        data: [typeData.Animal, typeData.Plantation],
+        backgroundColor: ['#FFB200', '#B60071'],
+        hoverBackgroundColor: ['#921A40', '#FF6500'],
+      },
+    ],
+  };
+
+  // Animal product category comparison
+  const animalData = productData
+    .filter((product) => product.type === 'Animal')
+    .reduce((acc, product) => {
+      acc[product.product] = (acc[product.product] || 0) + product.quantity;
+      return acc;
+    }, {});
+
+  const animalBarData = {
+    labels: Object.keys(animalData),
+    datasets: [
+      {
+        label: 'Animal Product Categories',
+        data: Object.values(animalData),
+        backgroundColor: Object.keys(animalData).map((_, index) => getColorRotation(index)),
+        borderColor: Object.keys(animalData).map((_, index) => getColorRotation(index)),
         borderWidth: 1,
       },
     ],
   };
 
-  const barDataPlantation = {
-    labels: ['Coconut', 'Timber', 'Nut'],
+  // Plantation product category comparison
+  const plantationData = productData
+    .filter((product) => product.type === 'Plantation')
+    .reduce((acc, product) => {
+      acc[product.product] = (acc[product.product] || 0) + product.quantity;
+      return acc;
+    }, {});
+
+  const plantationBarData = {
+    labels: Object.keys(plantationData),
     datasets: [
       {
-        label: 'Plantation Yield',
-        data: [300, 250, 400],
-        backgroundColor: 'rgba(153, 102, 255, 0.2)',
-        borderColor: 'rgba(153, 102, 255, 1)',
+        label: 'Plantation Product Categories',
+        data: Object.values(plantationData),
+        backgroundColor: Object.keys(plantationData).map((_, index) => getColorRotation(index)),
+        borderColor: Object.keys(plantationData).map((_, index) => getColorRotation(index)),
         borderWidth: 1,
-      },
-    ],
-  };
-
-  const doughnutData = {
-    labels: ['Approved Animal and Plantation Products', 'Pending Animal and Plantation Products'],
-    datasets: [
-      {
-        label: 'Applications Status',
-        data: [200, 50],
-        backgroundColor: ['#4BC0C0', '#FFCE56'],
-        hoverBackgroundColor: ['#4BC0C0', '#FFCE56'],
-      },
-    ],
-  };
-
-  const pieData = {
-    labels: ['Plantation and Animal Sell Products', 'Plantation and Animal Not Sell Product'],
-    datasets: [
-      {
-        label: 'Plantation vs Animal',
-        data: [300, 150],
-        backgroundColor: ['#36A2EB', '#FF6384'],
-        hoverBackgroundColor: ['#36A2EB', '#FF6384'],
       },
     ],
   };
@@ -78,74 +101,31 @@ const Charts = () => {
     responsive: true,
     plugins: {
       legend: { position: 'top' },
-      title: { display: true },
+      title: { display: false }, // Disable the title display
     },
   };
 
-  const handlePrint = async () => {
-    const input = document.getElementById('charts-container');
-    const canvas = await html2canvas(input);
-    const imgData = canvas.toDataURL('image/png');
-    const pdf = new jsPDF('p', 'mm', 'a4');
-    const imgWidth = 190;
-    const pageHeight = pdf.internal.pageSize.height;
-    const imgHeight = (canvas.height * imgWidth) / canvas.width;
-
-    let heightLeft = imgHeight;
-    let position = 0;
-
-    pdf.addImage(imgData, 'PNG', 10, position, imgWidth, imgHeight);
-    heightLeft -= pageHeight;
-
-    while (heightLeft >= 0) {
-      position = heightLeft - imgHeight;
-      pdf.addPage();
-      pdf.addImage(imgData, 'PNG', 10, position, imgWidth, imgHeight);
-      heightLeft -= pageHeight;
-    }
-
-    pdf.save('charts.pdf');
-  };
-
-  useEffect(() => {
-    const chartInstance = chartRef.current;
-    return () => {
-      if (chartInstance) {
-        chartInstance.destroy();
-      }
-    };
-  }, []);
-
   return (
-    <div style={{ padding: '20px', backgroundColor: '86D293' }}>
-      <h2 style={{ textAlign: 'center' }}>Generate Plantation and Animal Monthly Report</h2>
-      <hr style={{ margin: '20px 0', borderColor: '#00712D', borderWidth: '2px' }} />
-      
-      <div id="charts-container" style={{ display: 'flex', justifyContent: 'space-between' }}>
-        <div style={{ display: 'flex', flexDirection: 'column', gap: '30px', width: '48%' }}>
-          <div style={{ width: '100%', height: '400px' }}>
-            <Bar data={barData} options={{ ...options, title: { ...options.plugins.title, text: 'Applications for Month' } }} />
+    <div>
+      <div>
+        <div id="charts-container" style={{ display: 'flex', justifyContent: 'space-between' }}>
+          <div style={{ display: 'flex', flexDirection: 'column', gap: '30px', width: '48%' }}>
+            <div style={{ width: '100%', height: '400px' }}>
+              <Bar data={monthlyBarData} options={options} />
+            </div>
+            <div style={{ width: '100%', height: '400px' }}>
+              <Bar data={animalBarData} options={options} />
+            </div>
+            <div style={{ width: '100%', height: '400px' }}>
+              <Bar data={plantationBarData} options={options} />
+            </div>
           </div>
-          <div style={{ width: '100%', height: '400px' }}>
-            <Bar data={barDataYogurtPork} options={{ ...options, title: { ...options.plugins.title, text: 'Products Sold (Cheese, Butter, Yoghurt, Fresh Milk, Egg, Meat)' } }} />
-          </div>
-          <div style={{ width: '100%', height: '400px' }}>
-            <Bar data={barDataPlantation} options={{ ...options, title: { ...options.plugins.title, text: 'Plantation Yields (Coconut, Timber, Nut)' } }} />
-          </div>
-        </div>
 
-        <div style={{ display: 'flex', flexDirection: 'column', gap: '30px', width: '38%' }}>
-          <Doughnut data={doughnutData} options={{ ...options, title: { ...options.plugins.title, text: 'Approved vs Pending Applications' } }} />
-          <Pie data={pieData} options={{ ...options, title: { ...options.plugins.title, text: 'Animal vs Plantation' } }} />
+          <div style={{ display: 'flex', flexDirection: 'column', gap: '30px', width: '38%' }}>
+            <Pie data={typePieData} options={{ ...options, title: { display: true, text: 'Animal vs Plantation Products' } }} />
+          </div>
         </div>
       </div>
-
-      <button 
-        onClick={handlePrint} 
-        style={{ marginTop: '20px', padding: '12px 20px', background: '#00712D', color: '#fff', border: 'none', borderRadius: '5px', cursor: 'pointer', fontSize: '16px', display: 'block', marginLeft: 'auto', marginRight: 'auto' }}
-      >
-        Download Charts as PDF
-      </button>
     </div>
   );
 };

@@ -8,10 +8,11 @@ import { Chart as ChartJS, CategoryScale, LinearScale, LineElement, Title, Toolt
 // Register Chart.js components
 ChartJS.register(CategoryScale, LinearScale, LineElement, Title, Tooltip, Legend);
 
-const financeURL = "http://localhost:5000/finance";
-const salaryURL = "http://localhost:5000/salaries";
-const stockURL = "http://localhost:5000/stocks";
-const productURL = "http://localhost:5000/products";
+// Updated URLs
+const IncomeURL = "http://localhost:5000/finance";
+const SalaryURL = "http://localhost:5000/employees"; 
+const StockURL = "http://localhost:5000/stocks";
+const ProductURL = "http://localhost:5000/products";
 
 const Atabe = () => {
   const [financeByDate, setFinanceByDate] = useState({ income: {}, expense: {} });
@@ -22,81 +23,84 @@ const Atabe = () => {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const financeResponse = await axios.get(financeURL);
-        const salaryResponse = await axios.get(salaryURL);
-        const stockResponse = await axios.get(stockURL);
-        const productResponse = await axios.get(productURL);
-
-        console.log('Finance Data:', financeResponse.data);  // Check Finance Data
-        console.log('Salary Data:', salaryResponse.data);    // Check Salary Data
-        console.log('Stock Data:', stockResponse.data);      // Check Stock Data
-        console.log('Product Data:', productResponse.data);  // Check Product Data
-
-        // Process Finance data by date
-        const financeData = financeResponse.data.finance || [];
-        const incomeDateTotals = {};
-        const expenseDateTotals = {};
-
-        financeData.forEach(item => {
-          const date = item.date || 'Unknown'; 
-          const amount = item.amount || 0;
-
-          // Separate totals based on transaction type
-          if (item.transactionType === 'Income') {
-            incomeDateTotals[date] = (incomeDateTotals[date] || 0) + amount; // Income
-          } else if (item.transactionType === 'Expense') {
-            expenseDateTotals[date] = (expenseDateTotals[date] || 0) + amount; // Expense
-          }
-        });
-
-        setFinanceByDate({ income: incomeDateTotals, expense: expenseDateTotals });
-
-        // Process Salary data by payDate
-        const salaryData = salaryResponse.data.salaries || [];
+        const financeResponse = await axios.get(IncomeURL);
+        const salaryResponse = await axios.get(SalaryURL);
+        const stockResponse = await axios.get(StockURL);
+        const productResponse = await axios.get(ProductURL);
+    
+        // Debug logs
+        console.log('Finance Data:', financeResponse.data);  
+        console.log('Salary Data:', salaryResponse.data);    
+        console.log('Stock Data:', stockResponse.data);      
+        console.log('Product Data:', productResponse.data);  
+    
+        // Check if finance data exists and is in the expected format
+        if (financeResponse.data.finance && Array.isArray(financeResponse.data.finance)) {
+          const financeData = financeResponse.data.finance;
+    
+          const incomeDateTotals = {};
+          const expenseDateTotals = {};
+    
+          financeData.forEach(item => {
+            const date = item.date || 'Unknown'; 
+            const amount = parseFloat(item.amount) || 0; // Ensure amount is a number
+    
+            if (item.transactionType === 'Income') {
+              incomeDateTotals[date] = (incomeDateTotals[date] || 0) + amount; 
+            } else if (item.transactionType === 'Expense') {
+              expenseDateTotals[date] = (expenseDateTotals[date] || 0) + amount; 
+            }
+          });
+    
+          setFinanceByDate({ income: incomeDateTotals, expense: expenseDateTotals });
+        } else {
+          console.warn("Finance data is not in expected format:", financeResponse.data);
+        }
+    
+        // Process Salary data
+        const salaryData = salaryResponse.data || []; // Adjusted to match the data structure
         const salaryDateTotals = {};
         salaryData.forEach(item => {
           const payDate = new Date(item.payDate).toLocaleDateString('en-CA') || 'Salary Payment';
-          salaryDateTotals[payDate] = (salaryDateTotals[payDate] || 0) + item.totalSalary;
+          salaryDateTotals[payDate] = (salaryDateTotals[payDate] || 0) + item.NetSalary; // Changed to NetSalary
         });
         setSalaryByDate(salaryDateTotals);
-
-        // Process Stock data by date
-        const stockData = stockResponse.data.stocks || [];
+    
+        // Process Stock data
+        const stockData = stockResponse.data || []; // Adjusted to match the data structure
         const stockDateTotals = {};
         stockData.forEach(item => {
-          const date = item.date || 'Unknown';
+          const date = item.date || 'Unknown'; // Assuming date is present
           stockDateTotals[date] = (stockDateTotals[date] || 0) + item.totalPrice;
         });
         setStockByDate(stockDateTotals);
-
-        // Process Product data by date
-        const productData = productResponse.data.products || [];
+    
+        // Process Product data
+        const productData = productResponse.data || []; // Adjusted to match the data structure
         const productDateTotals = {};
         productData.forEach(item => {
-          const date = item.date || 'Unknown';
-          productDateTotals[date] = (productDateTotals[date] || 0) + item.totalValue;
+          const date = item.date || 'Unknown'; // Assuming date is present
+          productDateTotals[date] = (productDateTotals[date] || 0) + item.totalValue; // Adjust according to your schema
         });
         setProductByDate(productDateTotals);
-
+    
       } catch (error) {
-        console.error("Error fetching data", error);
+        console.error("Error fetching data:", error);
       }
     };
 
     fetchData();
   }, []);
 
-  // Function to format dates to dd/mm/yyyy
+  // Function to format dates to Month Year
   const formatDate = (dateString) => {
     const date = new Date(dateString);
     if (isNaN(date)) {
       console.error(`Invalid date: ${dateString}`);
       return 'Unknown';
     }
-    const day = String(date.getDate()).padStart(2, '0');
-    const month = String(date.getMonth() + 1).padStart(2, '0'); 
-    const year = date.getFullYear();
-    return `${day}/${month}/${year}`;
+    const options = { year: 'numeric', month: 'long' }; // Set options for month and year
+    return date.toLocaleDateString('en-US', options);
   };
 
   // Combine the dates into a single array and make sure it's unique
@@ -108,7 +112,7 @@ const Atabe = () => {
     ...Object.keys(productByDate),
   ])).filter(date => date !== 'Unknown');
 
-  // Format the dates to dd/mm/yyyy
+  // Format the dates to Month Year
   const formattedDates = allDates.map(date => formatDate(date));
 
   // Prepare chart data for each date
@@ -133,7 +137,7 @@ const Atabe = () => {
       },
       {
         label: 'Salary',
-        data: allDates.map(date => salaryByDate[date] || 0),  // Salary reflected by payDate
+        data: allDates.map(date => salaryByDate[date] || 0),
         backgroundColor: 'rgba(255, 206, 86, 0.2)',
         borderColor: '#FFCE56',
         borderWidth: 2,
@@ -166,7 +170,7 @@ const Atabe = () => {
       },
       title: {
         display: true,
-        text: 'Total Amounts by Date for Income, Expense, Salary, Stock, and Product',
+        text: 'Total Amounts by Month and Year for Income, Expense, Salary, Stock, and Product',
       },
     },
     scales: {

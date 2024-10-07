@@ -10,10 +10,11 @@ import { Chart as ChartJS, CategoryScale, LinearScale, BarElement, Title, Toolti
 // Register Chart.js components
 ChartJS.register(CategoryScale, LinearScale, BarElement, Title, Tooltip, Legend);
 
-const financeURL = "http://localhost:5000/finance";
-const salaryURL = "http://localhost:5000/salaries";
-const stockURL = "http://localhost:5000/stocks";
-const productURL = "http://localhost:5000/products";
+// Updated URL constants
+const IncomeURL = "http://localhost:5000/finance";
+const SalaryURL = "http://localhost:5000/employees"; // Updated URL
+const StockURL = "http://localhost:5000/stocks";
+const ProductURL = "http://localhost:5000/products";
 
 const Home = () => {
   const [financeByCategory, setFinanceByCategory] = useState({});
@@ -24,10 +25,10 @@ const Home = () => {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const financeResponse = await axios.get(financeURL);
-        const salaryResponse = await axios.get(salaryURL);
-        const stockResponse = await axios.get(stockURL);
-        const productResponse = await axios.get(productURL);
+        const financeResponse = await axios.get(IncomeURL);
+        const salaryResponse = await axios.get(SalaryURL);
+        const stockResponse = await axios.get(StockURL);
+        const productResponse = await axios.get(ProductURL);
 
         // Log data for debugging
         console.log('Finance Data:', financeResponse.data);  // Check finance data
@@ -45,11 +46,11 @@ const Home = () => {
         setFinanceByCategory(financeCategoryTotals);
 
         // Process Salary data by department
-        const salaryData = salaryResponse.data.salaries || [];
+        const salaryData = salaryResponse.data.employees || []; // Ensure correct property
         const salaryDepartmentTotals = {};
         salaryData.forEach(item => {
-          const department = item.department || 'Unknown';
-          salaryDepartmentTotals[department] = (salaryDepartmentTotals[department] || 0) + item.totalSalary;
+          const department = item.Position || 'Unknown'; // Adjust based on the property you want
+          salaryDepartmentTotals[department] = (salaryDepartmentTotals[department] || 0) + item.BasicSalary; // Adjust based on property
         });
         setSalaryByDepartment(salaryDepartmentTotals);
 
@@ -57,7 +58,7 @@ const Home = () => {
         const stockData = stockResponse.data.stocks || [];
         const stockCategoryTotals = {};
         stockData.forEach(item => {
-          const category = item.category || 'Unknown';
+          const category = item.type || 'Unknown'; // Adjust based on the property
           stockCategoryTotals[category] = (stockCategoryTotals[category] || 0) + item.totalPrice;
         });
         setStockByCategory(stockCategoryTotals);
@@ -66,8 +67,8 @@ const Home = () => {
         const productData = productResponse.data.products || [];
         const productCategoryTotals = {};
         productData.forEach(item => {
-          const category = item.category || 'Unknown';
-          productCategoryTotals[category] = (productCategoryTotals[category] || 0) + item.totalValue;
+          const category = item.type || 'Unknown'; // Adjust based on the property
+          productCategoryTotals[category] = (productCategoryTotals[category] || 0) + item.quantity; // Adjust based on property
         });
         setProductByCategory(productCategoryTotals);
 
@@ -139,7 +140,6 @@ const Home = () => {
   return (
     <div>
       <Nav />
-    
       <div className="home-container">
         <h1>Welcome to Finance Management Dashboard</h1>
 

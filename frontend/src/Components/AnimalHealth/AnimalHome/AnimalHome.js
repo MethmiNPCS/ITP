@@ -118,6 +118,8 @@ function AnimalHome() {
   return (
     <div style={{ textAlign: 'center' }}>
       <Nav />
+      <br/>
+      <br/>
       {isLoading ? (
         <p>Loading charts...</p>
       ) : (

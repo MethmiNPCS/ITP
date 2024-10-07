@@ -41,8 +41,8 @@ function Medicines() {
   
     // Add titles
     pdf.setFontSize(16);
-    const title = "National Seminary Farm";
-    const subtitle = "Inventory Report";
+    const title = "NATIONAL SEMINARY FARM";
+    const subtitle = "Inventory Report - Aniaml Medicines";
     const pageWidth = pdf.internal.pageSize.getWidth();
   
     // Center title
@@ -107,7 +107,7 @@ function Medicines() {
       currentY += totalRowHeight; // Update the current Y position for the next row
     });
   
-    pdf.save("medicine_report.pdf");
+    pdf.save("Medicine_report.pdf");
   };
   
 

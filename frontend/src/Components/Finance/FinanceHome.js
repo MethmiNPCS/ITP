@@ -138,7 +138,7 @@ const Home = () => {
   };
 
   return (
-    <div>
+    <div className="pt-12">
       <Nav />
       <div className="home-container">
         <h1>Welcome to Finance Management Dashboard</h1>

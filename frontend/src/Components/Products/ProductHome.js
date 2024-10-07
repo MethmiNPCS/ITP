@@ -8,8 +8,8 @@ function ProductHome() {
     backgroundSize: 'cover', // Ensures the image covers the entire div
     backgroundPosition: 'center', // Center the background image
     backgroundRepeat: 'no-repeat', // Prevent repeating the background image
-    minHeight: '50vh', // Full height of the viewport
-    width: '100%', // Full width of the viewport
+    minHeight: '60vh', // Full height of the viewport
+    width: '120%', // Full width of the viewport
   };
 
   return (

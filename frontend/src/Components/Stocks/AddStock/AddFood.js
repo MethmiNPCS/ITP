@@ -51,10 +51,10 @@ function AddFood() {
   };
   
   return (
-    <div className="pt-16">
+    <div className="pt-24">
       <Nav/> 
       <br/>
-      <form onSubmit={handleSubmit} className="w-full max-w-2xl mx-auto p-6 bg-gray-100 rounded-lg shadow-lg">
+      <form onSubmit={handleSubmit} className="w-full max-w-2xl mx-auto p-6 bg-gray-200 rounded-lg shadow-lg">
         <h1 className="text-3xl text-gray-700 font-bold text-center mb-6">ADD NEW FOOD ITEM</h1>
 
         <label className="block mb-4">

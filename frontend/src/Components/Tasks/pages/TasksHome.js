@@ -159,7 +159,7 @@ const TasksHome = () => {
     };
 
     return (
-        <div className='p-4'>
+        <div className='bg-white p-4'>
             <div className="absolute top-4 left-4">
                 <BackToHome /> {/* Add the BackToHome button here */}
             </div>
@@ -206,7 +206,7 @@ const TasksHome = () => {
             </div>
 
             {/* View Toggle Buttons */}
-            <div className='flex justify-center items-center gap-x-0 mb-4'>
+            <div className='flex justify-center items-center gap-x-2 mb-4'>
                 <button
                     className={`px-4 py-2 border rounded ${showType === 'table' ? 'bg-green-500 text-black' : 'bg-green-700'}`}
                     onClick={() => setShowType('table')}

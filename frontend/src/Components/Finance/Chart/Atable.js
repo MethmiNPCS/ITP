@@ -3,10 +3,10 @@ import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import axios from 'axios';
 import { Line } from 'react-chartjs-2';
-import { Chart as ChartJS, CategoryScale, LinearScale, LineElement, Title, Tooltip, Legend } from 'chart.js';
+import { Chart as ChartJS, CategoryScale, LinearScale, LineElement, PointElement,Title, Tooltip, Legend } from 'chart.js';
 
 // Register Chart.js components
-ChartJS.register(CategoryScale, LinearScale, LineElement, Title, Tooltip, Legend);
+ChartJS.register(CategoryScale, LinearScale, LineElement, PointElement, Title, Tooltip, Legend);
 
 // Updated URLs
 const IncomeURL = "http://localhost:5000/finance";
@@ -184,7 +184,7 @@ const Atabe = () => {
   };
 
   return (
-    <div>
+    <div className="pt-12">
       <Nav />
     
       <div className="home-container">

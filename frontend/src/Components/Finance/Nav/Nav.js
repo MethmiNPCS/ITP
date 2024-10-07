@@ -50,9 +50,7 @@ function Nav() {
         <li>
           <Link to="/atable" className="text-green-600 font-bold py-3 px-6 rounded-full transition duration-300 hover:bg-white hover:bg-opacity-20">
             MONTHLY INFORMATION
-          </Link>
         </li>
-
       </ul>
 
       {/* Spacer to balance the layout */}
@@ -62,12 +60,6 @@ function Nav() {
 }
 
 export default Nav;
-
-
-
-
-
-
 
 /*
 import React from 'react';
@@ -119,5 +111,5 @@ function Nav() {
     </nav>
   );
 }
-
 export default Nav;*/
+

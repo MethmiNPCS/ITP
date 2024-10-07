@@ -130,14 +130,14 @@ function IncomeDetails() {
   };
 
   return (
-    <div>
+    <div className="pt-4">
       <Nav />
       <center>
         <h1 className="I-h1">Income and Product Details</h1> {/* Update title */}
       </center>
 
       {/* Search Input Field */}
-      <div className="search-bar">
+      <div className="f-search-bar">
         <input
           type="text"
           placeholder="Search by category, type, or date..."

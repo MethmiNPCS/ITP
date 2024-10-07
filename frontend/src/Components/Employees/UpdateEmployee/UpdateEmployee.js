@@ -30,6 +30,7 @@ function UpdateEmployee() {
                 Position: String(inputs.Position),
                 ContactNumber: String(inputs.ContactNumber),
                 BasicSalary: Number(inputs.BasicSalary), // Add Basic Salary here
+                Date:Date(inputs.AddDate),
             });
             navigate('/employeedetails');
         } catch (error) {

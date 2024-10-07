@@ -4,8 +4,15 @@ import { Link } from "react-router-dom";
 
 function Nav() {
   return (
+    <div className='cbody'>
     <nav className="navbar">
       <ul className="nav-list">
+
+      <li className='nav-item'>
+            <Link to="/home" className="nav-link">
+            <h1>Home</h1>
+            </Link>
+        </li>
         
         <li className="nav-item">
           <Link to="/orderhome" className="nav-link">
@@ -39,6 +46,7 @@ function Nav() {
         
       </ul>
     </nav>
+    </div>
   );
 }
 

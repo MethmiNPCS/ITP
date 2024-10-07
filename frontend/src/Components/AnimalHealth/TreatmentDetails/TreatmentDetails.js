@@ -137,7 +137,7 @@ function TreatmentDetails() {
   };
 
   return (
-    <div><Nav />
+    <div><Nav /><br/>
     <div className="treatment-treatment-details-container">
       <h1 className="treatment-treatment-details-header">Treatment Plans</h1>
       <div className="treatment-search-container">

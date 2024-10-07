@@ -47,3 +47,23 @@ mongoose.connect("mongodb+srv://admin:zoPvf0NUih9wBU3F@cluster0.yawwn.mongodb.ne
     app.listen(5000);
 })
 .catch((err)=> console.log(err));
+
+//LOGIN
+app.post("/login", async (req, res) => {
+    const { gmail, password } = req.body;
+    try {
+      const user = await User.findOne({ gmail });
+      if (!user) {
+        return res.json({ status: "error", message: "User not found" });
+      }
+      if (user.password === password) {
+        return res.json({ status: "ok" });
+      } else {
+        return res.json({ status: "error", message: "Incorrect Password" });
+      }
+    } catch (err) {
+      console.error(err);
+      res.status(500).json({ status: "error", message: "Server Error" });
+    }
+  });
+  

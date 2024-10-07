@@ -10,30 +10,40 @@ function Nav() {
       <ul className="nav-list">
 
 
-        
+    <li className="nav-item">
+    <Link to="/producthome" className="nav-link">
+PRODUCT HOME
+</Link>
+</li>
+       
+         
         <li className="nav-item">
-          <Link to="/producthome" className="nav-link">
-            Product Home
+          <Link to="/imageuploder" className="nav-link">
+        IMAGE UPLODER
           </Link>
         </li>
                
+               
         <li className="nav-item">
           <Link to="/addproduct" className="nav-link">
-            Add Product
+          ADD PRODUCT
           </Link>
         </li>
                 
         <li className="nav-item">
           <Link to="/productdetails" className="nav-link">
-            Product Details
+           PRODUCT DETAILS
           </Link>
         </li>
 
         <li className="nav-item">
-          <Link to="/chart" className="nav-link">
-          Chart
+          <Link to="/chartpage" className="nav-link">
+        CHART
           </Link>
         </li>
+
+
+       
  
       </ul>
     </nav>
@@ -41,3 +51,16 @@ function Nav() {
 }
 
 export default Nav;
+
+
+
+
+
+
+
+ 
+//<li className="nav-item">
+//<Link to="/producthome" className="nav-link">
+//PRODUCT HOME
+//</Link>
+//</li>

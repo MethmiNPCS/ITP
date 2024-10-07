@@ -1,29 +1,165 @@
-/* Enhanced Button Styling */
+/* Responsive Table Styling */
+table {
+  width: 100%;
+  max-width: 1000px; /* Limits the width on larger screens */
+  border-collapse: collapse;
+  margin: 20px auto; /* Centers the table and adds top-bottom space */
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Subtle shadow */
+  background-color: #F8F9FC; /* Updated background color */
+}
+
+th, td {
+  padding: 16px; /* Increased padding for better readability */
+  text-align: center;
+  border: 1px solid #ddd;
+  transition: background-color 0.3s ease; /* Smooth hover transition */
+}
+
+th {
+  background-color: #55d359;
+  color: white;
+  font-size: 18px; /* Slightly larger font for headers */
+}
+
+td {
+  font-size: 16px;
+  color: #333;
+}
+
+tr:nth-child(even) {
+  background-color: #f2f2f2;
+}
+
+tr:hover {
+  background-color: #ddd; /* Subtle hover effect on rows */
+}
+
+/* Header and Cell Styles */
+.header {
+  font-weight: bold;
+}
+
+.cell {
+  font-size: 14px;
+  color: #333;
+}
+
+/* Button Container (Actions Column) */
+.action-buttons {
+  display: flex;
+  justify-content: center; /* Center buttons horizontally */
+  gap: 10px; /* Adds space between the buttons */
+  flex-direction: column; /* Stacks buttons vertically */
+  padding-right: 30px;
+}
+
+/* Common Button Styling */
+button {
+  padding: 10px 14px;
+  border-radius: 4px;
+  border: none;
+  cursor: pointer;
+  font-size: 14px;
+  transition: background-color 0.3s ease, transform 0.2s ease;
+  font-weight: bold;
+  box-shadow: 0 3px 6px rgba(0, 0, 0, 0.1); /* Subtle shadow for depth */
+}
+
+/* Delete Button */
+.delete-button {
+  background-color: #e99187; /* Red color for delete */
+  color: white;
+}
+
+.delete-button:hover {
+  background-color: #c2490d; /* Darker red on hover */
+  transform: translateY(-2px); /* Adds a slight pop-up effect */
+}
+
+/* Update Button - Green (Current Style) */
+.update-button {
+  background-color: #092106; /* Updated to a brighter green */
+  color: white;
+}
+
+.update-button:hover {
+  background-color: #43a85c; /* Lighter green on hover */
+  transform: translateY(-2px); /* Adds a slight pop-up effect */
+}
+
+/* Search Input and Button */
+input[type="text"] {
+  padding: 10px 15px;
+  margin-bottom: 20px;
+  border-radius: 4px;
+  border: 1px solid #ccc;
+  width: 60%;
+  max-width: 600px; /* Limits the search bar width */
+  font-size: 16px;
+  transition: box-shadow 0.3s ease;
+}
+
+input[type="text"]:focus {
+  box-shadow: 0 0 5px rgba(39, 218, 36, 0.5); /* Green glow on focus */
+  outline: none;
+}
+
+button.search-button {
+  padding: 10px 15px;
+  margin-left: 10px;
+  border-radius: 4px;
+  background-color: #1cb821;
+  color: #fff;
+  border: none;
+  cursor: pointer;
+  font-size: 16px;
+  transition: background-color 0.3s ease, transform 0.2s ease;
+}
+
+button.search-button:hover {
+  background-color: #1da03c;
+  transform: translateY(-2px); /* Adds a slight pop-up effect */
+}
+
+/* Responsive Layout for Small Screens */
+@media (max-width: 768px) {
+  table {
+    width: 100%;
+  }
+
+  th, td {
+    padding: 10px;
+    font-size: 14px;
+  }
+
+  input[type="text"] {
+    width: 90%;
+    margin-bottom: 10px;
+  }
+
+  button.search-button {
+    width: 90%;
+    margin-top: 10px;
+  }
+}
+
+/* Download Button Styling */
 .download-button {
-    padding: 12px 24px;
-    background-color: #2b9844; /* Green color for success */
-    color: white;
-    border: none;
-    border-radius: 5px;
-    font-size: 16px;
-    cursor: pointer;
-    transition: background-color 0.3s ease, transform 0.2s ease, box-shadow 0.3s ease;
-    margin-top: 20px; /* Space above the button */
-    font-weight: bold; /* Make text bold */
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* Subtle shadow */
+  padding: 12px 24px;
+  background-color: #021c06;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  font-size: 16px;
+  cursor: pointer;
+  margin-top: 20px;
+  transition: background-color 0.3s ease, transform 0.2s ease;
 }
 
 .download-button:hover {
-    background-color: #218838; /* Darker green on hover */
-    transform: scale(1.05); /* Slightly enlarge */
+  background-color: #042c0d;
+  transform: translateY(-2px); /* Adds a slight pop-up effect */
 }
-
-.download-button:active {
-    background-color: #d6ded8; /* Even darker on click */
-    transform: scale(0.98); /* Slightly shrink */
-}
-
-.download-button:disabled {
-    background-color: #c6e2d6; /* Light green for disabled */
-    cursor: not-allowed; /* Change cursor on hover */
+.but-chart{
+  gap: 20px;
 }

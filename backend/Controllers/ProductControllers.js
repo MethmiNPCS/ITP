@@ -12,13 +12,29 @@ const getAllProducts = async (req, res) => {
 
 // Add a new product
 const addProduct = async (req, res) => {
-  const { name, MFD, type,product, date, quantity } = req.body;
-  if (!name || !MFD || !type || !product ||!date || !quantity) {
+  const { type, product, price, quantity, MFD, EXP } = req.body;
+
+  // Check for missing fields
+  if (!type || !product || !price || !quantity || !MFD || !EXP) {
     return res.status(400).json({ message: 'Missing required fields' });
   }
 
+  // Validate date fields
+  const mfdDate = new Date(MFD);
+  const expDate = new Date(EXP);
+  if (isNaN(mfdDate.getTime()) || isNaN(expDate.getTime())) {
+    return res.status(400).json({ message: 'Invalid date format' });
+  }
+
   try {
-    const newProduct = new Product({ name, MFD, type,product, date, quantity });
+    const newProduct = new Product({
+      type,
+      product,
+      price,
+      quantity,
+      MFD: mfdDate,
+      EXP: expDate
+    });
     await newProduct.save();
     res.status(201).json({ message: 'Product added successfully', newProduct });
   } catch (error) {
@@ -43,11 +59,24 @@ const getById = async (req, res) => {
 // Update product
 const updateProduct = async (req, res) => {
   const { id } = req.params;
-  const { name, MFD, type,product,date, quantity } = req.body;
+  const { type, product, price, quantity, MFD, EXP } = req.body;
+
+  // Check for missing fields
+  if (!type || !product || !price || !quantity || !MFD || !EXP) {
+    return res.status(400).json({ message: 'Missing required fields' });
+  }
+
+  // Validate date fields
+  const mfdDate = new Date(MFD);
+  const expDate = new Date(EXP);
+  if (isNaN(mfdDate.getTime()) || isNaN(expDate.getTime())) {
+    return res.status(400).json({ message: 'Invalid date format' });
+  }
+
   try {
     const updatedProduct = await Product.findByIdAndUpdate(
       id,
-      { name, MFD, type, date,product, quantity },
+      { type, product, price, quantity, MFD: mfdDate, EXP: expDate },
       { new: true, runValidators: true }
     );
     if (!updatedProduct) {
@@ -59,30 +88,24 @@ const updateProduct = async (req, res) => {
   }
 };
 
-
 // Delete product
 const deleteProduct = async (req, res) => {
   const { id } = req.params;
   try {
-    // Find and delete the product
     const deletedProduct = await Product.findByIdAndDelete(id);
-    
-    // If no product is found, return 404
+
     if (!deletedProduct) {
       return res.status(404).json({ message: 'Product not found' });
     }
-    
-    // If product is found and deleted, return success message with product details
+
     res.status(200).json({
       message: 'Product deleted successfully',
-      deletedProduct, // Include the deleted product details in the response
+      deletedProduct,
     });
   } catch (error) {
-    // Handle any errors
     res.status(500).json({ error: 'Error deleting product' });
   }
 };
-
 
 module.exports = {
   getAllProducts,

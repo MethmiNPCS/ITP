@@ -9,7 +9,6 @@ import Products from './Components/Products/ProductDetails/Products';
 import AddProduct from './Components/Products/AddProduct/AddProduct';
 import UpdateProduct from './Components/Products/UpdateProduct/UpdateProduct';
 import Chart from './Components/Products/Chart/Chart' ;
-import Register from './Components/Products/Register/Register';
 import Imageuploder from './Components/Products/ImgUploder/Imgeuploder';
 import ChartPage from './Components/Products/Chart/ChartPage';
 
@@ -85,7 +84,6 @@ function App() {
         <Route path="/productdetails" element={<Products />} />
         <Route path="/updateproduct/:id" element={<UpdateProduct />} />
         <Route path="/chart" element={<Chart />} />
-        <Route path="/regi" element={<Register />} />
         <Route path="/chartpage" element={<ChartPage />} />
 
           <Route path='/taskhome' element={<TasksHome />} />

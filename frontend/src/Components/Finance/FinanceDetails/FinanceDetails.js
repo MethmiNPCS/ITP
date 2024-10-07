@@ -161,7 +161,7 @@ function FinanceDetails() {
       <Nav />
       <center><h1 className="I-h1">Finance Details</h1></center>
       
-      <div className="search-bar">
+      <div className="f-search-bar">
         <input
           type="text"
           placeholder="Search by category, type, or date..."

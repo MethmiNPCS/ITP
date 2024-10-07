@@ -3,7 +3,7 @@ import Nav from '../Nav/Nav';
 import axios from 'axios';
 import jsPDF from 'jspdf';
 import 'jspdf-autotable';
-import { Doughnut } from 'react-chartjs-2'; // Import Doughnut chart
+import { Doughnut } from 'react-chartjs-2';
 import './Finance.css';
 
 const IncomeURL = "http://localhost:5000/finance";
@@ -26,6 +26,7 @@ function ProfitAndLoss() {
   const [products, setProducts] = useState([]);
   const [salaries, setSalaries] = useState([]);
   const [stocks, setStocks] = useState([]);
+  const [email, setEmail] = useState(''); // Email state to hold the recipient email
 
   useEffect(() => {
     const fetchData = async () => {
@@ -72,7 +73,23 @@ function ProfitAndLoss() {
         `Rs. ${profitOrLoss.toLocaleString()}`
       ]]
     });
-    doc.save('profit-loss-report.pdf');
+    return doc;
+  };
+
+  const sendPDFByEmail = async () => {
+    const doc = generatePDF();
+    const pdfData = doc.output('datauristring').split(',')[1]; // Get Base64 PDF content
+
+    try {
+      await axios.post('http://localhost:5000/finance/send-email', {
+        pdfData,
+        recipientEmail: email, // Use email from the input
+      });
+      alert('PDF sent successfully to ' + email);
+    } catch (error) {
+      console.error('Error sending PDF:', error);
+      alert('Failed to send PDF');
+    }
   };
 
   // Donut chart data
@@ -99,7 +116,7 @@ function ProfitAndLoss() {
           <thead>
             <tr>
               <th>Category</th>
-              <th class="Amount">Amount (Rs.)</th>
+              <th className="Amount">Amount (Rs.)</th>
             </tr>
           </thead>
           <tbody>
@@ -119,12 +136,26 @@ function ProfitAndLoss() {
         </table>
       </div>
 
-      <div class="f-pie">
+      <div className="f-pie">
         <Doughnut data={data} />
       </div>
 
+      <div>
+        <center>
+        <input
+          type="email"
+          placeholder="Enter recipient email"
+          value={email}
+          onChange={(e) => setEmail(e.target.value)}
+          className="I-email-input"
+        />
+        </center>
+      
+      </div>
+
       <center>
-        <button className="I-generate-report" onClick={generatePDF}>Generate PDF Report</button>
+        
+        <button className="I-generate-report" onClick={sendPDFByEmail}>Send PDF Report by Email</button>
       </center>
     </div>
   );

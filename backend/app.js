@@ -24,7 +24,6 @@ const productRouter = require("../backend/Routes/ProductRoutes"); // Product
 const animalrouter = require("./Routes/AnimalRoutes");  // Animal
 const treatmentrouter = require("./Routes/TreatmentRoutes"); // Treatment
 const employeeRouter = require('./Routes/EmployeeRoutes'); // Employee
-const salaryRouter = require('./Routes/SalaryRoutes'); // Salary
 const financrouter = require("./Routes/financ"); // Finance
 
 // Models
@@ -60,7 +59,6 @@ app.use('/products', productRouter); // Product
 app.use("/animals",animalrouter); // Animal
 app.use("/treatments",treatmentrouter); // Treatment
 app.use('/employees', employeeRouter); //Employee
-app.use("/salaries", salaryRouter); // Salary
 app.use("/finance", financrouter); // Finance
 
 // Twilio Setup

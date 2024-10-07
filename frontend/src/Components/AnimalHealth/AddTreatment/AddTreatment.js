@@ -105,7 +105,7 @@ function AddTreatment() {
   };
 
   return (
-    <div><Nav />
+    <div><Nav /><br/><br/><br/>
     <br/>
     <div className="treatment-add-treatment-container">
       <h1 className="treatment-add-treatment-title">Add Treatment</h1>

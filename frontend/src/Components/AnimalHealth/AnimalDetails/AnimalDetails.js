@@ -142,7 +142,7 @@ function AnimalDetails() {
   };
 
   return (
-    <div><Nav />
+    <div><Nav /><br/>
     <div className="animal-details-container">
       <h1 className="animal-details-header">Animal Details Page</h1>
 

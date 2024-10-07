@@ -31,7 +31,6 @@ const ImgModel = require('./Model/ImgModel');
 const Treatment = require('./Model/TreatmentModel');
 
 
-
 // Middlewear and Configurations
 require('dotenv').config();
 const app = express();

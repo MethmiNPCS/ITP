@@ -20,13 +20,13 @@ function Nav() {
 
         <li>
           <Link to="/addemployee" className="text-green-600 font-bold py-3 px-6 rounded-full transition duration-300 hover:bg-white hover:bg-opacity-20">
-            ADD Employee
+            ADD EMPLOYEE
           </Link>
         </li>
 
         <li>
           <Link to="/employeedetails" className="text-green-600 font-bold py-3 px-6 rounded-full transition duration-300 hover:bg-white hover:bg-opacity-20">
-            Employee Deatails
+            ALL EMPLOYEES
           </Link>
         </li>
 

@@ -101,6 +101,9 @@ function AddAnimal() {
     <div>
       <Nav />
       <br />
+      <br/>
+      <br/>
+      <br/>
       <div className="animal-add-animal-container">
         
         <h1 className="animal-add-animal-header">Add Animal</h1>

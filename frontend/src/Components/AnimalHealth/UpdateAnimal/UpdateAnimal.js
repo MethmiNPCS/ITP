@@ -88,7 +88,7 @@ function UpdateAnimal() {
   };
 
   return (
-    <div><Nav />
+    <div><Nav /><br/><br/><br/>
     <br/>
     <div className="animal-update-animal-container">
       <h1 className="animal-update-animal-header">Update Animal</h1>

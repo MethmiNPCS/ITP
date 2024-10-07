@@ -116,7 +116,7 @@ function UpdateTreatment() {
   };
 
   return (
-    <div><Nav />
+    <div><Nav /><br/><br/><br/>
     <br/>
     <div className="treatment-update-treatment-container"> 
       <h1 className="treatment-update-treatment-title">Update Treatment</h1>

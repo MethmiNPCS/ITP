@@ -83,18 +83,27 @@ function ViewOrder() {
   
 
   return (
+    <div className='pt-20'>
     <div id="vview-order-container">
       <Nav />
       <br/><br/>
       <form id="vorder-id-form" onSubmit={handleSubmit}>
         <label id="vorder-id-label">Enter Order ID</label>
         <input
-          id="vorder-id-input"
-          type="text"
-          value={orderID}
-          onChange={handleChange}
-          required
-        />
+  id="vorder-id-input"
+  type="text"
+  value={orderID}
+  onChange={handleChange}
+  required
+  style={{
+    width: '400px',
+    padding: '10px',
+    border: '1px solid #2f2626',
+    borderRadius: '5px',
+    marginBottom: '15px'
+  }}
+/>
+
         <button id="vview-order-button" type="submit">View Order</button>
       </form>
 
@@ -131,6 +140,7 @@ function ViewOrder() {
           <button id="vsend-to-supplier-button" onClick={sendEmail}>Send to Supplier</button>
         </div>
       )}
+    </div>
     </div>
   );
 }

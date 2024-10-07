@@ -116,12 +116,13 @@ function AddOrder() {
     };
 
     return (
+        <div className='pt-16'>
         <div id="add-order-container">
             <Nav />
             <br />
             <h1 id="add-order-header">Add Order</h1>
 
-            <form id="add-order-form" onSubmit={handleSubmit}>
+            <form id="add-order-form" onSubmit={handleSubmit} style={{maxWidth: 800}}>
                 <label id="order-id-label">Order ID</label>
                 <br />
                 <input id="order-id-input" type="text" value="Auto-generated" disabled />
@@ -190,6 +191,7 @@ function AddOrder() {
                             <button id={`remove-item-button-${index}`} type="button" onClick={() => removeItemField(index)}  style={{ backgroundColor: '#c7c1c1', padding: '4px 10px' }}>-</button>
                         )}
                     </div>
+                    
                 ))}
                 <button id="add-item-button" type="button" onClick={addItemField}>+</button>
                 {errors.items && <p id="order-items-error">{errors.items}</p>}
@@ -227,6 +229,7 @@ function AddOrder() {
 
                 <button id="submit-order-button" type="submit">Submit Order</button>
             </form>
+        </div>
         </div>
     );
 }

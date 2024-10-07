@@ -33,6 +33,7 @@ function SupplierDetails() {
   );
 
   return (
+    <div className='pt-16'>
     <div id="supplier-details">
       <Nav />
       <br />
@@ -77,6 +78,7 @@ function SupplierDetails() {
           <p id="no-results-message">No search results found</p>
         )}
       </div>
+    </div>
     </div>
   );
 }

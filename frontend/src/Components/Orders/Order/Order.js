@@ -31,7 +31,7 @@ function Order(props) {
   return (
     <div id="o-order-container">
       <br />
-      <h2 id="o-order-id">Order ID: {orderID}</h2>
+      <h2 id="o-order-id" style={{ fontWeight: 'bold' }} >Order ID: {orderID}</h2>
       <h2 id="o-order-type">Order Type: {orderType}</h2>
       <h3 id="o-order-items-title">Order Items:</h3>
       <ul id="o-order-items-list">

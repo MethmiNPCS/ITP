@@ -15,6 +15,8 @@ supplierrouter.post("/", SupplierController.addSupplier);
 supplierrouter.get("/:supplierID", SupplierController.getBySupplierID);
 supplierrouter.get("/type/:supplierType", SupplierController.getBySupplierType);  // New route for fetching suppliers by type
 supplierrouter.put("/:supplierID", SupplierController.updateSupplier);
+supplierrouter.get("/supplier-email/:supplierName", SupplierController.getSupplierEmailByName);
+
 
 
 

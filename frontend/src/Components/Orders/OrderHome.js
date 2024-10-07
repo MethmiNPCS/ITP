@@ -6,7 +6,7 @@ import './OrderHome.css';
 
 import { Chart as ChartJS, ArcElement, Tooltip, Legend } from 'chart.js';
 
-// Register the chart components
+// Registering the chart components
 ChartJS.register(ArcElement, Tooltip, Legend);
 
 function OrderHome() {
@@ -90,10 +90,10 @@ function OrderHome() {
     plugins: {
       legend: {
         position: 'top',
-        align: 'start', // Align legends to start for better layout
+        align: 'start', // Align legends
         display: true,
         labels: {
-          usePointStyle: false, // Use point style for legends
+          usePointStyle: false, // Use point(circle) style for legends
         },
       },
     },

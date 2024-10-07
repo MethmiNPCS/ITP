@@ -49,6 +49,8 @@ import AddFinance from './Components/Finance/AddFinance/AddFinance';
 import FinanceDetails from './Components/Finance/FinanceDetails/FinanceDetails';
 import UpdateFinance from './Components/Finance/UpdateFinance/UpdateFinance';
 import IncomeDetails from './Components/Finance/FinanceDetails/IncomeDetails';
+import PNL from './Components/Finance/Finance/PNL';
+import Atable from "./Components/Finance/Chart/Atable";
 
 //Order Routes
 import OrderHome from './Components/Orders/OrderHome';
@@ -63,8 +65,8 @@ import EmployeeHome from './Components/Employees/EmployeeHome';
 import AddEmployee from './Components/Employees/AddEmployee/AddEmployee';
 import Employees from "./Components/Employees/EmployeeDetails/Employees";
 import UpdateEmployee from "./Components/Employees/UpdateEmployee/UpdateEmployee";
-import SalaryCalculation from './Components/Employees/EmployeeDetails/SalaryCalculation'; 
-import SalariesPage from './Components/Employees/EmployeeDetails/Salaries';
+import Salary from "./Components/Employees/EmployeeDetails/Salary";
+import AddBonus from "./Components/Employees/AddEmployee/AddBonus";
 
 
 function App() {
@@ -114,6 +116,8 @@ function App() {
           <Route path="/financedetails" element={<FinanceDetails />} />
           <Route path="/incomedetails" element={<IncomeDetails />} />  
           <Route path="/updatefinance/:id" element={<UpdateFinance />} />
+          <Route path="/pnl" element={<PNL/>} />
+          <Route path="/atable" element={<Atable />} />
 
 
           <Route path="/orderhome" element={<OrderHome/>}/>
@@ -128,8 +132,8 @@ function App() {
           <Route path="/addemployee" element={<AddEmployee />} />
           <Route path="/employeedetails" element={<Employees />} />
           <Route path="/updateemployeedetails/:id" element={<UpdateEmployee />} />
-          <Route path="/salarycalculation/:nic" element={<SalaryCalculation />} />
-          <Route path="/salaries" element={<SalariesPage />} />
+          <Route path="/salary" element={<Salary />} />
+          <Route path="/addbonus" element={<AddBonus />} />
 
         </Routes>
       </React.Fragment>

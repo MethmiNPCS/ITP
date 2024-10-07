@@ -1,23 +1,24 @@
-.add-treatment-container {
-  width: 90%; 
-  max-width: 1200px; 
-  margin: 0 auto; 
+.treatment-add-treatment-container {
+  width: 90%;
+  max-width: 1200px;
+  margin: 0 auto;
   padding: 20px;
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
   border-radius: 8px;
 }
 
-form {
+.treatment-add-treatment-form {
   display: flex;
   flex-direction: column;
 }
 
-label {
+.treatment-form-label {
   font-weight: bold;
   margin-bottom: 5px;
 }
 
-input, select, textarea, button {
+.treatment-form-input,
+.treatment-form-textarea {
   margin-bottom: 15px;
   padding: 10px;
   font-size: 16px;
@@ -25,43 +26,29 @@ input, select, textarea, button {
   border: 1px solid #ccc;
 }
 
-button {
-  background-color: #007bff;
-  color: white;
-  border: none;
-  cursor: pointer;
-  padding: 10px 15px;
-}
-
-button:hover {
-  background-color: #0056b3;
-}
-
-.error-message {
+.treatment-error-message {
   color: red;
   font-size: 0.875rem;
   margin-top: 0.5rem;
   font-weight: bold;
 }
 
-.add-medicine-container {
+.treatment-medicine-input-group {
   display: flex;
-  flex-direction: column;
+  align-items: center;
+  margin-bottom: 15px;
 }
 
-.add-medicine-container div {
-  display: flex;
-  gap: 10px;
-  margin-bottom: 10px;
-}
-
-.add-medicine-container input {
+.treatment-medicine-name-input,
+.treatment-medicine-dose-input {
   flex: 1;
+  margin-right: 10px;
 }
 
-.add-medicine-button,
-.submit-button,
-.remove-medicine-button {
+.treatment-add-medicine-button,
+.treatment-remove-medicine-button,
+.treatment-add-time-button,
+.treatment-remove-time-button {
   padding: 5px 10px;
   font-size: 14px;
   border: none;
@@ -70,36 +57,68 @@ button:hover {
   transition: background-color 0.3s ease, transform 0.3s ease;
 }
 
-.add-medicine-button {
-  background-color: #4CAF50;
+.treatment-add-time-button {
+  background-color: #4caf50; /* Green */
   color: white;
-  display: inline-block;
-  margin-right: auto;
+  margin-bottom: 15px; /* Space below the button */
+  align-self: flex-start; /* Aligns button to the left */
 }
 
-.add-medicine-button:hover {
-  background-color: #45a049;
+.treatment-add-time-button:hover {
+  background-color: #45a049; /* Darker green on hover */
 }
 
-.remove-medicine-button {
-  background-color: #ff4d4d;
+.treatment-remove-time-button {
+  background-color: #ff4d4d; /* Red */
   color: white;
-  margin-left: 10px;
+  margin-left: 10px; /* Space to separate from time input */
 }
 
-.remove-medicine-button:hover {
-  background-color: #e60000;
+.treatment-remove-time-button:hover {
+  background-color: #e60000; /* Darker red on hover */
 }
 
-.submit-button {
-  background-color: #45a049;
+.treatment-add-medicine-button {
+  background-color: #4caf50; /* Green */
   color: white;
+  padding: 5px 10px;
+  font-size: 14px;
+  border: none;
+  cursor: pointer;
+  border-radius: 4px;
+  margin-bottom: 15px; /* Space below the button */
+  align-self: flex-start; /* Aligns button to the left */
+}
+
+.treatment-add-medicine-button:hover {
+  background-color: #45a049; /* Darker green on hover */
+}
+
+.treatment-remove-medicine-button {
+  background-color: #ff4d4d; /* Red */
+  color: white;
+}
+
+.treatment-remove-medicine-button:hover {
+  background-color: #e60000; /* Darker red on hover */
+}
+
+.treatment-submit-button {
+  background-color: #4caf50;
+  color: white;
+  border: none;
+  cursor: pointer;
+  padding: 15px 30px;
+  font-size: 18px;
   margin: 20px auto;
   display: block;
-  padding: 15px 30px; 
-  font-size: 18px;
 }
 
-.submit-button:hover {
+.treatment-submit-button:hover {
   background-color: #45a049;
+}
+
+.treatment-no-medicines {
+  font-style: italic;
+  color: #555;
 }

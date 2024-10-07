@@ -1,8 +1,7 @@
 import React from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import axios from "axios";
-import { useNavigate } from "react-router-dom";
-import "./Treatment.css"; 
+import "./Treatment.css";
 
 function Treatment(props) {
   const {
@@ -12,19 +11,21 @@ function Treatment(props) {
     startDate,
     endDate,
     treatmentTime,
-    frequency,
     animalIDs,
   } = props.treatment;
-  
+
+  const { onRefresh } = props; // Correctly destructure onRefresh
+
   const history = useNavigate();
 
   const deleteHandler = async () => {
-    try {
-      await axios.delete(`http://localhost:5000/treatments/${treatmentID}`);
-      history("/"); 
-      history("/treatmentdetails"); 
-    } catch (error) {
-      console.error("There was an error deleting the treatment:", error);
+    if (window.confirm("Are you sure you want to delete this treatment plan?")) {
+      await axios
+        .delete(`http://localhost:5000/treatments/${treatmentID}`)
+        .then(() => {
+          onRefresh(); // Call the refresh function correctly
+          history("/treatmentdetails");
+        });
     }
   };
 
@@ -33,50 +34,50 @@ function Treatment(props) {
       <h1 className="treatment-heading">Treatment Details</h1>
       <div className="treatment-details">
         <div className="treatment-detail">
-          <strong>Treatment ID:</strong> {treatmentID}
+          <strong className="treatment-detail-label">Treatment ID:</strong>
+          <span className="treatment-detail-value">{treatmentID}</span>
         </div>
         <div className="treatment-detail">
-          <strong>Plan Description:</strong> {planDescription}
+          <strong className="treatment-detail-label">Plan Description:</strong>
+          <span className="treatment-detail-value">{planDescription}</span>
         </div>
         <div className="treatment-detail">
-          <strong>Start Date:</strong> {new Date(startDate).toLocaleDateString()}
+          <strong className="treatment-detail-label">Start Date:</strong>
+          <span className="treatment-detail-value">{new Date(startDate).toLocaleDateString()}</span>
         </div>
         <div className="treatment-detail">
-          <strong>End Date:</strong> {new Date(endDate).toLocaleDateString()}
+          <strong className="treatment-detail-label">End Date:</strong>
+          <span className="treatment-detail-value">{new Date(endDate).toLocaleDateString()}</span>
         </div>
         <div className="treatment-detail">
-          <strong>Treatment Time:</strong> {treatmentTime}
+          <strong className="treatment-detail-label">Treatment Time:</strong>
+          <span className="treatment-detail-value">{treatmentTime.join(", ")}</span>
         </div>
         <div className="treatment-detail">
-          <strong>Frequency:</strong> {frequency} 
-        </div>
-        <div className="treatment-detail">
-          <strong>Animal IDs:</strong> {animalIDs.join(", ")}
+          <strong className="treatment-detail-label">Animal IDs:</strong>
+          <span className="treatment-detail-value">{animalIDs.join(", ")}</span>
         </div>
 
-        <div className="medicines-container">
-          <h3>Medicines:</h3>
+        <div className="treatment-medicines-container">
+          <h3 className="treatment-medicines-heading">Medicines:</h3>
           {medicines.map((medicine, index) => (
-            <div key={index} className="medicine-item">
-              <div>
-                <strong>Medicine Name:</strong> {medicine.name}
+            <div key={index} className="treatment-medicine-item">
+              <div className="medicine-name">
+                <strong>Medicine Name:</strong> <span>{medicine.name}</span>
               </div>
-              <div>
-                <strong>Dose:</strong> {medicine.dose}
+              <div className="medicine-dose">
+                <strong>Dose:</strong> <span>{medicine.dose}</span>
               </div>
             </div>
           ))}
         </div>
       </div>
 
-      <div>
+      <div className="treatment-button-group">
         <Link to={`/treatmentdetails/${treatmentID}`}>
-          <button className="treatment-button update-button">Update</button>
+          <button className="treatment-button treatment-update-button">Update</button>
         </Link>
-        <button
-          className="treatment-button delete-button"
-          onClick={deleteHandler}
-        >
+        <button className="treatment-button treatment-delete-button" onClick={deleteHandler}>
           Delete
         </button>
       </div>

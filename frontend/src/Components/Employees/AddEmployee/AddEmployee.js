@@ -13,6 +13,7 @@ function AddEmployee() {
         Adress: "",
         Position: "",
         ContactNumber: "",
+        BasicSalary: "",
     });
 
     const handleChange = (e) => {
@@ -37,6 +38,7 @@ function AddEmployee() {
             Adress: String(inputs.Adress),
             Position: String(inputs.Position),
             ContactNumber: String(inputs.ContactNumber),
+            BasicSalary: Number(inputs.BasicSalary), // Send Basic Salary as a number
         }).then(res => res.data);
     }
 
@@ -83,6 +85,11 @@ function AddEmployee() {
                     <div style={styles.formGroup}>
                         <label htmlFor="contactNumber" style={styles.label}>Contact Number</label>
                         <input type="text" id="contactNumber" name="ContactNumber" onChange={handleChange} value={inputs.ContactNumber} required style={styles.input} />
+                    </div>
+                    {/* Add Basic Salary Input */}
+                    <div style={styles.formGroup}>
+                        <label htmlFor="basicSalary" style={styles.label}>Basic Salary</label>
+                        <input type="number" id="basicSalary" name="BasicSalary" onChange={handleChange} value={inputs.BasicSalary} required style={styles.input} />
                     </div>
                     <button type="submit" style={styles.submitButton}>Add Employee</button>
                 </form>

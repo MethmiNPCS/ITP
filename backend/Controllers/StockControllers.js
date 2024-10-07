@@ -22,12 +22,12 @@ const getAllStocks = async(req, res, next) => {
 // Function to insert an item
 const addStocks = async(req, res, next) => {
 
-    const{name, animal, type, EXD, quantity, unit, instructions} = req.body;
+    const{stockID, name, animal, type, EXD, quantity, unitPrice, unit, instructions} = req.body;
 
     let stocks;
 
     try {
-        stocks = new Stock({name, animal, type, EXD, quantity, unit, instructions});
+        stocks = new Stock({stockID, name, animal, type, EXD, quantity, unitPrice, unit, instructions});
         await stocks.save();
     } catch (err) {
         console.log(err);
@@ -62,13 +62,13 @@ const getById = async (req, res, next) => {
 const updateStock = async (req, res, next) => {
 
     const id = req.params.id;
-    const{name, animal, type, EXD, quantity, unit, instructions} = req.body;
+    const{stockID, name, animal, type, EXD, quantity, unitPrice, unit, instructions} = req.body;
 
     let stocks;
 
     try{
         stocks = await Stock.findByIdAndUpdate(id, 
-            {name: name, animal:animal, type:type, EXD:EXD, quantity:quantity, unit:unit, instructions:instructions});
+            {stockID: stockID, name: name, animal:animal, type:type, EXD:EXD, quantity:quantity, unitPrice: unitPrice, unit:unit, instructions:instructions});
             stocks = await stocks.save();
     }catch(err){
         console.log(err);

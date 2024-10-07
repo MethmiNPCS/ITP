@@ -9,7 +9,6 @@ function Animal(props) {
     animalID,
     animalType,
     gender,
-    age,
     dateOfBirth,
     weight,
     breedingStatus,
@@ -18,64 +17,73 @@ function Animal(props) {
     treatmentIDs, 
   } = props.animal;
 
-  const { treatments } = props; 
+  const { treatments, refreshAnimals } = props; 
   const history = useNavigate();
 
   const deleteHandler = async () => {
-    await axios
-      .delete(`http://localhost:5000/animals/${animalID}`)
-      .then((res) => res.data)
-      .then(() => history("/"))
-      .then(() => history("/animaldetails"));
+    if (window.confirm("Are you sure you want to delete this animal?")) {
+      await axios
+        .delete(`http://localhost:5000/animals/${animalID}`)
+        .then(() => {
+          refreshAnimals(); // Refresh the animals list after deletion
+          history("/animaldetails");
+        });
+    }
   };
 
-
-  console.log("Treatment IDs:", treatmentIDs);
-  console.log("Treatments Data:", treatments);
-
+  // Find treatment descriptions based on treatmentIDs
   const treatmentDescriptions = treatmentIDs.map(id => {
     const treatment = treatments.find(t => t.treatmentID === id);
     return treatment ? treatment.planDescription : "No description available";
   }).join(', ');
 
   return (
-    <div className="animal-container">
-      <h1 className="animal-heading">Animal Details</h1>
-      <div className="animal-details">
-        <div className="animal-detail">
-          <strong>Animal ID:</strong> {animalID}
+    <div className="animal-animal-container">
+      <h1 className="animal-animal-heading">Animal Details</h1>
+      <div className="animal-animal-details">
+        <div className="animal-animal-detail">
+          <strong className="animal-animal-detail-label">Animal ID:</strong> 
+          <span className="animal-animal-detail-value">{animalID}</span>
         </div>
-        <div className="animal-detail">
-          <strong>Animal Type:</strong> {animalType}
+        <div className="animal-animal-detail">
+          <strong className="animal-animal-detail-label">Animal Type:</strong> 
+          <span className="animal-animal-detail-value">{animalType}</span>
         </div>
-        <div className="animal-detail">
-          <strong>Gender:</strong> {gender}
+        <div className="animal-animal-detail">
+          <strong className="animal-animal-detail-label">Gender:</strong> 
+          <span className="animal-animal-detail-value">{gender}</span>
         </div>
-        <div className="animal-detail">
-          <strong>Date of Birth:</strong> {new Date(dateOfBirth).toLocaleDateString()}
+        <div className="animal-animal-detail">
+          <strong className="animal-animal-detail-label">Date of Birth:</strong> 
+          <span className="animal-animal-detail-value">{new Date(dateOfBirth).toLocaleDateString()}</span>
         </div>
-        <div className="animal-detail">
-          <strong>Weight:</strong> {weight}
+        <div className="animal-animal-detail">
+          <strong className="animal-animal-detail-label">Weight:</strong> 
+          <span className="animal-animal-detail-value">{weight}</span>
         </div>
-        <div className="animal-detail">
-          <strong>Breeding Status:</strong> {breedingStatus}
+        <div className="animal-animal-detail">
+          <strong className="animal-animal-detail-label">Breeding Status:</strong> 
+          <span className="animal-animal-detail-value">{breedingStatus}</span>
         </div>
-        <div className="animal-detail">
-          <strong>Health Status:</strong> {healthStatus}
+        <div className="animal-animal-detail">
+          <strong className="animal-animal-detail-label">Health Status:</strong> 
+          <span className="animal-animal-detail-value">{healthStatus}</span>
         </div>
-        <div className="animal-detail">
-          <strong>Health Condition:</strong> {healthCondition}
+        <div className="animal-animal-detail">
+          <strong className="animal-animal-detail-label">Health Condition:</strong> 
+          <span className="animal-animal-detail-value">{healthCondition}</span>
         </div>
-        <div className="animal-detail">
-          <strong>Treatment Plans:</strong> {treatmentDescriptions}
+        <div className="animal-animal-detail">
+          <strong className="animal-animal-detail-label">Treatment Plans:</strong> 
+          <span className="animal-animal-detail-value">{treatmentDescriptions}</span>
         </div>
       </div>
-      <div>
+      <div className="animal-animal-button-group">
         <Link to={`/animaldetails/${animalID}`}>
-          <button className="animal-button update-button">Update</button>
+          <button className="animal-animal-button animal-update-button">Update</button>
         </Link>
         <button
-          className="animal-button delete-button"
+          className="animal-animal-button animal-delete-button"
           onClick={deleteHandler}
         >
           Delete

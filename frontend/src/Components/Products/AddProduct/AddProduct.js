@@ -29,13 +29,13 @@ function AddProduct() {
     'Meat-Pork one pack': 2700,
     'Coconut': 50,
     'Tea': 200,
-    'Nut': 300,
+    'Cocova bans': 300,
   };
 
   // Product options based on the type
   const productOptions = {
-    Animal: ['Cheese one box', 'Butter - onepack(50g)', 'Yoghurt - (1)', 'Fresh Milk - (1)', 'Egg - (1)', 'Meat-Beef one pack', 'Meat-Chicken one pack', 'Meat-Pork one pack'],
-    Plantation: ['Coconut', 'Tea', 'Nut'],
+    Animal: ['Cheese one box', 'Butter - onepack(50g)', 'Yoghurt - (1)', 'Fresh Milk - (1)', 'Egg - (1)', 'Beef one pack', 'Chicken one pack', 'Pork one pack'],
+    Plantation: ['Coconut', 'Tea', 'Cocova beans'],
   };
 
   // Handle input changes
@@ -154,7 +154,7 @@ function AddProduct() {
                 value={inputs.type}
                 required
                 className="select"
-                style={{ width: '600px', height: '40px' }} // Updated style for consistency
+                style={{ width: '550px', height: '40px' }} // Updated style for consistency
               >
                 <option value="">Select Type</option>
                 <option value="Animal">Animal</option>
@@ -171,7 +171,7 @@ function AddProduct() {
                   value={inputs.product}
                   required
                   className="select"
-                  style={{ width: '600px', height: '40px' }}
+                  style={{ width: '550px', height: '40px' }}
                 >
                   <option value="">Select Product</option>
                   {productOptions[inputs.type]?.map((prod, index) => (

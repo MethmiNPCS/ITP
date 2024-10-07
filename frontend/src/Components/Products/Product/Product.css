@@ -50,7 +50,7 @@
     border-right: none; /* No right border for the last cell */
 }
 
-/* Hover effect for table rows */
+/* Hover effect for table cells */
 .cell:hover {
     background-color: #f7f7f7; /* Light gray background on hover */
     transform: scale(1.02); /* Slight scale effect on hover */

@@ -7,7 +7,6 @@ import jsPDF from 'jspdf';
 import 'jspdf-autotable';
 import { Link } from "react-router-dom";
 
-
 const URL = "http://localhost:5000/products"; // API URL for fetching products
 
 function Products() {
@@ -114,36 +113,26 @@ function Products() {
         <center>
             <div>
                 <Nav /><br />
-                <h1>PRODUCT DETAILS</h1><br /><br />
+                <h3>PRODUCT DETAILS</h3><br /><br />
 
-                {/* Search Input */}
-                <input
-                    type="text"
-                    placeholder="Search products..."
-                    value={searchQuery}
-                    onChange={(e) => setSearchQuery(e.target.value)}
-                    style={{
-                        padding: "10px",
-                        marginBottom: "20px",
-                        borderRadius: "3px",
-                        border: "1px solid #ccc",
-                        width: "60%",
-                    }}
-                />
-                <button
-                    onClick={handleSearch}
-                    style={{
-                        padding: "10px 10px",
-                        marginLeft: "10px",
-                        borderRadius: "4px",
-                        backgroundColor: "#00712D",
-                        color: "#fff",
-                        border: "none",
-                        cursor: "pointer",
-                    }}
-                >
-                    Search
-                </button>
+                {/* Centered Search Container */}
+                <center>
+                <div className="flex justify-center items-center mb-5">
+                    <input
+                        type="text"
+                        placeholder="Search products..."
+                        value={searchQuery}
+                        onChange={(e) => setSearchQuery(e.target.value)}
+                        className="p-2 border border-gray-300 rounded-md w-3/5" // Tailwind styles for the input
+                    />
+                    <button
+                        onClick={handleSearch}
+                        className="p-2 ml-3 rounded-md bg-green-700 text-white" // Tailwind styles for the button
+                    >
+                        Search
+                    </button>
+                </div>
+                </center>
 
                 {/* Product Table */}
                 <table>
@@ -220,10 +209,10 @@ function Products() {
                     DOWNLOAD REPORT
                 </button>
 
-                <button class="but-chart">      
-                <Link to="/chartpage" className="nav-link">
-                    CHART
-                </Link>
+                <button className="but-chart">      
+                    <Link to="/chartpage" className="nav-link">
+                        CHART
+                    </Link>
                 </button>
             </div>
         </center>

@@ -49,8 +49,8 @@ const Charts = ({ productData }) => {
       {
         label: 'Product Types',
         data: [typeData.Animal, typeData.Plantation],
-        backgroundColor: ['#FFB200', '#B60071'],
-        hoverBackgroundColor: ['#921A40', '#FF6500'],
+        backgroundColor: ['#025955', '#00917C'],
+        hoverBackgroundColor: ['#025955', '#00917C'],
       },
     ],
   };

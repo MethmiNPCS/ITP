@@ -178,7 +178,7 @@ function UpdateProduct() {
                 value={inputs.type}
                 required
                 className="select"
-                style={{ width: '600px', height: '40px' }} // Updated style for consistency
+                style={{ width: '550px', height: '40px' }} // Updated style for consistency
               >
                 <option value="">Select Type</option>
                 <option value="Animal">Animal</option>
@@ -195,7 +195,7 @@ function UpdateProduct() {
                   value={inputs.product}
                   required
                   className="select"
-                  style={{ width: '600px', height: '40px' }}
+                  style={{ width: '550px', height: '40px' }}
                 >
                   <option value="">Select Product</option>
                   {productOptions[inputs.type]?.map((prod, index) => (

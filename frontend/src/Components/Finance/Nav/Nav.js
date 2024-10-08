@@ -30,13 +30,13 @@ function Nav() {
 
         <li>
           <Link to="/financedetails" className="text-green-600 font-bold py-3 px-6 rounded-full transition duration-300 hover:bg-white hover:bg-opacity-20">
-            EXPENSES TABLE
+            EXPENSES
           </Link>
         </li>
 
         <li>
           <Link to="/incomedetails" className="text-green-600 font-bold py-3 px-6 rounded-full transition duration-300 hover:bg-white hover:bg-opacity-20">
-            INCOME TABLE
+            INCOME
           </Link>
         </li>
 
@@ -50,7 +50,8 @@ function Nav() {
           <Link to="/atable" className="text-green-600 font-bold py-3 px-6 rounded-full transition duration-300 hover:bg-white hover:bg-opacity-20">
             MONTHLY INFORMATION
           </Link>
-        </li> {/* Fixed closing tag */}
+        </li>
+
       </ul>
 
       {/* Spacer to balance the layout */}
@@ -59,4 +60,5 @@ function Nav() {
   );
 }
 
-export default Nav;
+export default Nav;
+

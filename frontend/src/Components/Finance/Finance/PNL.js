@@ -3,12 +3,12 @@ import Nav from '../Nav/Nav';
 import axios from 'axios';
 import jsPDF from 'jspdf';
 import 'jspdf-autotable';
-import { Doughnut } from 'react-chartjs-2';
+import { Doughnut } from 'react-chartjs-2'; // Import Doughnut chart
 import './Finance.css';
 
 const IncomeURL = "http://localhost:5000/finance";
 const ProductURL = "http://localhost:5000/products";
-const SalaryURL = "http://localhost:5000/salaries";
+const SalaryURL = "http://localhost:5000/employees"; // Updated URL
 const StockURL = "http://localhost:5000/stocks";
 
 const fetchHandler = async (url) => {
@@ -24,20 +24,20 @@ const fetchHandler = async (url) => {
 function ProfitAndLoss() {
   const [finance, setFinance] = useState([]);
   const [products, setProducts] = useState([]);
-  const [salaries, setSalaries] = useState([]);
+  const [salaries, setSalaries] = useState([]); 
   const [stocks, setStocks] = useState([]);
-  const [email, setEmail] = useState(''); // Email state to hold the recipient email
+  const [email, setEmail] = useState(''); 
 
   useEffect(() => {
     const fetchData = async () => {
       const financeData = await fetchHandler(IncomeURL);
       const productData = await fetchHandler(ProductURL);
-      const salaryData = await fetchHandler(SalaryURL);
+      const salaryData = await fetchHandler(SalaryURL); // Fetch employees data
       const stockData = await fetchHandler(StockURL);
 
       if (financeData.finance) setFinance(financeData.finance);
       if (productData.products) setProducts(productData.products);
-      if (salaryData.salaries) setSalaries(salaryData.salaries);
+      if (salaryData.employees) setSalaries(salaryData.employees); // Update this line
       if (stockData.stocks) setStocks(stockData.stocks);
     };
 
@@ -54,7 +54,7 @@ function ProfitAndLoss() {
   const totalExpenses = () => {
     const expenseFinance = finance.filter(item => item.transactionType === 'Expense');
     const totalFinanceExpenses = expenseFinance.reduce((sum, item) => sum + item.amount, 0);
-    const totalSalaryExpenses = salaries.reduce((sum, salary) => sum + salary.totalSalary, 0);
+    const totalSalaryExpenses = salaries.reduce((sum, salary) => sum + salary.NetSalary, 0); // Update to reflect BasicSalary
     const totalStockExpenses = stocks.reduce((sum, stock) => sum + stock.totalPrice, 0);
     return totalFinanceExpenses + totalSalaryExpenses + totalStockExpenses;
   };

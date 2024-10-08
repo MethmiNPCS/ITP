@@ -242,8 +242,11 @@ function ImageUploader() {
   };
 
   return (
-    <div style={styles.container}>
+    
+    <div className='pt-28'>
       <Nav />
+    <div style={styles.container}>
+      
       <center>
         <h1>Image Uploader</h1>
         {errorMessage && <p style={styles.errorMessage}>{errorMessage}</p>}
@@ -309,6 +312,7 @@ function ImageUploader() {
           <p>Price: Rs.{selectedImage.price}</p>
         </div>
       )}
+    </div>
     </div>
   );
 }

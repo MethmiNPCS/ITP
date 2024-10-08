@@ -187,7 +187,10 @@ function Products() {
     return (
         <center>
             <div>
-                <Nav /><br />
+            <Nav /><br />
+            
+            <div  style={{ color: '#333' , marginTop: '100px'}}>
+                
                 <h3>PRODUCT DETAILS</h3><br /><br />
 
                 {/* Centered Search Container */}
@@ -287,6 +290,7 @@ function Products() {
                 <button onClick={generatePDF} className="generate-report-button">
                     Generate PDF Report
                 </button>
+            </div>
             </div>
         </center>
     );

@@ -140,8 +140,10 @@ function AddProduct() {
   };
 
   return (
+    <div>
+<Nav />
     <div className="p-page-container">
-      <Nav />
+      
       <div className="p-container">
         <div className="p-form-container">
           <h1 className="p-title">ADD PRODUCT</h1>
@@ -253,6 +255,7 @@ function AddProduct() {
           </form>
         </div>
       </div>
+    </div>
     </div>
   );
 }

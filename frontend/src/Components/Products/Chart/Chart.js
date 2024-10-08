@@ -108,7 +108,7 @@ const Charts = ({ productData }) => {
   return (
     <div>
       <div>
-        <div id="charts-container" style={{ display: 'flex', justifyContent: 'space-between' }}>
+        <div id="charts-container" style={{ display: 'flex', justifyContent: 'space-between'  }}>
           <div style={{ display: 'flex', flexDirection: 'column', gap: '30px', width: '48%' }}>
             <div style={{ width: '100%', height: '400px' }}>
               <Bar data={monthlyBarData} options={options} />

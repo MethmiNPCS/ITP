@@ -7,7 +7,7 @@
     min-height: 100vh;
     background-color: #dcdce2;
     background-size: cover;
-    padding: 40px; /* Added padding for overall container */
+    padding: 100px; /* Added padding for overall container */
 }
 
 .p-form-container {

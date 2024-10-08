@@ -56,7 +56,7 @@ const ChartPage = () => {
     <div style={{ padding: '20px', backgroundColor: '#f9f9f9', borderRadius: '8px', boxShadow: '0 2px 5px rgba(0, 0, 0, 0.1)' }}>
       <Nav />
       <center>
-        <h1 style={{ color: '#333' }}>Product Charts</h1> <br></br><br></br>
+        <h1 style={{ color: '#333' , marginTop: '100px'}}>Product Charts</h1> <br></br><br></br>
       </center>
 
       {loading ? (

@@ -31,7 +31,7 @@ function Home() {
     { name: "Livestock", icon: FaHorse, path: '/animalhome' },  // Changed path to AnimalHome
     { name: "Employees", icon: FaUserTie, path: '/employeehome' },  // Add path if needed
     { name: "Finance", icon: FaMoneyBill, path: '/financehome' },
-    { name: "Plantation", icon: FaTree, path: '/plantation' }  // Add path if needed
+    { name: "Login", icon: FaTree, path: '/login' }  // Add path if needed
   ].map(item => (
     <li key={item.name}>
       <a

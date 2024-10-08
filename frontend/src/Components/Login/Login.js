@@ -23,7 +23,7 @@ function Login() {
       const response = await sendRequest();
       if (response.status === "ok") {
         alert("Login successful");
-        navigate("/animalhome");
+        navigate("/home");
       } else {
         alert("Login error: " + response.message);
       }

@@ -31,7 +31,7 @@ function Treatment(props) {
 
   return (
     <div className="treatment-container">
-      <h1 className="treatment-heading">Treatment Details</h1>
+      <h1 className="treatment-heading" style={{ fontWeight: 'bold', fontSize: '24px' }}>Treatment Details</h1>
       <div className="treatment-details">
         <div className="treatment-detail">
           <strong className="treatment-detail-label">Treatment ID:</strong>
@@ -59,7 +59,7 @@ function Treatment(props) {
         </div>
 
         <div className="treatment-medicines-container">
-          <h3 className="treatment-medicines-heading">Medicines:</h3>
+          <h3 className="treatment-medicines-heading" style={{ fontWeight: 'bold' }}>Medicines:</h3>
           {medicines.map((medicine, index) => (
             <div key={index} className="treatment-medicine-item">
               <div className="medicine-name">

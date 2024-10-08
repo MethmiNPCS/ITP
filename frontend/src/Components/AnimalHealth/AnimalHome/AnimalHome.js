@@ -116,10 +116,8 @@ function AnimalHome() {
   }, []);
 
   return (
-    <div style={{ textAlign: 'center' }}>
+    <div className="pt-24" style={{ textAlign: 'center' }}>
       <Nav />
-      <br/>
-      <br/>
       {isLoading ? (
         <p>Loading charts...</p>
       ) : (
@@ -127,7 +125,7 @@ function AnimalHome() {
           <br /><br />
           <div style={{ display: 'flex', justifyContent: 'center', margin: '20px 0' }}>
             <div style={{ width: '400px', marginRight: '200px', textAlign: 'left' }}>
-              <h3 style={{ textAlign: 'center' }}>Animal Population Overview</h3>
+              <h3 style={{ textAlign: 'center', fontWeight: 'bold' }}>Animal Population Overview</h3>
               {animalData.pie.labels.length > 0 ? (
                 <Pie data={animalData.pie} />
               ) : (
@@ -135,7 +133,7 @@ function AnimalHome() {
               )}
             </div>
             <div style={{ width: '600px', textAlign: 'left' }}>
-              <h3 style={{ textAlign: 'center' }}>Gender Distribution Among Livestock</h3>
+              <h3 style={{ textAlign: 'center', fontWeight: 'bold' }}>Gender Distribution Among Livestock</h3>
               {animalData.bar.labels.length > 0 ? (
                 <Bar data={animalData.bar} />
               ) : (
@@ -144,7 +142,7 @@ function AnimalHome() {
             </div>
           </div>
           <br /><br />
-          <h3 style={{ textAlign: 'center' }}>Animal Treatment Overview</h3>
+          <h3 style={{ textAlign: 'center', fontWeight: 'bold' }}>Animal Treatment Overview</h3>
           {animalData.treatmentPie.labels.length > 0 ? (
             <div style={{ width: '600px', margin: '0 auto' }}>
               <Bar
@@ -183,7 +181,7 @@ function AnimalHome() {
             <p>No data available for treatment bar chart.</p>
           )}
         </>
-      )}
+      )} <br /><br />
     </div>
   );
 }

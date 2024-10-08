@@ -98,15 +98,12 @@ function AddAnimal() {
   };
 
   return (
-    <div>
+    <div className="pt-24">
       <Nav />
       <br />
-      <br/>
-      <br/>
-      <br/>
       <div className="animal-add-animal-container">
         
-        <h1 className="animal-add-animal-header">Add Animal</h1>
+        <h1 className="animal-add-animal-header" style={{ fontWeight: 'bold', fontSize: '24px' }}>Add Animal</h1>
         <br />
         <form onSubmit={handleSubmit} className="animal-add-animal-form">
           <label className="animal-add-animal-label">Animal ID</label>

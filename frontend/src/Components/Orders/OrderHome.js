@@ -100,6 +100,7 @@ function OrderHome() {
   };
 
   return (
+    <div className="pt-20">
     <div id="h-orderhome-container">
       <Nav />
       <div id="h-cover-photo" style={{ textAlign: 'center', position: 'relative' }}>
@@ -157,6 +158,7 @@ function OrderHome() {
         </div>
       </div>
       
+    </div>
     </div>
   );
 }

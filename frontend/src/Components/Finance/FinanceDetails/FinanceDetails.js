@@ -94,7 +94,7 @@ function FinanceDetails() {
     ...finance,
     ...employees.map(employee => ({
       _id: employee.NIC,
-      date: 'n/a',
+      date: employee.AddDate,
       transactionType: 'Salary Payment',
       category: 'Salary',
       amount: employee.NetSalary

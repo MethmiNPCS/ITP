@@ -49,8 +49,11 @@ function Employees() {
   };
 
   return (
-    <div style={styles.container}>
+    <div  >
       <Nav />
+    <div class="pt-5">
+    <div style={styles.container}>
+      
       <div style={styles.actionContainer}>
         <input
           type="text"
@@ -81,12 +84,14 @@ function Employees() {
         </div>
       )}
     </div>
+    </div>
+    </div>
   );
 }
 
 const styles = {
   container: {
-    padding: '20px',
+    padding: '125px',
     backgroundColor: '#f0f8ff',
     minHeight: '100vh',
   },
@@ -127,7 +132,7 @@ const styles = {
     width: '90%',
     padding: '15px',
     marginBottom: '15px',
-    backgroundColor: '#A2CA71',
+    backgroundColor: '#C1F2B0',
     boxShadow: '0 4px 8px rgba(0, 0, 0, 0.1)',
     borderRadius: '8px',
     display: 'flex',

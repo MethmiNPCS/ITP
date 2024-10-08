@@ -142,9 +142,9 @@ function AnimalDetails() {
   };
 
   return (
-    <div><Nav /><br/>
+    <div className="pt-24"><Nav />
     <div className="animal-details-container">
-      <h1 className="animal-details-header">Animal Details Page</h1>
+      <h1 className="animal-details-header" style={{ fontWeight: 'bold', fontSize: '28px' }}>Animal Details Page</h1>
 
       <div className="animal-search-container">
         <input

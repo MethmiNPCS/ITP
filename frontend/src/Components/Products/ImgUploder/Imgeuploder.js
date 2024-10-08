@@ -1,5 +1,6 @@
 import axios from 'axios';
 import React, { useEffect, useState } from 'react';
+import Nav from '../Nav/Nav';
 
 function ImageUploader() {
   const [image, setImage] = useState(null);
@@ -16,12 +17,13 @@ function ImageUploader() {
     'yoghur.jpg': 'Yoghurt',
     'fresh.jpg': 'Fresh Milk',
     'egg.jpg': 'Egg',
+    'Meetbolle.jpg': 'Meeat bolle',
     'beef.jpg': 'Beef',
     'chicken.jpg': 'Chicken',
     'pork.jpg': 'Pork',
     'coconut.jpg': 'Coconut',
     'tea.jpg': 'Tea',
-    'Cocova.jpg': 'Nut',
+    'Cocova.jpg': 'Cocova',
   };
 
   const prices = {
@@ -30,6 +32,7 @@ function ImageUploader() {
     'Yoghurt': 50,
     'Fresh Milk ': 450,
     'Egg ': 25,
+    'Meeat bolle': 220,
     'Beef ': 2600,
     'Chicken ': 900,
     'Pork': 2700,
@@ -240,6 +243,7 @@ function ImageUploader() {
 
   return (
     <div style={styles.container}>
+      <Nav />
       <center>
         <h1>Image Uploader</h1>
         {errorMessage && <p style={styles.errorMessage}>{errorMessage}</p>}

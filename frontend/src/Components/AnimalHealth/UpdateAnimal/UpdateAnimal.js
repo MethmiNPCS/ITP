@@ -88,10 +88,10 @@ function UpdateAnimal() {
   };
 
   return (
-    <div><Nav /><br/><br/><br/>
+    <div className="pt-24"><Nav />
     <br/>
     <div className="animal-update-animal-container">
-      <h1 className="animal-update-animal-header">Update Animal</h1>
+      <h1 className="animal-update-animal-header" style={{ fontWeight: 'bold', fontSize: '24px' }}>Update Animal</h1>
       <form onSubmit={handleSubmit} className="animal-form">
         <label className="animal-form-label">Animal ID</label>
         <input

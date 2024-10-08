@@ -100,6 +100,7 @@ function OrderHome() {
   };
 
   return (
+    <div className="pt-20">
     <div id="h-orderhome-container">
       <Nav />
       <div id="h-cover-photo" style={{ textAlign: 'center', position: 'relative' }}>
@@ -146,17 +147,18 @@ function OrderHome() {
       <div id="h-donut-charts-container" style={{ display: 'flex', justifyContent: 'space-around', marginTop: '40px' }}>
         {/* Donut Chart for Orders */}
         <div id="h-order-donut-chart" style={{ maxWidth: '400px', height: '400px' }}>
-          <h3 id="h-order-donut-title" style={{ textAlign: 'center' }}>Order Categories</h3>
+          <h3 id="h-order-donut-title" style={{ textAlign: 'center', fontWeight: "bold", fontSize: 18 }}>Order Categories</h3>
           <Doughnut data={doughnutData} options={options} />
         </div>
 
         {/* Donut Chart for Suppliers */}
         <div id="h-supplier-donut-chart" style={{ maxWidth: '400px', height: '400px' }}>
-          <h3 id="h-supplier-donut-title" style={{ textAlign: 'center' }}>Supplier Categories</h3>
+          <h3 id="h-supplier-donut-title" style={{ textAlign: 'center', fontWeight: "bold", fontSize: 18 }}>Supplier Categories</h3>
           <Doughnut data={supplierDoughnutData} options={options} />
         </div>
       </div>
       
+    </div>
     </div>
   );
 }

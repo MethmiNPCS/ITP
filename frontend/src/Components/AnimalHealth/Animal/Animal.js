@@ -39,7 +39,7 @@ function Animal(props) {
 
   return (
     <div className="animal-animal-container">
-      <h1 className="animal-animal-heading">Animal Details</h1>
+      <h1 className="animal-animal-heading" style={{ fontWeight: 'bold', fontSize: '24px' }}>Animal Details</h1>
       <div className="animal-animal-details">
         <div className="animal-animal-detail">
           <strong className="animal-animal-detail-label">Animal ID:</strong> 

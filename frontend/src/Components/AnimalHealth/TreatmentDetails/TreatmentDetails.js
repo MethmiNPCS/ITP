@@ -137,9 +137,9 @@ function TreatmentDetails() {
   };
 
   return (
-    <div><Nav /><br/>
+    <div className="pt-24"><Nav />
     <div className="treatment-treatment-details-container">
-      <h1 className="treatment-treatment-details-header">Treatment Plans</h1>
+      <h1 className="treatment-treatment-details-header" style={{ fontWeight: 'bold', fontSize: '28px' }}>Treatment Plans</h1>
       <div className="treatment-search-container">
         <input
           type="text"

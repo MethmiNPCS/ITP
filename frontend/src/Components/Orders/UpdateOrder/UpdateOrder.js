@@ -113,11 +113,12 @@ function UpdateOrder() {
     };
 
     return (
+        <div className='pt-20'>
         <div id="uupdate-order-container">
             <Nav />
             <br/>
             <h1 id="uupdate-order-title">Update Order</h1>
-            <form id="uupdate-order-form" onSubmit={handleSubmit}>
+            <form id="uupdate-order-form" onSubmit={handleSubmit} style={{maxWidth: 790}}>
                 <label id="uorder-id-label">Order ID</label>
                 <br />
                 <input id="uorder-id-input" type="text" value={orderID} disabled />
@@ -213,6 +214,7 @@ function UpdateOrder() {
                 <button id="uupdate-order-button" type="submit">Update Order</button>
                 <button id="ucancel-order-button" type="button" onClick={handleCancel}>Cancel</button>
             </form>
+        </div>
         </div>
     );
 }

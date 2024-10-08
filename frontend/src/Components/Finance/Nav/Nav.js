@@ -42,11 +42,10 @@ function Nav() {
 
         <li>
           <Link to="/pnl" className="text-green-600 font-bold py-3 px-6 rounded-full transition duration-300 hover:bg-white hover:bg-opacity-20">
-          PROFIT & LOSSES
+            PROFIT & LOSSES
           </Link>
         </li>
 
-        
         <li>
           <Link to="/atable" className="text-green-600 font-bold py-3 px-6 rounded-full transition duration-300 hover:bg-white hover:bg-opacity-20">
             MONTHLY INFORMATION
@@ -62,10 +61,4 @@ function Nav() {
 }
 
 export default Nav;
-
-
-
-
-
-
 

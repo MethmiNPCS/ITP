@@ -100,7 +100,7 @@ input[type="text"] {
 }
 
 input[type="text"]:focus {
-  box-shadow: 0 0 5px rgba(39, 218, 36, 0.5); /* Green glow on focus */
+  box-shadow: 0 0 5px rgba(24, 74, 24, 0.5); /* Green glow on focus */
   outline: none;
 }
 

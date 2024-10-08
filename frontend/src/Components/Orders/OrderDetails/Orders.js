@@ -34,6 +34,7 @@ function Orders() {
   }, [searchTerm, orders]);
 
   return (
+    <div className='pt-24'>
     <div id="os-orders-container">
       <Nav />
       <br />
@@ -65,6 +66,7 @@ function Orders() {
           <p style={{ color: 'red' }}>No search results found</p>
         )}
       </div>
+    </div>
     </div>
   );
 }

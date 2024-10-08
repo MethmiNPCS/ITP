@@ -166,11 +166,13 @@ function AddEmployee() {
 const styles = {
     formContainer: {
         backgroundColor: 'white',
-        padding: '20px',
+        padding: '40px',
         borderRadius: '10px',
         boxShadow: '0 0 10px rgba(0, 0, 0, 0.1)',
         maxWidth: '500px',
         margin: '50px auto',
+        marginTop: '100px',
+        backgroundColor:'#C1F2B0',
     },
     title: {
         textAlign: 'center',

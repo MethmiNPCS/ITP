@@ -63,10 +63,10 @@ const TasksHome = () => {
     const generateReport = () => {
         const doc = new jsPDF();
 
-        // Add current date
-        const currentDate = new Date().toLocaleDateString();
+        // Add current date and time
+        const currentDateTime = new Date().toLocaleString();  // Includes both date and time
         doc.setFontSize(12);
-        doc.text(currentDate, doc.internal.pageSize.getWidth() - 40, 10);
+        doc.text(currentDateTime, doc.internal.pageSize.getWidth() - 60, 10);  // Adjust position if necessary
 
         // Add a black border
         const pageWidth = doc.internal.pageSize.getWidth();
@@ -77,7 +77,7 @@ const TasksHome = () => {
         // Center and underline the report title
         doc.setFontSize(22);
         doc.setFont(undefined, 'bold');
-        const title = "Task Report";
+        const title = "The National Seminary Farm";
         const titleWidth = doc.getTextWidth(title);
         doc.text(title, (pageWidth - titleWidth) / 2, 30);
         doc.line((pageWidth - titleWidth) / 2, 32, (pageWidth + titleWidth) / 2, 32);  // Underline
@@ -172,15 +172,15 @@ const TasksHome = () => {
             <div className='flex justify-between mb-4'>
                 <Link to='/tasks/IncompleteTasks' className='flex-1 bg-purple-300 p-2 border border-green-700 rounded-lg shadow-md mx-2 text-center hover:bg-gray-300'>
                     <h2 className='text-lg font-semibold  text-black'>Incomplete Tasks : {incompleteTasks}</h2> {/* Reduced font size */}
-                    
+
                 </Link>
                 <Link to='/tasks/OverdueTasks' className='flex-1 bg-red-200 p-2 border border-red-500 rounded-lg shadow-md mx-2 text-center hover:bg-red-300'>
                     <h2 className='text-lg font-semibold text-black'>Overdue Tasks : {overdueTasks}</h2>
-                   
+
                 </Link>
                 <Link to='/tasks/UrgentTasks' className='flex-1 bg-yellow-200 p-2 border border-yellow-600 rounded-lg shadow-md mx-2 text-center hover:bg-yellow-300'>
                     <h2 className='text-lg font-semibold text-black'>Urgent Tasks : {urgentTasks}</h2>
-                   
+
                 </Link>
             </div>
 
@@ -191,18 +191,18 @@ const TasksHome = () => {
                 <div className='flex items-center space-x-2'>
                     <SearchBar searchQuery={searchQuery} setSearchQuery={setSearchQuery} className='border-2 border-black rounded-lg px-4 py-2 w-48' /> {/* Adjust width as needed */}
                 </div>
-                    <div className='flex items-center gap-x-4'>
-                        <Link to='/tasks/create' className='flex items-center text-white bg-blue-500 hover:bg-blue-900 px-3 py-2 rounded-lg w-64'>
-                            <MdOutlineAddBox className='text-2xl mr-2' />
-                            <span>Create Task</span>
-                        </Link>
-                        <button
-                            onClick={generateReport}
-                            className='flex justify-center items-center text-white bg-green-800 hover:bg-green-400 px-3 py-2 rounded-lg'
-                        >
-                            <span>Generate Report</span>
-                        </button>
-                    </div>
+                <div className='flex items-center gap-x-4'>
+                    <Link to='/tasks/create' className='flex items-center text-white bg-blue-500 hover:bg-blue-900 px-3 py-2 rounded-lg w-64'>
+                        <MdOutlineAddBox className='text-2xl mr-2' />
+                        <span>Create Task</span>
+                    </Link>
+                    <button
+                        onClick={generateReport}
+                        className='flex justify-center items-center text-white bg-green-800 hover:bg-green-400 px-3 py-2 rounded-lg'
+                    >
+                        <span>Generate Report</span>
+                    </button>
+                </div>
             </div>
 
             {/* View Toggle Buttons */}
